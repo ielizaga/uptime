@@ -1,0 +1,437 @@
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.ui.inverted.dimmer {
+    background-color: rgba(255,255,255,1) !important;
+}
+
+.uptime-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+}
+
+.octicon {
+    margin-right: 32px;
+    font-size: 24px !important;
+}
+
+
+
+.graph-font {
+    color: #000;
+}
+
+.uptime-layout{
+    background-color: #f5f5f5 !important;
+}
+
+.uptime-layout .uptime-header .mdl-textfield {
+  padding: 0px;
+  margin-top: 41px;
+}
+.uptime-layout .uptime-header .mdl-textfield .mdl-textfield__expandable-holder {
+  bottom: 19px;
+}
+.uptime-layout .mdl-layout__header .mdl-layout__drawer-button {
+  color: rgba(0, 0, 0, 0.54);
+}
+.mdl-layout__drawer .avatar {
+  margin-bottom: 16px;
+}
+.uptime-drawer {
+  border: none;
+}
+/* iOS Safari specific workaround */
+.uptime-drawer .mdl-menu__container {
+  z-index: -1;
+}
+.uptime-drawer .uptime-navigation {
+  z-index: -2;
+}
+/* END iOS Safari specific workaround */
+.uptime-drawer .mdl-menu .mdl-menu__item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.uptime-drawer-header {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 16px;
+  height: 65px;
+}
+.uptime-avatar-dropdown {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.uptime-navigation {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.uptime-layout .uptime-navigation .mdl-navigation__link {
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: rgba(255, 255, 255, 0.56);
+  font-weight: 250;
+}
+.uptime-layout .uptime-navigation .mdl-navigation__link:hover {
+  background-color: #00BCD4;
+  color: #37474F;
+}
+.uptime-navigation .mdl-navigation__link .material-icons {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.56);
+  margin-right: 32px;
+}
+
+.uptime-content {
+  max-width: 1080px;
+}
+
+.uptime-charts {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+              -ms-grid-row-align: center;
+          align-items: center;
+}
+.uptime-chart:nth-child(1) {
+  color: #ACEC00;
+}
+.uptime-chart:nth-child(2) {
+  color: #00BBD6;
+}
+.uptime-chart:nth-child(3) {
+  color: #BA65C9;
+}
+.uptime-chart:nth-child(4) {
+  color: #EF3C79;
+}
+.uptime-graphs {
+  min-height: 220px;
+  padding: 16px 32px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+#under-text{
+line-height: 300px;
+  text-align: center;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: 100;
+  }
+/* TODO: Find a proper solution to have the graphs
+ * not float around outside their container in IE10/11.
+ * Using a browserhacks.com solution for now.
+ */
+_:-ms-input-placeholder, :root .uptime-graphs {
+  min-height: 664px;
+}
+_:-ms-input-placeholder, :root .uptime-graph {
+  max-height: 300px;
+}
+/* TODO end */
+.uptime-graph:nth-child(1) {
+  color: #00b9d8;
+}
+.uptime-graph:nth-child(2) {
+  color: #d9006e;
+}
+
+.uptime-cards {
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+              -ms-grid-row-align: flex-start;
+          align-items: flex-start;
+  -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+          align-content: flex-start;
+}
+.uptime-cards .uptime-separator {
+  height: 32px;
+}
+.uptime-cards .mdl-card__title.mdl-card__title {
+  color: white;
+  font-size: 24px;
+  font-weight: 400;
+}
+.uptime-cards ul {
+  padding: 0;
+}
+.uptime-cards h3 {
+  font-size: 1em;
+}
+.uptime-updates .mdl-card__title {
+  min-height: 200px;
+  background-position: 90% 100%;
+  background-repeat: no-repeat;
+}
+
+.uptime-shortupdates {
+  min-height: 50px !important;
+}
+
+.uptime-miniupdates {
+  min-height: 20px !important;
+}
+
+.uptime-cards .mdl-card__actions a {
+  color: #00BCD4;
+  text-decoration: none;
+}
+
+.uptime-options h3 {
+  margin: 0;
+}
+.uptime-options .mdl-checkbox__box-outline {
+  border-color: rgba(255, 255, 255, 0.89);
+}
+.uptime-options ul {
+  margin: 0;
+  list-style-type: none;
+}
+.uptime-options li {
+  margin: 4px 0;
+}
+.uptime-options .material-icons {
+  color: rgba(255, 255, 255, 0.89);
+}
+.uptime-options .mdl-card__actions {
+  height: 64px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+
+.full-width{
+    width: 100%;
+}
+
+/* Ripple when click and when the box is hovered popup the card */
+/*
+.ui.table{
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12) !important;
+    border-collapse: collapse !important;
+} */
+
+.avatar-icon{
+   margin-top: 25px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+.ripplelink{
+  display: block;
+  float: left;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  z-index: 0;
+}
+
+.ripplelink:hover {
+  z-index: 1000;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+}
+
+
+.table-layout {
+    table-layout:fixed;
+}
+
+.td-wrap {
+    word-wrap:break-word;
+    white-space: normal !important;
+}
+
+.text-align-right{
+    text-align: right !important;
+}
+
+.th-color{
+    background: #f9fafb;
+    font-weight: 250 !important;
+    font-size: 14px !important;
+    color: black !important;
+}
+
+.ink {
+  display: block;
+  position: absolute;
+  background: rgba(244, 67, 54, 0.1);
+  border-radius: 100%;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+
+.animate {
+  -webkit-animation: ripple 0.65s linear;
+  -moz-animation: ripple 0.65s linear;
+  -ms-animation: ripple 0.65s linear;
+  -o-animation: ripple 0.65s linear;
+  animation: ripple 0.65s linear;
+}
+
+/*
+@-webkit-keyframes
+ripple {  100% {
+    opacity: 0;
+    -webkit-transform: scale(2.5);
+    }
+}
+
+@-moz-keyframes
+ripple {  100% {
+    opacity: 0;
+    -moz-transform: scale(2.5);
+    }
+}
+
+@-o-keyframes
+ripple {  100% {
+    opacity: 0;
+    -o-transform: scale(2.5);
+    }
+}
+
+@keyframes
+ripple {  100% {
+    opacity: 0;
+    transform: scale(2.5);
+    }
+}
+*/
+/* Contribute Page Button Effect */
+
+.container {
+  max-width: 960px;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn {
+  background: transparent;
+  color: inherit;
+  text-decoration: none;
+  border: 0;
+  outline: 0;
+  -webkit-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  display: inline-block;
+}
+
+.btn-default {
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 4px solid black;
+  padding: 12px 28px;
+}
+
+.btn-default:hover {
+  background: black;
+  color: white;
+}
+
+.btn--skew {
+  -webkit-transform: skew(-10deg);
+          transform: skew(-10deg);
+}
+
+.btn--skew > span {
+  -webkit-transform: skew(10deg);
+          transform: skew(10deg);
+  display: inline-block;
+}
+
+.zoom-out {
+    -moz-transform: scale(0.8, 0.8); /* Moz-browsers */
+    zoom: 0.8; /* Other non-webkit browsers */
+    zoom: 80%; /* Webkit browsers */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

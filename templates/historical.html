@@ -1,0 +1,32 @@
+{% block body %}
+<main id="historic" class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-grid uptime-content">
+
+        <h2>Time Spend for Last 52 Weeks</h2>
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col ripplelink" >
+            <div id="hist_weekly" class="graph-font"></div>
+        </div>
+
+        <h2>Time Spend for Last 12 Months</h2>
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col ripplelink" >
+            <canvas width="100" height="100" id="hist_monthly"></canvas>
+        </div>
+
+        <h2>Time Spend for Last 5 Years</h2>
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col ripplelink">
+            <canvas width="100" height="100" id="hist_year"></canvas>
+        </div>
+
+        <h2>Time Spend for Last 30 Days per Organization</h2>
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col ripplelink">
+            <canvas width="100" height="100" id="hist_org"></canvas>
+        </div>
+
+        <h2>Time Spend for Last 30 Days per Ticket</h2>
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col ripplelink">
+            <canvas width="100" height="100" id="hist_tkt"></canvas>
+        </div>
+
+    </div>
+</main>
+{% endblock %}

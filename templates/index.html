@@ -1,0 +1,111 @@
+{% extends "header.html" %}
+{% block body %}
+<body>
+<div id="main_container" class="uptime-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="uptime-header mdl-layout__header ">
+        <div class="mdl-layout__header-row">
+            <span id="section-title" class="mdl-layout-title">Today</span>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+    </header>
+
+    <div class="uptime-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+
+        <img class="avatar-icon ui tiny centered  circular image" src="{{picture}}">
+
+        <header class="uptime-drawer-header">
+            <div class="mdl-layout-spacer"></div>
+            <span class="mdl-typography--text-center">{{email}}</span>
+            <div class="mdl-layout-spacer"></div>
+        </header>
+
+        <nav class="uptime-navigation mdl-navigation mdl-color--blue-grey-900">
+
+            <a id="dashboard-nav" class="ripplelink mdl-navigation__link" href="#dashboard"><i
+                    class="mdl-color-text--blue-grey-200 octicon octicon-dashboard"
+                    role="presentation"></i>Today</a>
+            <a id="metrics-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#metrics"><i
+                    class="mdl-color-text--blue-grey-200 material-icons"
+                    role="presentation">format_align_justify</i>Metrics</a>
+            <a style="cursor:not-allowed" id="historic-nav" class="mdl-button--disabled ripplelink mdl-navigation__link"><i
+                    class="mdl-color-text--blue-grey-200 material-icons" role="presentation">show_chart</i>Historical</a>
+            <a id="contribute-nav" class="ripplelink mdl-navigation__link" target="_blank" href="https://github.com/ielizaga/uptime"><i
+                    class="mdl-color-text--blue-grey-200 octicon octicon-octoface"
+                    role="presentation"></i>Contribute</a>
+        </nav>
+
+    </div>
+
+    {% include "dashboard.html" %}
+    {% include "metrics.html" %}
+
+</div>
+
+<footer>
+    <script type="text/javascript">
+    // Global variables
+    var email = "{{email}}";
+    var token = "{{token}}";
+
+    </script>
+    <script src="{{ url_for('static', filename='js/graphs.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/metrics.js')}}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/historical.js')}}"></script> -->
+
+    <script type="text/javascript">
+    $(function() {
+        /**
+         * Section navigation
+         * TODO: We disable the historic tab here , since the chartjs needs the div dimension when loading the
+         * chart and if the div display is NONE then it doesnt know about it and the chartjs doesnt load.
+         * So we turn it off after the windows loading is complete
+         */
+        var active = '#dashboard';
+        $(".mdl-navigation__link").click(function(event) {
+        main_container = '#'+(event.target.id).substring(0, (event.target.id).length - 4);
+            if($(main_container).is(":visible")){
+                return 0;
+            }else{
+                if(main_container=="#historic" || main_container=="#contribute"){
+                return;
+                }else{
+                $(active).transition({duration: '0s'});
+                $(main_container).transition('scale');
+                active = main_container;
+                }
+            }
+        });
+
+
+        // This fixes a bug where the graphs won't resize correctly if div is manually hidden
+        $(window).load(function() {
+            $('#dashboard').show();
+            $('#historic').hide();
+        });
+
+        $('#dashboard-nav').on('click',function(){
+            $('#dashboard').show();
+            $('#historic').hide();
+        });
+
+
+        /*
+         * TODO: Enable historic nav
+        $('#historic-nav').on('click',function(){
+            $('#dashboard').hide();
+            $('#historic').show();
+            chart_pastweeks.resize();
+            chart_today.resize();
+            chart_week.resize();
+            chart_month.resize;
+            chart_week_days.resize();
+        });
+        */
+    });
+    </script>
+
+</footer>
+</body>
+</html>
+{% endblock %}
