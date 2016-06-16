@@ -2,7 +2,7 @@ import json
 import os
 import logging
 
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session
+from flask import Flask, render_template, jsonify, redirect, url_for, session
 from flask_sslify import SSLify
 from flask_oauth import OAuth
 from urllib2 import Request, urlopen, URLError
@@ -11,21 +11,32 @@ from mongo_agent import MongoAgent
 # Initialize logging and setting to INFO level
 logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s', level=logging.INFO)
 
-# Google Console API values
+# Environment variables
 GOOGLE_CLIENT_ID = os.environ['GOOGLE_CLIENT_ID']
 GOOGLE_CLIENT_SECRET = os.environ['GOOGLE_CLIENT_SECRET']
-REDIRECT_URI = '/gCallback'
 SECRET_KEY = os.environ['SECRET_KEY']
-DEBUG = False
+ENVIRONMENT_TYPE = os.environ['ENVIRONMENT_TYPE']
+MONGO_DB = os.environ['MONGO_DB']
+MONGO_CONN = os.environ['MONGO_CONN']
 
+# Flask app configuration
 app = Flask(__name__)
-
-#sslify = SSLify(app)
 app.secret_key = SECRET_KEY
-port = int(os.getenv("PORT"))
+app.port = int(os.getenv("PORT"))
+app.debug = True
 app.context = ('server.crt', 'server.key')
 
-# Google OAuth authentication
+# Initialize Mongo agent
+mongo = MongoAgent(MONGO_CONN, MONGO_DB)
+
+# Apply production configuration
+if ENVIRONMENT_TYPE == 'prod':
+    SSLify(app)
+    app.host = '0.0.0.0'
+    app.debug = False
+
+# Google OAuth
+REDIRECT_URI = '/gCallback'
 oauth = OAuth()
 google = oauth.remote_app('google',
                           base_url='https://www.google.com/accounts/',
@@ -39,9 +50,6 @@ google = oauth.remote_app('google',
                           consumer_key=GOOGLE_CLIENT_ID,
                           consumer_secret=GOOGLE_CLIENT_SECRET)
 
-# Mongo agent
-mongo = MongoAgent(os.environ['MONGO_CONN'], os.environ['MONGO_DB'])
-
 
 @app.route("/")
 def index():
@@ -54,12 +62,10 @@ def index():
     req = Request('https://www.googleapis.com/oauth2/v1/userinfo', None, headers)
     try:
         res = urlopen(req)
-    except URLError as e:
-        if e.code == 401:
-            # Unauthorized - bad token
-            session.pop('access_token', None)
-            return redirect(url_for('login'))
-        return res.read()
+    except URLError:
+        # Unauthorized - bad token
+        session.pop('access_token', None)
+        return redirect(url_for('login'))
 
     google_user_info = json.loads(res.read())
     email = google_user_info['email']
@@ -105,4 +111,4 @@ def get_metrics_data():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=port)
+    app.run()
