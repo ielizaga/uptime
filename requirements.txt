@@ -1,8 +1,4 @@
-mysqlclient
 flask
-sqlalchemy
 flask_oauth
-python-dateutil
-requests
 flask-sslify
 pymongo
