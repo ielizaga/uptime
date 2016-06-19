@@ -93,6 +93,7 @@ ENV/
 
 # Cloud Foundry manifest
 manifest.yml*
+Procfile
 
 # Environment variables
 run.sh
