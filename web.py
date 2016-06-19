@@ -22,18 +22,11 @@ MONGO_CONN = os.environ['MONGO_CONN']
 # Flask app configuration
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
-app.port = int(os.getenv("PORT"))
-app.debug = True
-app.context = ('server.crt', 'server.key')
+
 
 # Initialize Mongo agent
 mongo = MongoAgent(MONGO_CONN, MONGO_DB)
 
-# Apply production configuration
-if ENVIRONMENT_TYPE == 'prod':
-    SSLify(app)
-    app.host = '0.0.0.0'
-    app.debug = False
 
 # Google OAuth
 REDIRECT_URI = '/gCallback'
@@ -111,4 +104,12 @@ def get_metrics_data():
 
 
 if __name__ == "__main__":
-    app.run()
+    # Apply production configuration
+    if ENVIRONMENT_TYPE == 'prod':
+        SSLify(app)
+        port = int(os.getenv("PORT"))
+        app.run(host='0.0.0.0', port=port)
+    else:
+        app.port = int(os.getenv("PORT"))
+        app.debug = True
+        app.run()
