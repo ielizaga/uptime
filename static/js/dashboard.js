@@ -46,14 +46,14 @@ $.getJSON($SCRIPT_ROOT + '/get_user_data',
             $("#ticket-table").hide();
         }
         for (var i in data.user.ticket_update_summary) {
-            var rowTemplate = '<tr>'+
-            '<td class="td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/'+data.user.ticket_update_summary[i]['ticket_number']+'">'+data.user.ticket_update_summary[i]['ticket_number']+'</a></td>'+
-            '<td class="td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_subject']+'</td>'+
-            '<td class="td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_assignee']+'</td>'+
-            '<td class="td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_submitter']+'</td>'+
-            '<td class="td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_update_time']+'</td>'+
-            '<td class="td-wrap mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['time_spend']+'</td>'+
-            '<td class="td-wrap mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_status']+'</td> </tr>';
+            var rowTemplate = '<tr class="tr-color">'+
+            '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/'+data.user.ticket_update_summary[i]['ticket_number']+'">'+data.user.ticket_update_summary[i]['ticket_number']+'</a></td>'+
+            '<td class="tr-color td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_subject']+'</td>'+
+            '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_assignee']+'</td>'+
+            '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_submitter']+'</td>'+
+            '<td class="tr-color td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_update_time']+'</td>'+
+            '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['time_spend']+'</td>'+
+            '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.ticket_update_summary[i]['ticket_status']+'</td> </tr>';
 
             $('#ticket-table tbody').after(rowTemplate);
         }

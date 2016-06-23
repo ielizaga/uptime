@@ -328,6 +328,7 @@ _:-ms-input-placeholder, :root .uptime-graph {
   animation: ripple 0.65s linear;
 }
 
+
 /*
 @-webkit-keyframes
 ripple {  100% {
@@ -419,6 +420,10 @@ ripple {  100% {
     zoom: 80%; /* Webkit browsers */
 }
 
+
+.tr-color:hover {
+    background: #ECEAEE;
+}
 
 
 
