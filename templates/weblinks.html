@@ -1,0 +1,279 @@
+{% block body %}
+<main id="weblinks" class="mdl-layout__content mdl-color--grey-100" style="display:none;">
+    <div class="mdl-grid uptime-content">
+        <div class="mdl-cell mdl-card mdl-shadow--2dp mdl-cell--5-col mdl-cell--12-col-desktop ripplelink">
+
+            <!--Support services link-->
+
+            <div class="full-width mdl-card__supporting-text mdl-color-text--grey-600 ">
+                <h2><img title="Pivotal Cloud Foundary" src="{{ url_for('static', filename = 'images/pivotal.png') }}" width="50px" height="50px" >
+                <span><strong>Support Services</strong></span></h2>
+
+                <table id="data" class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <tbody>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle red icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <i class="material-icons pad-left icon_opacity">announcement</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle green icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <a id="announcement_a"><i class="material-icons pad-left icon_opacity">announcement</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div id="not_now" class="ui basic modal">
+                    <div class="actions">
+                        <div class="ui cancel circular inverted red icon button"><i class="icon remove"></i></div>
+                    </div>
+                    <table id="updated_table" class="mdl-cell mdl-cell--6-col mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+                       <tbody>
+                           <tr>
+                               <td class="th-color mdl-data-table__cell--non-numeric"><b> Name </b></b></td>
+                               <td class="th-color mdl-data-table__cell--non-numeric"> Zendesk Support Site </td>
+                           </tr>
+                           <tr>
+                               <td class="th-color mdl-data-table__cell--non-numeric"><b> URL </b></td>
+                               <td class="th-color mdl-data-table__cell--non-numeric"> https://discuss.zendesk.com </td>
+                           </tr>
+                           <tr>
+                               <td class="th-color mdl-data-table__cell--non-numeric"><b> Contact Person </b></td>
+                               <td class="th-color mdl-data-table__cell--non-numeric"> Arnold </td>
+                           </tr>
+                           <tr>
+                               <td class="th-color mdl-data-table__cell--non-numeric"><b> Contact Person Email </b></td>
+                               <td class="th-color mdl-data-table__cell--non-numeric"> Arnold@gmail.com </td>
+                           </tr>
+                           <tr>
+                               <td class="th-color mdl-data-table__cell--non-numeric"><b> Description </b></td>
+                               <td class="th-color mdl-data-table__cell--non-numeric"> This is link for all pivotal support tickets </td>
+                           </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--Greenplum links-->
+
+        <div class="mdl-cell mdl-card mdl-shadow--2dp mdl-cell--5-col mdl-cell--6-col-desktop ripplelink">
+            <div class="full-width mdl-card__supporting-text mdl-color-text--grey-600 ">
+                <h2><img src="https://d1fto35gcfffzn.cloudfront.net/images/products/icons/product-pivotal-greenplum.svg" width="50px" height="50px" >
+                <span>Pivotal Greenplum</span></a></h2>
+
+                <table class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <tbody>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle red icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <i class="material-icons pad-left icon_opacity">announcement</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle green icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <a ><i class="material-icons pad-left icon_opacity">announcement</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--HAWQ / Hadoop Links-->
+
+        <div class="mdl-cell mdl-card mdl-shadow--2dp mdl-cell--5-col mdl-cell--6-col-desktop ripplelink">
+            <div class="full-width mdl-card__supporting-text mdl-color-text--grey-600 ">
+                <h2><img src="https://d1fto35gcfffzn.cloudfront.net/images/products/icons/product-pivotal-hdb.svg" width="50px" height="50px" >
+                <span>Pivotal HDB</span></a></h2>
+
+                <table class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <tbody>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle red icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <i class="material-icons pad-left icon_opacity">announcement</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle green icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <a ><i class="material-icons pad-left icon_opacity">announcement</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--Gemfire links-->
+
+        <div class="mdl-cell mdl-card mdl-shadow--2dp mdl-cell--5-col mdl-cell--6-col-desktop ripplelink">
+            <div class="full-width mdl-card__supporting-text mdl-color-text--grey-600 ">
+                <h2><img src="https://d1fto35gcfffzn.cloudfront.net/images/products/icons/product-pivotal-gemfire.svg" width="50px" height="50px" >
+                <span>Pivotal Gemfire</span></a></h2>
+
+                <table class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <tbody>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle red icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <i class="material-icons pad-left icon_opacity">announcement</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle green icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <a ><i class="material-icons pad-left icon_opacity">announcement</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--Cloud Foundry links-->
+
+        <div class="mdl-cell mdl-card mdl-shadow--2dp mdl-cell--5-col mdl-cell--6-col-desktop ripplelink">
+            <div class="full-width mdl-card__supporting-text mdl-color-text--grey-600 ">
+                <h2><img src="{{ url_for('static', filename = 'images/pcf.png') }}"  width="80px" height="50px" >
+                <span>Pivotal Cloud Foundry</span></a></h2>
+
+                <table class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <tbody>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle red icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <i class="material-icons pad-left icon_opacity">announcement</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric" width="1%"><i class="circle green icon"></i></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric"><b>Zendesk</b></td>
+                        <td class="td-wrap mdl-data-table__cell--non-numeric text-align-right">
+                            <i class="material-icons icon_opacity">mode_edit</i>
+                            <a ><i class="material-icons pad-left icon_opacity">announcement</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--Add Button-->
+
+        <button id="add_link" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect btn-align">
+          <i class="material-icons">add</i>
+        </button>
+
+        <!--Add form-->
+
+        <div id="add_url_form" class="ui basic modal">
+            <div class="actions">
+                <div class="ui cancel circular inverted red icon button"><i class="icon remove"></i></div>
+            </div>
+
+            <form action="#" >
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="uptime-color"><b>Category</b></label>
+                                <div class="mdl-selectfield mdl-textfield mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop mdl-js-textfield mdl-textfield--floating-label">
+                                    <select name="pivotal_products" required>
+                                        <option value="" disabled selected>Choose the component....</option>
+                                        <option value="support_services">Pivotal Support Services</option>
+                                        <option value="pivotal_greenplum">Pivotal Greenplum</option>
+                                        <option value="pivotal_hdb">Pivotal HDB</option>
+                                        <option value="pivotal_gemfire">Pivotal Gemfire</option>
+                                        <option value="pivotal_cloud_foundry">Pivotal Cloud Foundry</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="uptime-color"><b>Short Heading (Max: 50 Characters)</b></label>
+                                <div class="mdl-textfield mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop mdl-js-textfield mdl-textfield--floating-label">
+                                  <input class="mdl-textfield__input" type="text" id="short_heading" maxlength="50" required>
+                                  <label class="mdl-textfield__label" for="short_heading">Enter a heading....</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="uptime-color"><b>Website URL</b></label>
+                                <div class="mdl-textfield mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop mdl-js-textfield mdl-textfield--floating-label">
+                                  <input class="mdl-textfield__input" type="url" id="website_url" required>
+                                  <label class="mdl-textfield__label" for="website_url">Enter URL....</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="uptime-color"><b>Website Owner</b></label>
+                                <div class="mdl-textfield mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop mdl-js-textfield mdl-textfield--floating-label">
+                                  <input class="mdl-textfield__input" type="text" id="contact_person" required>
+                                  <label class="mdl-textfield__label" for="contact_person">Enter contact person name (for eg.s who needs to be contacted for access/issues etc)....</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="uptime-color"><b>Email address</b></label>
+                                <div class="mdl-textfield mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="email" id="contact_person_email" required>
+                                  <label class="mdl-textfield__label" for="contact_person_email">Enter contact person email address....</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="uptime-color"><b>Long description of what this website is used for (Max: 500 Characters)</b></label>
+                                <div class="mdl-textfield mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--12-col-desktop mdl-js-textfield mdl-textfield--floating-label">
+                                  <textarea class="mdl-textfield__input" type="text" rows="5" id="long_description" maxlength="500" required></textarea>
+                                  <label class="mdl-textfield__label" for="long_description">Enter a description about this website....</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="mdl-button btn-sumbit mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit" value="Submit">Submit</button>
+                <button class="mdl-button btn-sumbit mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="reset" value="Submit">Reset</button>
+            </form>
+
+            <p><br/>
+                Disclaimer:<ol>
+                <li>Contributing a link, will make the link visible to all the uptime users.</li>
+                <li>Please restrain from adding any personal urls, you may use your browser bookmark instead. </li>
+                <li>If the URL's added is not related to pivotal or doesn't meet the standard, uptime admins with remove it from the website.</li>
+                </ol>
+            </p>
+
+        </div>
+    </div>
+</main>
+{% endblock %}
