@@ -273,7 +273,7 @@ _:-ms-input-placeholder, :root .uptime-graph {
 }
 
 .ripplelink:hover {
-  z-index: 1000;
+  z-index: 100;
   box-shadow: rgba(0, 0, 0, 0.3) 0 16px 16px 0;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 16px 16px 0;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 16px 16px 0;
@@ -323,6 +323,10 @@ _:-ms-input-placeholder, :root .uptime-graph {
     width: 100%;
 }
 
+a {
+    color: #009688;
+}
+
 a:hover {
    color: red;
    cursor: pointer;
@@ -330,14 +334,22 @@ a:hover {
    opacity: 0.9 !important;
 }
 
-/* weblinks.htmlcss */
-
-.icon_opacity {
-    opacity: 0.5;
+.disable-link {
+    text-decoration: none;
+    background-color: #fff;
+    color: grey;
+    pointer-events: none;
 }
 
-.icon_opacity:hover {
-    opacity: 1;
+/* weblinks.html css */
+
+.icon_attributes {
+    opacity: 0.3 !important;
+    font-size: 1.5em !important;
+}
+
+.icon_attributes:hover {
+    opacity: 1 !important;
 }
 
 .pad-left {
@@ -375,9 +387,11 @@ a:hover {
     transform: translateZ(0);
     position: fixed;
     bottom: 1em;
+    right: 25px;
     background: #009688;
     color: white;
     box-shadow: 5px 5px 5px #888888;
+    z-index: 999;
 }
 
 .btn-align:hover {
@@ -392,7 +406,6 @@ a:hover {
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
 }
-
 
 select {
   font-family: inherit;

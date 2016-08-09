@@ -1,9 +1,9 @@
 var cat_week_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+var popup_tables = ['tickets_open_table','tickets_closed_table','tickets_assigned_table','tickets_updated_table']
 
 var chart_week;
 var chart_month;
 var chart_week_days;
-
 
 
 $.getJSON($SCRIPT_ROOT + '/get_user_data',
@@ -17,62 +17,30 @@ $.getJSON($SCRIPT_ROOT + '/get_user_data',
         $('#assigned').html(data.user.tickets_assigned);
         $('#updated').html(data.user.tickets_updated);
 
+        $.each(popup_tables, function(id, table_name) {
 
-        // all open tickets
-        for (var i in data.user.tickets_open_table) {
+            if (data.user[table_name].length == 0) {
+                var button ='#'+table_name+'_a';
+                $(button).each(function () {
+                    $(this).addClass('disable-link');
+                });
+            } else {
+                for (var i in data.user[table_name]) {
+
                     var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/'+data.user.tickets_open_table[i]['ticket_id']+'">'+data.user.tickets_open_table[i]['ticket_id']+'</a></td>'+
-                                      '<td class="tr-color td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.tickets_open_table[i]['ticket_subject']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.tickets_open_table[i]['assignee']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.tickets_open_table[i]['submitter']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.tickets_open_table[i]['ticket_priority']+'</td>' +
+                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/'+data.user[table_name][i]['ticket_id']+'">'+data.user[table_name][i]['ticket_id']+'</a></td>'+
+                                      '<td class="tr-color td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user[table_name][i]['ticket_subject']+'</td>' +
+                                      '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user[table_name][i]['assignee']+'</td>' +
+                                      '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user[table_name][i]['submitter']+'</td>' +
+                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user[table_name][i]['ticket_priority']+'</td>' +
+                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user[table_name][i]['ticket_status']+'</td>' +
                                       '</tr>';
 
-                    $('#open_table tr:last').after(rowTemplate);
-
+                    $('#'+table_name+' tr:last').after(rowTemplate);
                 };
+            }
+        });
 
-        // all closed tickets
-        for (var i in data.user.tickets_closed_table) {
-                    var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/'+data.user.tickets_closed_table[i]['ticket_id']+'">'+data.user.tickets_closed_table[i]['ticket_id']+'</a></td>'+
-                                      '<td class="tr-color td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.tickets_closed_table[i]['ticket_subject']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.tickets_closed_table[i]['assignee']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.tickets_closed_table[i]['submitter']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.tickets_closed_table[i]['ticket_priority']+'</td>' +
-                                      '</tr>';
-
-                    $('#closed_table tr:last').after(rowTemplate);
-
-                };
-
-        // all assigned tickets
-        for (var i in data.user.tickets_assigned_table) {
-                    var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/'+data.user.tickets_assigned_table[i]['ticket_id']+'">'+data.user.tickets_assigned_table[i]['ticket_id']+'</a></td>'+
-                                      '<td class="tr-color td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.tickets_assigned_table[i]['ticket_subject']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.tickets_assigned_table[i]['assignee']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.tickets_assigned_table[i]['submitter']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.tickets_assigned_table[i]['ticket_priority']+'</td>' +
-                                      '</tr>';
-
-                    $('#assigned_table tr:last').after(rowTemplate);
-
-                };
-
-        // all updated tickets
-        for (var i in data.user.tickets_updated_table) {
-                    var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/'+data.user.tickets_updated_table[i]['ticket_id']+'">'+data.user.tickets_updated_table[i]['ticket_id']+'</a></td>'+
-                                      '<td class="tr-color td-wrap mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.tickets_updated_table[i]['ticket_subject']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">'+data.user.tickets_updated_table[i]['assignee']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.tickets_updated_table[i]['submitter']+'</td>' +
-                                      '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">'+data.user.tickets_updated_table[i]['ticket_priority']+'</td>' +
-                                      '</tr>';
-
-                    $('#updated_table tr:last').after(rowTemplate);
-
-                };
 
         // Charts
         chart_today = drawGaugeChart('today',data.user.time_today,28800);

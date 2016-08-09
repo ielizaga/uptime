@@ -28,7 +28,7 @@
                     class="mdl-color-text--blue-grey-200 material-icons" role="presentation">format_align_justify</i>Metrics</a>
             <a style="cursor:not-allowed" id="historic-nav" class="mdl-button--disabled ripplelink mdl-navigation__link"><i
                     class="mdl-color-text--blue-grey-200 material-icons" role="presentation">show_chart</i>Historical</a>
-            <a style="cursor:not-allowed" id="weblinks-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#weblinks"><i
+            <a id="weblinks-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#weblinks"><i
                     class="mdl-color-text--blue-grey-200 material-icons" role="presentation">launch</i>Useful Links</a>
             <a id="contribute-nav" class="ripplelink mdl-navigation__link" target="_blank" href="https://github.com/ielizaga/uptime"><i
                     class="mdl-color-text--blue-grey-200 octicon octicon-octoface"
@@ -39,7 +39,8 @@
 
     {% include "dashboard.html" %}
     {% include "metrics.html" %}
-    {% include "weblinks.html" %}
+    {% include "weblinks_nav.html" %}
+    {% include "weblinks_data.html" %}
 
 </div>
 
@@ -53,6 +54,7 @@
     <script src="{{ url_for('static', filename='js/graphs.js')}}"></script>
     <script src="{{ url_for('static', filename='js/dashboard.js')}}"></script>
     <script src="{{ url_for('static', filename='js/metrics.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/weblinks.js')}}"></script>
     <!-- <script src="{{ url_for('static', filename='js/historical.js')}}"></script> -->
 
     <script type="text/javascript">
@@ -65,17 +67,24 @@
          */
         var active = '#dashboard';
         $(".mdl-navigation__link").click(function(event) {
-        main_container = '#'+(event.target.id).substring(0, (event.target.id).length - 4);
+        main_container = '#'+($(this).attr("id")).substring(0, ($(this).attr("id")).length - 4);
+
 
             if($(main_container).is(":visible")){
                 return 0;
             }else{
-                if(main_container=="#historic" || main_container=="#contribute" || main_container=="#weblinks"){
+                if(main_container=="#historic" || main_container=="#contribute"){
                     return;
                 }else{
                     $(active).transition({duration: '0s'});
                     $(main_container).transition('scale');
                     active = main_container;
+
+                    if($(main_container).hasClass("show-form-button")){
+                        $('#add-link').show();
+                    } else {
+                        $('#add-link').hide();
+                    };
 
                     /* To change the title when the navigation bar is clicked */
 
@@ -84,21 +93,112 @@
                     }else if(main_container=="#dashboard"){
                         title="Today";
                     }else if(main_container=="#weblinks"){
-                        title="Useful Links";
+                        title="Weblinks";
                     }else if(main_container=="#historic"){
                         title="Historic";
-                    }
+                    }else if(main_container=="#greenplum-links"){
+                        title="Pivotal Greenplum Weblinks";
+                    }else if(main_container=="#hdb-links"){
+                        title="Pivotal HDB Weblinks";
+                    }else if(main_container=="#gemfire-links"){
+                        title="Pivotal Gemfire Weblinks";
+                    }else if(main_container=="#pcf-links"){
+                        title="Pivotal Cloud Foundry Weblinks";
+                    }else if(main_container=="#supportservices-links"){
+                        title="Pivotal Support Services Weblinks";
+                    };
 
                     $("#section-title").html(title);
                 }
             }
         });
 
-        /* Jquery to pop-up to view the result of the short updates card */
+        /**
+         * Section: Dashboard
+         * Jquery to pop-up the data for short update cards
+         */
+
         $(".short_updates_results").click(function(event) {
-            updates_container = '.ui.basic.modal#'+(event.target.id).substring(0, (event.target.id).length - 2)+'_table_box';
+            updates_container = '.ui.basic.modal#'+(event.target.id).substring(0, (event.target.id).length - 2)+'_box';
             $(updates_container).modal('show');
         });
+
+        /**
+         * Section: Useful Links
+         * Jquery for form ( i.e form to contribute the link )
+         */
+
+        $('#add-link, #reset-link, #continue-link').click(function(event) {
+
+            var hidden_id = $('#weblink_row_id').val();
+            var clicked_element_id = $(this).attr("id");
+
+            if (hidden_id != '' && clicked_element_id == "add-link") {
+                $('input, textarea, select').val('');
+            };
+
+            $('.ui.basic.modal#add-form').modal('show');
+        });
+
+        $("#success-link-click").click(function(event) {
+            location.reload();
+        });
+
+        function isUrlValid(url) {
+            return /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url);
+        }
+
+        function isValidEmailAddress(emailAddress) {
+            var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+            return pattern.test(emailAddress);
+        };
+
+        function postLinkData() {
+            console.log( $('#form-link').serializeArray() );
+                $.post(
+                    "/post_weblink_form_data",
+                    $( "#form-link" ).serialize(),
+                    function (response) {
+                        if (response == "success") {
+                           $('.ui.small.modal#success-dialog-link').modal('show');
+                           $('.ui.basic.modal#add-form').modal('hide');
+                        } else {
+                           $('#text-link').html("The uptime database couldn't register the entry, please contact the uptime admin or try again after sometime.");
+                           $('.ui.small.modal#error-dialog-link').modal('show');
+                        }
+                    }
+                );
+        }
+
+        /* Form sumbit action and validation check */
+        $('#submit-link').click(function() {
+
+            if ( $("#product_category").val() == '' || $("#short_heading").val() == '' || $("#website_url").val() == '' || $("#contact_person").val() == '' ||  $("#long_description").val() == '') {
+
+                $('#text-link').html("It seems like some of the forms mandatory fields have not been entered.");
+                $('.ui.small.modal#error-dialog-link').modal('show');
+
+            } else if ( !isUrlValid($("#website_url").val()) ) {
+
+                $('#text-link').html("It seems like URL entered is not valid, a valid URL is for example 'http://mywebsite.com'.");
+                $('.ui.small.modal#error-dialog-link').modal('show');
+
+            } else if ( $("#contact_person_email").val() != ' ' ) {
+
+                if (!isValidEmailAddress($("#contact_person_email").val()) ) {
+                     $('#text-link').html("It seems like Email Address is entered incorrectly.");
+                     $('.ui.small.modal#error-dialog-link').modal('show');
+                } else {
+                    postLinkData();
+                }
+
+            } else {
+                postLinkData();
+            }
+            return false;
+        });
+
+        /* TODO: Enable historic nav
 
         // This fixes a bug where the graphs won't resize correctly if div is manually hidden
         $(window).load(function() {
@@ -111,17 +211,6 @@
             $('#historic').hide();
         });
 
-        /* Useful link Jquery */
-        $('#announcement_a').click(function(event) {
-            $('.ui.basic.modal#not_now').modal('show');
-        });
-
-        $('#add_link').click(function(event) {
-            $('.ui.basic.modal#add_url_form').modal('show');
-        });
-
-        /*
-         * TODO: Enable historic nav
         $('#historic-nav').on('click',function(){
             $('#dashboard').hide();
             $('#historic').show();

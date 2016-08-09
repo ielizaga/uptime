@@ -2,7 +2,7 @@ import json
 import os
 import logging
 
-from flask import Flask, render_template, jsonify, redirect, url_for, session
+from flask import Flask, render_template, jsonify, redirect, url_for, session, request
 from flask_sslify import SSLify
 from flask_oauth import OAuth
 from urllib2 import Request, urlopen, URLError
@@ -101,6 +101,59 @@ def get_metrics_data():
 
     data = mongo.get_metrics_data(email)
     return jsonify(metrics=data['metrics_data'])
+
+
+@app.route('/post_weblink_form_data', methods=['POST'])
+def post_weblink_form_data():
+
+    id = request.form['weblink_row_id']
+    product_category = request.form['pivotal_products']
+    short_heading = request.form['short_heading']
+    website_url = request.form['website_url']
+    contact_person = request.form['contact_person']
+    contact_person_email = request.form['contact_person_email']
+    long_description = request.form['long_description']
+
+    if not id:
+        result = mongo.add_form_data(
+                product_category,
+                short_heading,
+                website_url,
+                contact_person,
+                contact_person_email,
+                long_description
+        )
+    else:
+        result = mongo.update_form_data(
+                id,
+                product_category,
+                short_heading,
+                website_url,
+                contact_person,
+                contact_person_email,
+                long_description
+        )
+
+
+    if result:
+        return "success"
+    else:
+        return "failure"
+
+
+@app.route('/get_weblink_data')
+def get_weblink_data():
+
+    data = {'support_services': [],
+            'pivotal_greenplum': [],
+            'pivotal_hdb': [],
+            'pivotal_gemfire': [],
+            'pivotal_cloud_foundry': []}
+
+    for product in data.keys():
+        data[product] = mongo.get_weblink_data(product)
+
+    return jsonify(weblinks=data)
 
 
 if __name__ == "__main__":
