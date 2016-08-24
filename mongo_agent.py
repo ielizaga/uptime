@@ -1,8 +1,8 @@
 from pymongo import MongoClient
 import bson
 
-class MongoAgent:
 
+class MongoAgent:
     db = None
 
     def __init__(self, connection_string, db_name):
@@ -20,7 +20,7 @@ class MongoAgent:
         :param email: user email whose data will be returned
         :return:
         """
-        collection = self.db["dashboard"]
+        collection = self.db["dashboard1"]
         return collection.find_one({"email": email})
 
     def get_metrics_data(self, email):
@@ -32,13 +32,24 @@ class MongoAgent:
         collection = self.db["metrics"]
         return collection.find_one({"email": email})
 
+    def get_historical_data(self, email):
+        """
+        Retrieves the metrics data from the historical collection in the database
+        :param email: user email whose data will be returned
+        :return:
+        """
+
+        collection = self.db["historical1"]
+        data = collection.find_one({"email": email})
+        return data
+
     def add_form_data(self, product_category, short_heading, web_url, contact_person, email, long_description):
         """
         Add the weblink data from the form entered by the user to the database
         """
         collection = self.db["weblinks"]
         collection.insert_one({
-            "product_category" : product_category,
+            "product_category": product_category,
             "short_heading": short_heading,
             "web_url": web_url,
             "contact_person": contact_person,
@@ -65,11 +76,10 @@ class MongoAgent:
         }, upsert=False)
         return True
 
-
     def get_weblink_data(self, component):
         """
-        Retrieves the metrics data from the metrics collection in the database
-        :param email: user email whose data will be returned
+        Retrieves the weblink data from the database.
+        :param component: pivotal product
         :return:
         """
 
@@ -80,3 +90,36 @@ class MongoAgent:
             link['_id'] = str(link['_id'])
             links.append(link)
         return links
+
+    def get_kbanalytics_data(self):
+        """
+        Retrieves the data for kb analytics
+        :param component: analytics component
+        :return:
+        """
+
+        collection = self.db["kbanalytics"]
+        data = collection.find_one({}, {'_id': False})
+        return data
+
+    def get_kb_data(self):
+        """
+        Retrieves the data for kb analytics
+        :param component: analytics component
+        :return:
+        """
+
+        collection = self.db["kbdata"]
+        data = collection.find_one({}, {'_id': False})
+        return data
+
+    def get_mykb_data(self, email):
+        """
+        Retrieves the metrics or all my articles
+        :param email: user email whose data will be returned
+        :return:
+        """
+
+        collection = self.db["mykb"]
+        data = collection.find_one({"email": email})
+        return data
