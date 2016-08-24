@@ -9,7 +9,8 @@ function toTimeString(seconds) {
     var m = Math.floor(d % 3600 / 60);
     var s = Math.floor(d % 3600 % 60);
 
-    return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); }
+    return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s);
+}
 
 /**
  * Draws a gauge chart using C3js generate function.
@@ -21,7 +22,9 @@ function drawGaugeChart(element, data, max) {
     var chart = c3.generate({
         bindto: document.getElementById(element),
         data: {
-            columns: [['time', data]],
+            columns: [
+                ['Time', data]
+            ],
             type: 'gauge',
         },
         gauge: {
@@ -31,16 +34,18 @@ function drawGaugeChart(element, data, max) {
             }
         },
         color: {
-                pattern: ['#263238', '#195352', '#0c746d', '#009688'],
-                threshold: {
-                    values: [max*10/100, max*40/100, max*60/100, max*75/100]
-                }
+            pattern: ['#263238', '#195352', '#0c746d', '#009688'],
+            threshold: {
+                values: [max * 10 / 100, max * 40 / 100, max * 60 / 100, max * 75 / 100]
+            }
         },
 
         tooltip: {
             format: {
-                title: function (d) { return 'Logged'; },
-                value: function (value, ratio, id) {
+                title: function(d) {
+                    return 'Logged';
+                },
+                value: function(value, ratio, id) {
                     return toTimeString(value);
                 }
 
@@ -69,19 +74,19 @@ function drawCategoriesBarChart(element, data, categories) {
             ],
             type: 'bar',
             colors: {
-                time: '#009688'
+                Time: '#009688'
             }
         },
         legend: {
             show: false
         },
-        axis : {
+        axis: {
             x: {
                 type: 'category',
                 categories: categories
             },
             y: {
-                tick:{
+                tick: {
                     format: function(d) {
                         return toTimeString(d);
                     }
@@ -98,25 +103,149 @@ function drawCategoriesBarChart(element, data, categories) {
     return chart;
 }
 
-function drawAreaChart(element,data) {
+// Line Chart
+function drawLineChart(element, x_data, y_data) {
+
     var chart = c3.generate({
         bindto: document.getElementById(element),
+        size: {
+            height: 220
+        },
+        padding: {
+            bottom: 20,
+        },
         data: {
             columns: [
-                data,
-            ],
-            types: {
-                time: 'area-spline'
+                y_data
+            ],colors: {
+                Articles: '#009688',
+                Time: '#009688',
+                Votes: '#009688',
+                Comments: '#009688'
             }
         },
-        axis : {
+        legend: {
+            show: false
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: x_data,
+            },
+        }
+    });
+
+    return chart;
+}
+
+// Line Chart to be used for historical tab.
+function drawLineHistChart(element, x_data, y_data) {
+
+    var chart = c3.generate({
+        bindto: document.getElementById(element),
+        size: {
+            height: 220
+        },
+        padding: {
+            bottom: 20,
+        },
+        data: {
+            columns: [
+                y_data
+            ],colors: {
+                Articles: '#009688',
+                Time: '#009688',
+                Comments: '#009688'
+            }
+        },
+        legend: {
+            show: false
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: x_data,
+            },
             y: {
-                tick:{
+                tick: {
                     format: function(d) {
                         return toTimeString(d);
                     }
                 }
             }
+        }
+    });
+
+    return chart;
+}
+
+
+
+// Bar Chart
+function drawBarChart(element, x_data, y_data) {
+
+    var chart = c3.generate({
+        bindto: document.getElementById(element),
+        size: {
+            height: 240,
+        },
+        data: {
+            columns: [
+                y_data,
+            ],
+            type: 'bar',
+            colors: {
+                Articles: '#009688',
+                Votes: '#009688',
+                Comments: '#009688',
+            }
+        },
+        legend: {
+            show: false
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: x_data
+            }
+        },
+        bar: {
+            width: {
+                ratio: 0.5
+            }
+        }
+    });
+
+    return chart;
+}
+
+
+// Multiple Line Chart
+function drawMultipleLineChart(element, x_data, y1_data, y2_data, y3_data) {
+
+    var chart = c3.generate({
+        bindto: document.getElementById(element),
+        size: {
+            height: 220
+        },
+        padding: {
+            bottom: 25,
+        },
+        data: {
+            columns: [
+                y1_data,
+                y2_data,
+                y3_data
+            ]
+        },
+        legend: {
+            show: false
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: x_data,
+            },
         }
     });
 
