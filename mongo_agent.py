@@ -20,7 +20,7 @@ class MongoAgent:
         :param email: user email whose data will be returned
         :return:
         """
-        collection = self.db["dashboard1"]
+        collection = self.db["dashboard"]
         return collection.find_one({"email": email})
 
     def get_metrics_data(self, email):
@@ -39,7 +39,7 @@ class MongoAgent:
         :return:
         """
 
-        collection = self.db["historical1"]
+        collection = self.db["historical"]
         data = collection.find_one({"email": email})
         return data
 
