@@ -170,6 +170,12 @@ def get_kbanalytics_data():
     return jsonify(kbanalytics=data)
 
 
+@app.route('/get_trends_data')
+def get_trends_data():
+    data = mongo.get_trends_data()
+    return jsonify(trends=data)
+
+
 @app.route('/get_kb_data')
 def get_kb_data():
     data = mongo.get_kb_data()

@@ -123,3 +123,14 @@ class MongoAgent:
         collection = self.db["mykb"]
         data = collection.find_one({"email": email})
         return data
+
+    def get_trends_data(self):
+        """
+        Retrieves the data for trends
+        :param component: analytics component
+        :return:
+        """
+
+        collection = self.db["trends"]
+        data = collection.find_one({}, {'_id': False})
+        return data

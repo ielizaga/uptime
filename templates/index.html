@@ -33,10 +33,13 @@
                     class="mdl-color-text--blue-grey-200 material-icons calendar icon" role="presentation"></i>Today</a>
 
             <a id="metrics-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#metrics"><i
-                    class="mdl-color-text--blue-grey-200 material-icons align justify icon" role="presentation"></i>Metrics</a>
+                    class="mdl-color-text--blue-grey-200 material-icons align justify icon" role="presentation"></i>My Metrics</a>
 
             <a id="historic-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#historic"><i
-                    class="mdl-color-text--blue-grey-200 material-icons line chart icon" role="presentation"></i>Historical</a>
+                    class="mdl-color-text--blue-grey-200 material-icons line chart icon" role="presentation"></i>My Historical</a>
+
+            <a id="trends-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#trends"><i
+                    class="mdl-color-text--blue-grey-200 material-icons signal icon" role="presentation"></i>Trends</a>
 
             <div class="ui divider" style="margin: 0"></div>
 
@@ -78,6 +81,7 @@
     {% include "dashboard.html" %}
     {% include "metrics.html" %}
     {% include "historical.html" %}
+    {% include "trends.html" %}
     {% include "kb_analytics.html" %}
     {% include "kb_my.html" %}
     {% include "kb_new.html" %}
@@ -100,6 +104,7 @@
     <script src="{{ url_for('static', filename='js/graphs.js')}}"></script>
     <script src="{{ url_for('static', filename='js/kbanalytics.js')}}"></script>
     <script src="{{ url_for('static', filename='js/kbmy.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/trends.js')}}"></script>
     <script src="{{ url_for('static', filename='js/historical.js')}}"></script>
     <script src="{{ url_for('static', filename='js/dashboard.js')}}"></script>
     <script src="{{ url_for('static', filename='js/metrics.js')}}"></script>
@@ -157,6 +162,8 @@
                         title="Pivotal Support Services Weblinks";
                     }else if(main_container=="#kbanalytics"){
                         title="Knowledge Base Analytics";
+                    }else if(main_container=="#trends"){
+                        title="Zendesk Ticket Trends";
                     }else if(main_container=="#newkb"){
                         title="New Articles";
                         $('.inactive-div').removeClass("inactive-div").addClass("active-div");
@@ -211,13 +218,15 @@
         var kb_container = document.getElementById('kbanalytics');
         var historic_container = document.getElementById('historic');
         var mykb_container = document.getElementById('mykb');
+        var trends_container = document.getElementById('trends');
         kb_container.style.display = 'block';
         historic_container.style.display = 'block';
         mykb_container.style.display = 'block';
+        trends_container.style.display = 'block';
 
         window.onload = function() {
             setTimeout(function() {
-                $('#kbanalytics, #historic, #mykb').transition({duration: '0s'});
+                $('#kbanalytics, #historic, #mykb, #trends').transition({duration: '0s'});
                 $(".dimmer").removeClass("active");
             }, 1000);
         };

@@ -117,7 +117,8 @@ function drawLineChart(element, x_data, y_data) {
         data: {
             columns: [
                 y_data
-            ],colors: {
+            ],
+            colors: {
                 Articles: '#009688',
                 Time: '#009688',
                 Votes: '#009688',
@@ -152,11 +153,13 @@ function drawLineHistChart(element, x_data, y_data) {
         data: {
             columns: [
                 y_data
-            ],colors: {
+            ],
+            colors: {
                 Articles: '#009688',
                 Time: '#009688',
                 Comments: '#009688'
-            }
+            },
+
         },
         legend: {
             show: false
@@ -228,6 +231,9 @@ function drawMultipleLineChart(element, x_data, y1_data, y2_data, y3_data) {
         size: {
             height: 220
         },
+        color: {
+            pattern: ['#009688', '#00665c', '#001412']
+        },
         padding: {
             bottom: 25,
         },
@@ -248,6 +254,99 @@ function drawMultipleLineChart(element, x_data, y1_data, y2_data, y3_data) {
             },
         }
     });
+
+    return chart;
+}
+
+// Pie Chart
+function drawPieChart(element, data) {
+
+    var chart = c3.generate({
+        bindto: document.getElementById(element),
+        size: {
+            height: 240,
+        },
+        color: {
+            pattern: ['#00ccb8','#00b8a5','#00a393','#009688','#007a6e','#00665c','#005249','#003d37','#002925','#001412']
+        },
+        data: {
+            // iris data from R
+            columns: data,
+            type: 'donut'
+        },
+        legend: {
+            show: true,
+            position: 'right'
+        },
+        donut: {
+            expand: false,
+            label: {
+                format: function(value, ratio, id) {
+                    return value;
+                }
+            },
+            title: "Tickets by Product"
+        },
+        tooltip: {
+            format: {
+                title: function(d) {
+                    return 'Tickets';
+                },
+                value: function(value, ratio, id) {
+                    return value;
+                }
+
+            }
+        }
+    });
+
+    return chart;
+}
+
+
+// Stacked Combination Chart
+function drawCombinationChart(element, total, open, pending, hold, tooltip) {
+
+        var chart = c3.generate({
+            bindto: document.getElementById(element),
+            size: {
+                height: 240,
+            },
+            color: {
+                pattern: ['#009688','#00ccb8', '#00665c','#005249','#003d37','#002925','#001412']
+            },
+            data: {
+                columns: [
+                    total,
+                    open,
+                    pending,
+                    hold,
+                ],
+                type: 'bar',
+                types: {
+                    'Pending': 'spline',
+                    'Hold': 'spline',
+                    'Open': 'spline',
+                },
+                groups: [
+                    ['Total','Pending']
+                ]
+            },
+            axis: {
+                x: {
+                    show: false,
+                    type: 'category',
+                    categories: tooltip,
+                },
+            },
+            tooltip: {
+                format: {
+                    value: function(value, ratio, id) {
+                        return value;
+                    }
+            }
+        }
+        });
 
     return chart;
 }

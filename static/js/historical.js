@@ -6,7 +6,7 @@ var hist_chart_divs = [
     'historic_ticket'
 ];
 $.getJSON($SCRIPT_ROOT + '/get_historical_data', {
-    email: email
+//    email: email
 }, function(data) {
     console.log(data);
 

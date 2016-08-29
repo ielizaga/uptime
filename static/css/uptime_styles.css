@@ -278,7 +278,7 @@ _:-ms-input-placeholder,
     left: 15px;
     right: 0;
     width: 90%;
-    position: absolute;
+    margin-left: 15px
 }
 
 /* CSS For all tables default behaviour */
@@ -329,6 +329,10 @@ a:hover {
     cursor: default;
 }
 
+.verticalLine {
+    border-left: thick solid #ff0000;
+}
+
 /* CSS For Section: weblinks.html */
 
 .icon_attributes {
@@ -340,28 +344,6 @@ a:hover {
 }
 .pad-left {
     padding-left: 10px;
-}
-@-webkit-keyframes btn-align {
-    25% {
-        -webkit-transform: scale(1.2);
-        transform: scale(1.2);
-    }
-    75% {
-        -webkit-transform: scale(0.8);
-        transform: scale(0.8);
-    }
-}
-@keyframes btn-align {
-    25% {
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
-    }
-    75% {
-        -webkit-transform: scale(0.8);
-        -ms-transform: scale(0.8);
-        transform: scale(0.8);
-    }
 }
 .btn-align {
     display: inline-block;
@@ -379,14 +361,6 @@ a:hover {
 .btn-align:hover {
     background: red;
     color: white;
-    -webkit-animation-name: pulse;
-    animation-name: pulse;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-timing-function: linear;
-    animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
 }
 select {
     font-family: inherit;
@@ -498,3 +472,4 @@ select:focus {
 .result-padding {
     padding: 3px;
 }
+
