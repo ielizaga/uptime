@@ -1,0 +1,84 @@
+section.tv-error-page {
+  background:#0079b1;
+  color:#ffffff;
+
+  -moz-animation-name: color_change;
+	-moz-animation-duration:45s;
+	-moz-animation-iteration-count: infinite;
+  -o-animation-name: color_change;
+	-o-animation-duration:45s;
+	-o-animation-iteration-count: infinite;
+  -webkit-animation-name: color_change;
+	-webkit-animation-duration:45s;
+	-webkit-animation-iteration-count: infinite;
+  animation-name: color_change;
+	animation-duration:45s;
+	animation-iteration-count: infinite;
+
+}
+.tv-error-page-text {
+  position:relative;
+  top:100px;
+}
+.tv-error-page h1 {
+  font-size:79px;
+  font-weight:400;
+}
+.tv-error-page h3 {
+  font-size:32px;
+  font-weight:300;
+}
+.tv-error-page a,.tv-error-page a:hover,.tv-error-page a:focus,.tv-error-page a:active {
+  color:#ffffff !important;
+  border:2px solid #fff;
+  padding:5px 12px;
+  margin-right:20px;
+  font-size:20px;
+}
+.tv-error-page a:last-child {
+  margin-right:0;
+}
+.tv-error-links {
+  margin-top:50px;
+  text-align:center;
+}
+@-webkit-keyframes color_change {
+	0% { background-color: #28241b; }
+  16% { background-color: #0079b2; }
+  33% { background-color: #ff902b; }
+  45% { background-color: #44b12c; }
+  67% { background-color: #ffb42e; }
+  82% { background-color: #b95b95; }
+  95% { background-color: #ff3520; }
+   100% { background-color: #28241b; }
+}
+@-moz-keyframes color_change {
+	0% { background-color: #28241b; }
+  16% { background-color: #0079b2; }
+  33% { background-color: #ff902b; }
+  45% { background-color: #44b12c; }
+  67% { background-color: #ffb42e; }
+  82% { background-color: #b95b95; }
+  95% { background-color: #ff3520; }
+   100% { background-color: #28241b; }
+}
+@-o-keyframes color_change {
+	0% { background-color: #28241b; }
+  16% { background-color: #0079b2; }
+  33% { background-color: #ff902b; }
+  45% { background-color: #44b12c; }
+  67% { background-color: #ffb42e; }
+  82% { background-color: #b95b95; }
+  95% { background-color: #ff3520; }
+   100% { background-color: #28241b; }
+}
+@keyframes color_change {
+	0% { background-color: #28241b; }
+  16% { background-color: #0079b2; }
+  33% { background-color: #ff902b; }
+  45% { background-color: #44b12c; }
+  67% { background-color: #ffb42e; }
+  82% { background-color: #b95b95; }
+  95% { background-color: #ff3520; }
+   100% { background-color: #28241b; }
+}

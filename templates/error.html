@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Uptime Error</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,400italic,700,500,500italic,300italic,100italic"
+          rel="stylesheet"/>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/error.css')}}">
+</head>
+
+<body style="background: black;">
+<section class="tv-error-page" style="height:500px; margin-top: 10%">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 tv-error-page-text">
+                <h1>Sorry ....</h1>
+                <h3>Your email address ({{email}}) doesn't match our database or you are using a wrong domain email
+                    address to login to Uptime Application ..</h3>
+            </div>
+            <div class="col-md-6">
+                <img src="https://i.imgsafe.org/39c48c3.png" class="img-responsive" alt=""/>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

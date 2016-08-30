@@ -2,7 +2,7 @@ import json
 import os
 import logging
 
-from flask import Flask, render_template, jsonify, redirect, url_for, session
+from flask import Flask, render_template, jsonify, redirect, url_for, session, request
 from flask_sslify import SSLify
 from flask_oauth import OAuth
 from urllib2 import Request, urlopen, URLError
@@ -23,10 +23,8 @@ MONGO_CONN = os.environ['MONGO_CONN']
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
-
 # Initialize Mongo agent
 mongo = MongoAgent(MONGO_CONN, MONGO_DB)
-
 
 # Google OAuth
 REDIRECT_URI = '/gCallback'
@@ -62,10 +60,15 @@ def index():
 
     google_user_info = json.loads(res.read())
     email = google_user_info['email']
+    name = google_user_info['name']
 
     session['email'] = email
 
-    return render_template('index.html', email=email, token=access_token, picture=google_user_info['picture'])
+    if email[-11:] == "@pivotal.io":
+        return render_template('index.html', email=email, name=name, token=access_token,
+                               picture=google_user_info['picture'])
+    else:
+        return render_template('error.html', email=email)
 
 
 @app.route('/login')
@@ -95,12 +98,95 @@ def get_user_data():
     return jsonify(user=data['dash_data'])
 
 
+@app.route('/get_historical_data')
+def get_historical_data():
+    email = session.get('email')
+
+    data = mongo.get_historical_data(email)
+    return jsonify(historical=data['hist_data'])
+
+
 @app.route('/get_metrics_data')
 def get_metrics_data():
     email = session.get('email')
 
     data = mongo.get_metrics_data(email)
     return jsonify(metrics=data['metrics_data'])
+
+
+@app.route('/post_weblink_form_data', methods=['POST'])
+def post_weblink_form_data():
+    id = request.form['weblink_row_id']
+    product_category = request.form['pivotal_products']
+    short_heading = request.form['short_heading']
+    website_url = request.form['website_url']
+    contact_person = request.form['contact_person']
+    contact_person_email = request.form['contact_person_email']
+    long_description = request.form['long_description']
+
+    if not id:
+        result = mongo.add_form_data(
+                product_category,
+                short_heading,
+                website_url,
+                contact_person,
+                contact_person_email,
+                long_description
+        )
+    else:
+        result = mongo.update_form_data(
+                id,
+                product_category,
+                short_heading,
+                website_url,
+                contact_person,
+                contact_person_email,
+                long_description
+        )
+
+    if result:
+        return "success"
+    else:
+        return "failure"
+
+
+@app.route('/get_weblink_data')
+def get_weblink_data():
+    data = {'support_services': [],
+            'pivotal_greenplum': [],
+            'pivotal_hdb': [],
+            'pivotal_gemfire': [],
+            'pivotal_cloud_foundry': []}
+
+    for product in data.keys():
+        data[product] = mongo.get_weblink_data(product)
+
+    return jsonify(weblinks=data)
+
+
+@app.route('/get_kbanalytics_data')
+def get_kbanalytics_data():
+    data = mongo.get_kbanalytics_data()
+    return jsonify(kbanalytics=data)
+
+
+@app.route('/get_trends_data')
+def get_trends_data():
+    data = mongo.get_trends_data()
+    return jsonify(trends=data)
+
+
+@app.route('/get_kb_data')
+def get_kb_data():
+    data = mongo.get_kb_data()
+    return jsonify(kbdata=data)
+
+
+@app.route('/get_mykb_data')
+def get_mykb_data():
+    email = session.get('email')
+    data = mongo.get_mykb_data(email)
+    return jsonify(mykb=data['mykb_data'])
 
 
 if __name__ == "__main__":

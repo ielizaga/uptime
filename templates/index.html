@@ -1,9 +1,14 @@
 {% extends "header.html" %}
 {% block body %}
 <body>
-<div id="main_container" class="uptime-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+<div id="main_container"
+     class="uptime-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
-    <header class="uptime-header mdl-layout__header ">
+    <div class="ui active inverted dimmer">
+        <div class="ui large text loader">Loading data ...</div>
+    </div>
+
+    <header class="uptime-header mdl-layout__header">
         <div class="mdl-layout__header-row">
             <span id="section-title" class="mdl-layout-title">Today</span>
             <div class="mdl-layout-spacer"></div>
@@ -12,70 +17,128 @@
 
     <div class="uptime-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
 
-        <img class="avatar-icon ui tiny centered  circular image" src="{{picture}}">
+        <img class="avatar-icon ui tiny centered circular image" src="{{picture}}"><br/>
 
         <header class="uptime-drawer-header">
             <div class="mdl-layout-spacer"></div>
+            <span class="mdl-typography--text-center">{{name}}</span>
             <span class="mdl-typography--text-center">{{email}}</span>
             <div class="mdl-layout-spacer"></div>
         </header>
-
         <nav class="uptime-navigation mdl-navigation mdl-color--blue-grey-900">
 
+            <div class="ui divider" style="margin: 0"></div>
+
             <a id="dashboard-nav" class="ripplelink mdl-navigation__link" href="#dashboard"><i
-                    class="mdl-color-text--blue-grey-200 octicon octicon-dashboard" role="presentation"></i>Today</a>
+                    class="mdl-color-text--blue-grey-200 material-icons calendar icon" role="presentation"></i>Today</a>
+
             <a id="metrics-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#metrics"><i
-                    class="mdl-color-text--blue-grey-200 material-icons" role="presentation">format_align_justify</i>Metrics</a>
-            <a style="cursor:not-allowed" id="historic-nav" class="mdl-button--disabled ripplelink mdl-navigation__link"><i
-                    class="mdl-color-text--blue-grey-200 material-icons" role="presentation">show_chart</i>Historical</a>
-            <a style="cursor:not-allowed" id="weblinks-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#weblinks"><i
-                    class="mdl-color-text--blue-grey-200 material-icons" role="presentation">launch</i>Useful Links</a>
-            <a id="contribute-nav" class="ripplelink mdl-navigation__link" target="_blank" href="https://github.com/ielizaga/uptime"><i
-                    class="mdl-color-text--blue-grey-200 octicon octicon-octoface"
+                    class="mdl-color-text--blue-grey-200 material-icons align justify icon" role="presentation"></i>My Metrics</a>
+
+            <a id="historic-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#historic"><i
+                    class="mdl-color-text--blue-grey-200 material-icons line chart icon" role="presentation"></i>My Historical</a>
+
+            <a id="trends-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#trends"><i
+                    class="mdl-color-text--blue-grey-200 material-icons signal icon" role="presentation"></i>Trends</a>
+
+            <div class="ui divider" style="margin: 0"></div>
+
+            <a id="weblinks-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#weblinks"><i
+                    class="mdl-color-text--blue-grey-200 material-icons external icon" role="presentation"></i>WebLinks</a>
+
+            <div class="ui divider" style="margin: 0"></div>
+
+            <a id="mykb-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#mykb"><i
+                    class="mdl-color-text--blue-grey-200 material-icons book icon" role="presentation"></i>My KB</a>
+
+            <a id="newkb-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#newkb"><i
+                    class="mdl-color-text--blue-grey-200 material-icons add square icon" role="presentation"></i>New KB</a>
+
+            <a id="updatedkb-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#updatedkb"><i
+                    class="mdl-color-text--blue-grey-200 material-icons edit icon" role="presentation"></i>Updated
+                KB</a>
+
+            <a id="kbanalytics-nav" class="mdl-button--disabled ripplelink mdl-navigation__link" href="#kbanalytics"><i
+                    class="mdl-color-text--blue-grey-200 material-icons pie chart icon" role="presentation"></i>Analytics
+                KB</a>
+
+            <div class="ui divider" style="margin: 0"></div>
+
+            <a id="contribute-nav" class="ripplelink mdl-navigation__link" target="_blank"
+               href="https://github.com/ielizaga/uptime"><i
+                    class="mdl-color-text--blue-grey-200 material-icons github icon"
                     role="presentation"></i>Contribute</a>
+
+            <a id="reportbug-nav" class="ripplelink mdl-navigation__link" target="_blank"
+               href="https://github.com/ielizaga/uptime/issues"><i
+                    class="mdl-color-text--blue-grey-200 material-icons bug icon"
+                    role="presentation"></i>Report Bug</a>
+
         </nav>
 
     </div>
 
     {% include "dashboard.html" %}
     {% include "metrics.html" %}
-    {% include "weblinks.html" %}
+    {% include "historical.html" %}
+    {% include "trends.html" %}
+    {% include "kb_analytics.html" %}
+    {% include "kb_my.html" %}
+    {% include "kb_new.html" %}
+    {% include "kb_updated.html" %}
+    {% include "weblinks_nav.html" %}
+    {% include "weblinks_data.html" %}
 
 </div>
 
 <footer>
     <script type="text/javascript">
-    // Global variables
-    var email = "{{email}}";
-    var token = "{{token}}";
+        // Global variables
+        var email = "{{email}}";
+        var token = "{{token}}";
+
+
 
     </script>
+
     <script src="{{ url_for('static', filename='js/graphs.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/kbanalytics.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/kbmy.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/trends.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/historical.js')}}"></script>
     <script src="{{ url_for('static', filename='js/dashboard.js')}}"></script>
     <script src="{{ url_for('static', filename='js/metrics.js')}}"></script>
-    <!-- <script src="{{ url_for('static', filename='js/historical.js')}}"></script> -->
-
+    <script src="{{ url_for('static', filename='js/weblinks.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/kbdata.js')}}"></script>
     <script type="text/javascript">
+
     $(function() {
+
         /**
-         * Section navigation
-         * TODO: We disable the historic tab here , since the chartjs needs the div dimension when loading the
-         * chart and if the div display is NONE then it doesnt know about it and the chartjs doesnt load.
-         * So we turn it off after the windows loading is complete
+         * Section: Navigation Bar
+         * JQuery to control the flow of the Navigation Bars
          */
+
         var active = '#dashboard';
         $(".mdl-navigation__link").click(function(event) {
-        main_container = '#'+(event.target.id).substring(0, (event.target.id).length - 4);
+        main_container = '#'+($(this).attr("id")).substring(0, ($(this).attr("id")).length - 4);
+
 
             if($(main_container).is(":visible")){
                 return 0;
             }else{
-                if(main_container=="#historic" || main_container=="#contribute" || main_container=="#weblinks"){
+                if(main_container=="#contribute" || main_container=="#reportbug"){
                     return;
                 }else{
                     $(active).transition({duration: '0s'});
                     $(main_container).transition('scale');
                     active = main_container;
+
+                    if($(main_container).hasClass("show-form-button")){
+                        $('#add-link').show();
+                    } else {
+                        $('#add-link').hide();
+                    };
 
                     /* To change the title when the navigation bar is clicked */
 
@@ -84,57 +147,92 @@
                     }else if(main_container=="#dashboard"){
                         title="Today";
                     }else if(main_container=="#weblinks"){
-                        title="Useful Links";
+                        title="Weblinks";
                     }else if(main_container=="#historic"){
-                        title="Historic";
-                    }
+                        title="Historical";
+                    }else if(main_container=="#greenplum-links"){
+                        title="Pivotal Greenplum Weblinks";
+                    }else if(main_container=="#hdb-links"){
+                        title="Pivotal HDB Weblinks";
+                    }else if(main_container=="#gemfire-links"){
+                        title="Pivotal Gemfire Weblinks";
+                    }else if(main_container=="#pcf-links"){
+                        title="Pivotal Cloud Foundry Weblinks";
+                    }else if(main_container=="#supportservices-links"){
+                        title="Pivotal Support Services Weblinks";
+                    }else if(main_container=="#kbanalytics"){
+                        title="Knowledge Base Analytics";
+                    }else if(main_container=="#trends"){
+                        title="Zendesk Ticket Trends";
+                    }else if(main_container=="#newkb"){
+                        title="New Articles";
+                        $('.inactive-div').removeClass("inactive-div").addClass("active-div");
+                        restore_filter('#new_filter_div');
+                    }else if(main_container=="#updatedkb"){
+                        title="Updated Articles";
+                        $('.inactive-div').removeClass("inactive-div").addClass("active-div");
+                        restore_filter('#updated_filter_div');
+                    }else if(main_container=="#mykb"){
+                        title="My Knowledge Base";
+                    };
 
                     $("#section-title").html(title);
                 }
             }
         });
 
-        /* Jquery to pop-up to view the result of the short updates card */
-        $(".short_updates_results").click(function(event) {
-            updates_container = '.ui.basic.modal#'+(event.target.id).substring(0, (event.target.id).length - 2)+'_table_box';
-            $(updates_container).modal('show');
-        });
+        /* Section: Overall (On Window Resize)
+         *
+         * There is a problem when resize of the window happens, the charts tends to lose its dimension
+         * has the div on different tabs is not visible, so when the user tries to view the page the chart either disappear
+         * or becomes completely disfigured, to avoid this the hack is when the user resize the window, lets wait for it
+         * to complete and once done reload the page, this is much easier than flush (in c3js) since flush tends to
+         * resize the charts smaller than it original size, so the code becomes complicated.
+         * Unless we have a better solution, this hack seems to work for now..
+         */
 
-        // This fixes a bug where the graphs won't resize correctly if div is manually hidden
-        $(window).load(function() {
-            $('#dashboard').show();
-            $('#historic').hide();
-        });
+        function debouncer( func , timeout ) {
+           var timeoutID , timeout = timeout || 200;
+           return function () {
+              var scope = this , args = arguments;
+              clearTimeout( timeoutID );
+              timeoutID = setTimeout( function () {
+                  func.apply( scope , Array.prototype.slice.call( args ) );
+              } , timeout );
+           }
+        };
 
-        $('#dashboard-nav').on('click',function(){
-            $('#dashboard').show();
-            $('#historic').hide();
-        });
-
-        /* Useful link Jquery */
-        $('#announcement_a').click(function(event) {
-            $('.ui.basic.modal#not_now').modal('show');
-        });
-
-        $('#add_link').click(function(event) {
-            $('.ui.basic.modal#add_url_form').modal('show');
-        });
+        $( window ).resize( debouncer( function ( e ) {
+            location.reload();
+        } ) );
 
         /*
-         * TODO: Enable historic nav
-        $('#historic-nav').on('click',function(){
-            $('#dashboard').hide();
-            $('#historic').show();
-            chart_pastweeks.resize();
-            chart_today.resize();
-            chart_week.resize();
-            chart_month.resize;
-            chart_week_days.resize();
-        });
+         *  Section: Overall (On Window Load)
+         *
+         *  The below workaround is used to make the div visible on the main page so that the graph can plot.
+         *  During this cycle of plotting of graph we dim the window with loader screen for 2 seconds, since
+         *  the entire process takes 2 seconds or less to load and once it is done we remove the dim
+         *  and open the window for users.
         */
-    });
-    </script>
 
+        var kb_container = document.getElementById('kbanalytics');
+        var historic_container = document.getElementById('historic');
+        var mykb_container = document.getElementById('mykb');
+        var trends_container = document.getElementById('trends');
+        kb_container.style.display = 'block';
+        historic_container.style.display = 'block';
+        mykb_container.style.display = 'block';
+        trends_container.style.display = 'block';
+
+        window.onload = function() {
+            setTimeout(function() {
+                $('#kbanalytics, #historic, #mykb, #trends').transition({duration: '0s'});
+                $(".dimmer").removeClass("active");
+            }, 1000);
+        };
+    });
+
+    </script>
 </footer>
 </body>
 </html>
