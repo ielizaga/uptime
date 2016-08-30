@@ -64,7 +64,7 @@ def index():
 
     session['email'] = email
 
-    if email[-10:] == "pivotal.io":
+    if email[-11:] == "@pivotal.io":
         return render_template('index.html', email=email, name=name, token=access_token,
                                picture=google_user_info['picture'])
     else:
