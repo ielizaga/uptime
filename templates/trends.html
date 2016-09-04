@@ -6,24 +6,61 @@
         <div class="mdl-card__title-text uptime-color"><br/>Today</div>
         <div class="mdl-card__actions mdl-card--border graph-font"></div>
 
-        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop">
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Created</div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+            <div id="total_trend_created" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
+        </div>
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Solved</div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+            <div id="total_trend_solved" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
+        </div>
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Backlog</div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+            <div id="total_trend_backlog" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
+        </div>
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Open</div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+            <div id="total_trend_open" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
+        </div>
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Pending</div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+            <div id="total_trend_pending" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
+        </div>
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">On Hold</div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+            <div id="total_trend_hold" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
+        </div>
+
+        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
             <div class="mdl-shadow--2dp mdl-color--white ripplelink">
-                <div class="mdl-card__title-text uptime-card-title uptime-color">Created</div>
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev1</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-                <div id="total_trend_created" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+                <div id="total_trend_sev1" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
             </div>
-            <div class="mdl-shadow--2dp mdl-color--white ripplelink" style="margin-top: 10px">
-                <div class="mdl-card__title-text uptime-card-title uptime-color">Solved</div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev2</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-                <div id="total_trend_solved" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+                <div id="total_trend_sev2" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
             </div>
-            <div class="mdl-shadow--2dp mdl-color--white ripplelink" style="margin-top: 10px">
-                <div class="mdl-card__title-text uptime-card-title uptime-color">Backlog</div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev3</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-                <div id="total_trend_backlog" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+                <div id="total_trend_sev3" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
             </div>
         </div>
 
@@ -40,61 +77,100 @@
             <div id="total_trend_backlog_by_product" ></div>
         </div>
 
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Open</div>
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="total_trend_open" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
+        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev4</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev4" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Agent Replies</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_replies" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Agent Time</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_agent_time" class="mdl-typography--display-2 result-padding uptime-card-text">00:00:00</div>
+            </div>
         </div>
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Pending</div>
-            <div class="mdl-layout-spacer"></div>
+
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--5-col-desktop">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Created by Org (Top 10)</div>
             <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="total_trend_pending" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
+            <div id="total_trend_created_by_org" ></div>
         </div>
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">OnHold</div>
-            <div class="mdl-layout-spacer"></div>
+
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--5-col-desktop">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Solved (Top 10)</div>
             <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="total_trend_hold" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
-        </div>
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Urgent Tickets</div>
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="total_trend_sev1" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
-        </div>
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Agent Replies</div>
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="total_trend_replies" class="mdl-typography--display-1 result-padding uptime-card-text2">00</div>
-        </div>
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Agent Time</div>
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="total_trend_agent_time" class="mdl-typography--display-1 result-padding uptime-card-text">00:00:00</div>
+            <div id="total_trend_solved_by_product" ></div>
         </div>
 
         <!--Current Week-->
         <div class="mdl-card__title-text uptime-color"><br/>Current Week</div>
         <div class="mdl-card__actions mdl-card--border graph-font"></div>
 
-        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop">
+        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
             <div class="mdl-shadow--2dp mdl-color--white ripplelink">
                 <div class="mdl-card__title-text uptime-card-title uptime-color">Created</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
                 <div id="total_trend_created_currentweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
             </div>
-            <div class="mdl-shadow--2dp mdl-color--white ripplelink" style="margin-top: 10px">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev1</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev1_currentweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev2</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev2_currentweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+
+        </div>
+
+        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev3</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev3_currentweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev4</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev4_currentweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">No Severity</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_no_sev_currentweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+        </div>
+
+        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink">
                 <div class="mdl-card__title-text uptime-card-title uptime-color">Closed / Solved</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
                 <div id="total_trend_solved_currentweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
             </div>
-            <div class="mdl-shadow--2dp mdl-color--white ripplelink" style="margin-top: 10px">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Agent Replies</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_agent_replies_currentweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
                 <div class="mdl-card__title-text uptime-card-title uptime-color">Agent Time</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
@@ -102,37 +178,84 @@
             </div>
         </div>
 
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--5-col-desktop">
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop">
             <div class="mdl-card__title-text uptime-card-title uptime-color">Created (Top 10)</div>
             <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
             <div id="total_trend_created_by_product_currentweek"></div>
         </div>
 
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--5-col-desktop">
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Created by Org (Top 10)</div>
+            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+            <div id="total_trend_created_by_org_currentweek"></div>
+        </div>
+
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop">
             <div class="mdl-card__title-text uptime-card-title uptime-color">Closed / Solved (Top 10)</div>
             <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
             <div id="total_trend_solved_by_product_currentweek"></div>
         </div>
 
-
         <!--Last Week-->
         <div class="mdl-card__title-text uptime-color"><br/>Last Week</div>
         <div class="mdl-card__actions mdl-card--border graph-font"></div>
 
-        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--2-col-desktop">
+        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
             <div class="mdl-shadow--2dp mdl-color--white ripplelink">
                 <div class="mdl-card__title-text uptime-card-title uptime-color">Created</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
                 <div id="total_trend_created_lastweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
             </div>
-            <div class="mdl-shadow--2dp mdl-color--white ripplelink" style="margin-top: 10px">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev1</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev1_lastweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev2</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev2_lastweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+        </div>
+
+        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev3</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev3_lastweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Sev4</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_sev4_lastweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">No Severity</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_no_sev_lastweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+        </div>
+
+        <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink">
                 <div class="mdl-card__title-text uptime-card-title uptime-color">Closed / Solved</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
                 <div id="total_trend_solved_lastweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
             </div>
-            <div class="mdl-shadow--2dp mdl-color--white ripplelink" style="margin-top: 10px">
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
+                <div class="mdl-card__title-text uptime-card-title uptime-color">Agent Replies</div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+                <div id="total_trend_agent_replies_lastweek" class="mdl-typography--display-2 result-padding uptime-card-text2">00</div>
+            </div>
+            <div class="mdl-shadow--2dp mdl-color--white ripplelink uptime-card-margin">
                 <div class="mdl-card__title-text uptime-card-title uptime-color">Agent Time</div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
@@ -140,18 +263,23 @@
             </div>
         </div>
 
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--5-col-desktop">
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop">
             <div class="mdl-card__title-text uptime-card-title uptime-color">Created (Top 10)</div>
             <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
             <div id="total_trend_created_by_product_lastweek"></div>
         </div>
 
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--5-col-desktop">
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Created by Org (Top 10)</div>
+            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
+            <div id="total_trend_created_by_org_lastweek"></div>
+        </div>
+
+        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white ripplelink mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop">
             <div class="mdl-card__title-text uptime-card-title uptime-color">Closed / Solved (Top 10)</div>
             <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
             <div id="total_trend_solved_by_product_lastweek"></div>
         </div>
-
 
     </div>
 </main>

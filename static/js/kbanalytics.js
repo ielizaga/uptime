@@ -43,7 +43,7 @@ $.getJSON($SCRIPT_ROOT + '/get_kbanalytics_data',
             y3_axis.push(data.kbanalytics.kb_overall_by_catgeory[i]['draft']);
         };
 
-        chart = drawMultipleLineChart('kb_overall_by_catgeory', x_axis, y1_axis, y2_axis, y3_axis);
+        chart = drawCombinationAnalyticsChart('kb_overall_by_catgeory', x_axis, y1_axis, y2_axis, y3_axis);
 
 
         // Plot graph for all the charts mentioned in chart_divs variable
@@ -65,10 +65,12 @@ $.getJSON($SCRIPT_ROOT + '/get_kbanalytics_data',
                 y_axis.push(data.kbanalytics[chart_div][i]['Total']);
             }
 
-            if (chart_div == 'kb_in_review' || chart_div == 'kb_overall_by_author') {
-                chart = drawBarChart(chart_div, x_axis, y_axis);
-            } else {
+            if (chart_div == 'kb_per_month' || chart_div == 'kb_comments_per_month' || chart_div == 'kb_votes_per_month') {
                 chart = drawLineChart(chart_div, x_axis, y_axis);
+            } else if (chart_div == 'kb_current_month_per_catgeory' || chart_div == 'kb_current_month_per_author') {
+                chart = drawBarChart(chart_div, x_axis, y_axis, true);
+            } else {
+                chart = drawBarChart(chart_div, x_axis, y_axis, false);
             }
 
         });

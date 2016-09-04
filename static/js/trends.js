@@ -13,10 +13,14 @@ function ConvertToTimeString(seconds) {
 
 var trend_chart_divs = [
     'total_trend_created_by_product',
+    'total_trend_solved_by_product',
+    'total_trend_created_by_org',
     'total_trend_solved_by_product_currentweek',
     'total_trend_created_by_product_currentweek',
+    'total_trend_created_by_org_currentweek',
     'total_trend_solved_by_product_lastweek',
     'total_trend_created_by_product_lastweek',
+    'total_trend_created_by_org_lastweek'
 ];
 
 var trend_divs = [
@@ -27,14 +31,29 @@ var trend_divs = [
     'total_trend_hold',
     'total_trend_backlog',
     'total_trend_sev1',
+    'total_trend_sev2',
+    'total_trend_sev3',
+    'total_trend_sev4',
     'total_trend_replies',
     'total_trend_agent_time',
     'total_trend_created_currentweek',
     'total_trend_solved_currentweek',
     'total_trend_agent_time_currentweek',
+    'total_trend_agent_replies_currentweek',
+    'total_trend_sev1_currentweek',
+    'total_trend_sev2_currentweek',
+    'total_trend_sev3_currentweek',
+    'total_trend_sev4_currentweek',
+    'total_trend_no_sev_currentweek',
     'total_trend_created_lastweek',
     'total_trend_solved_lastweek',
-    'total_trend_agent_time_lastweek'
+    'total_trend_agent_time_lastweek',
+    'total_trend_agent_replies_lastweek',
+    'total_trend_sev1_lastweek',
+    'total_trend_sev2_lastweek',
+    'total_trend_sev3_lastweek',
+    'total_trend_sev4_lastweek',
+    'total_trend_no_sev_lastweek'
 ];
 
 $.getJSON($SCRIPT_ROOT + '/get_trends_data',
@@ -62,7 +81,14 @@ $.getJSON($SCRIPT_ROOT + '/get_trends_data',
                 var temp = [data.trends[trend_chart_div][i]['Description'], data.trends[trend_chart_div][i]['Total']]
                 chart_data.push(temp)
             }
-            drawPieChart(trend_chart_div, chart_data);
+
+            if (trend_chart_div == 'total_trend_created_by_org_lastweek' || trend_chart_div=='total_trend_created_by_org_currentweek' || trend_chart_div=='total_trend_created_by_org') {
+                trend_chart_title = "Tickets by Org"
+            } else {
+                trend_chart_title = "Tickets by Product"
+            };
+
+            drawPieChart(trend_chart_div, chart_data, trend_chart_title);
 
         });
 
