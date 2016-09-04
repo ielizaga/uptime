@@ -99,7 +99,7 @@ $.getJSON($SCRIPT_ROOT + '/get_mykb_data',
                 y_axis.push(data.mykb[my_article_chart_div][i]['Total']);
             }
 
-            chart = drawBarChart(my_article_chart_div, x_axis, y_axis);
+            chart = drawBarChart(my_article_chart_div, x_axis, y_axis, false);
 
         });
 

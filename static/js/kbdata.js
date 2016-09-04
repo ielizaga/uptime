@@ -67,9 +67,9 @@ $.getJSON($SCRIPT_ROOT + '/get_kb_data',
                         '          <thead>' +
                         '              <tr>' +
                         '                  <th class="th-color mdl-data-table__cell--non-numeric" width="40%">Title</th>' +
-                        '                  <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric" width="10%">Author</th>' +
+                        '                  <th class="th-color mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric" width="10%">Author</th>' +
                         '                  <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric" width="10%">Updator</th>' +
-                        '                  <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric">Created</th>' +
+                        '                  <th class="th-color mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">Created</th>' +
                         '                  <th class="th-color mdl-data-table__cell--non-numeric">Updated</th>' +
                         '                  <th class="th-color mdl-data-table__cell--non-numeric" width="5%">Draft</th>' +
                         '               </tr>' +
@@ -98,9 +98,9 @@ $.getJSON($SCRIPT_ROOT + '/get_kb_data',
 
                         var dataRowTemplate = '<tr class="tr-color">' +
                             '    <td class="td-wrap tr-color mdl-data-table__cell--non-numeric" width="40%"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.kbdata[kb_day][i][j]['article_id'] + '">' + data.kbdata[kb_day][i][j]['article_title'] + '</a></td>' +
-                            '    <td class="td-wrap tr-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric" width="10%">' + data.kbdata[kb_day][i][j]['author'] + '</td>' +
+                            '    <td class="td-wrap tr-color mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric" width="10%">' + data.kbdata[kb_day][i][j]['author'] + '</td>' +
                             '    <td class="td-wrap tr-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric" width="10%">' + data.kbdata[kb_day][i][j]['updator'] + '</td>' +
-                            '    <td class="td-wrap tr-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric">' + data.kbdata[kb_day][i][j]['created'] + '</td>' +
+                            '    <td class="td-wrap tr-color mdl-cell--hide-phone mdl-cell--hide-tablet mdl-data-table__cell--non-numeric">' + data.kbdata[kb_day][i][j]['created'] + '</td>' +
                             '    <td class="td-wrap tr-color mdl-data-table__cell--non-numeric">' + data.kbdata[kb_day][i][j]['updated'] + '</td>' +
                             '    <td class="td-wrap tr-color mdl-data-table__cell--non-numeric" width="5%">' + data.kbdata[kb_day][i][j]['draft'] + '</td>' +
                             '</tr>';

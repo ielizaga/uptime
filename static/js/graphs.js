@@ -12,6 +12,12 @@ function toTimeString(seconds) {
     return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s);
 }
 
+/*
+*
+* Section : DashBoard ( Today )
+*
+*/
+
 /**
  * Draws a gauge chart using C3js generate function.
  * @param: {String} element The css div id where the chart will be generated
@@ -103,41 +109,11 @@ function drawCategoriesBarChart(element, data, categories) {
     return chart;
 }
 
-// Line Chart
-function drawLineChart(element, x_data, y_data) {
-
-    var chart = c3.generate({
-        bindto: document.getElementById(element),
-        size: {
-            height: 220
-        },
-        padding: {
-            bottom: 20,
-        },
-        data: {
-            columns: [
-                y_data
-            ],
-            colors: {
-                Articles: '#009688',
-                Time: '#009688',
-                Votes: '#009688',
-                Comments: '#009688'
-            }
-        },
-        legend: {
-            show: false
-        },
-        axis: {
-            x: {
-                type: 'category',
-                categories: x_data,
-            },
-        }
-    });
-
-    return chart;
-}
+/*
+*
+* Section : My Historical Tab
+*
+*/
 
 // Line Chart to be used for historical tab.
 function drawLineHistChart(element, x_data, y_data) {
@@ -182,10 +158,142 @@ function drawLineHistChart(element, x_data, y_data) {
     return chart;
 }
 
+// Bar Chart used in historical tab
+function drawBarHistChart(element, x_data, y_data) {
+
+    var chart = c3.generate({
+        bindto: document.getElementById(element),
+        size: {
+            height: 240,
+        },
+        data: {
+            columns: [
+                y_data,
+            ],
+            type: 'bar',
+            colors: {
+                Time: '#009688',
+            }
+        },
+        legend: {
+            show: false
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: x_data
+            },
+            y: {
+                tick: {
+                    format: function(d) {
+                        return toTimeString(d);
+                    }
+                }
+            }
+        },
+        bar: {
+            width: {
+                ratio: 0.5
+            }
+        }
+    });
+
+    return chart;
+}
+
+
+// Pie Chart used in historical tab
+function drawPieHistChart(element, data, chart_title) {
+
+    var chart = c3.generate({
+        bindto: document.getElementById(element),
+        size: {
+            height: 240,
+        },
+        color: {
+            pattern: ['#00ccb8','#00b8a5','#00a393','#009688','#007a6e','#00665c','#005249','#003d37','#002925','#001412']
+        },
+        data: {
+            // iris data from R
+            columns: data,
+            type: 'donut',
+        },
+        legend: {
+            show: true,
+            position: 'right'
+        },
+        donut: {
+            expand: true,
+            label: {
+                show: true,
+                threshold: 0.1,
+                format: function(value, ratio, id) {
+                    return toTimeString(value);
+                }
+            },
+            title: chart_title
+        },
+        tooltip: {
+            format: {
+                title: function(d) {
+                    return 'Time';
+                },
+                value: function(value, ratio, id) {
+                    return toTimeString(value);
+                }
+            }
+        }
+    });
+
+    return chart;
+}
+
+/*
+*
+* Section : KB Analytics / My KB
+*
+*/
+
+// Line Chart
+function drawLineChart(element, x_data, y_data) {
+
+    var chart = c3.generate({
+        bindto: document.getElementById(element),
+        size: {
+            height: 220
+        },
+        padding: {
+            bottom: 20,
+        },
+        data: {
+            columns: [
+                y_data
+            ],
+            colors: {
+                Articles: '#009688',
+                Time: '#009688',
+                Votes: '#009688',
+                Comments: '#009688'
+            }
+        },
+        legend: {
+            show: false
+        },
+        axis: {
+            x: {
+                type: 'category',
+                categories: x_data,
+            },
+        }
+    });
+
+    return chart;
+}
+
 
 
 // Bar Chart
-function drawBarChart(element, x_data, y_data) {
+function drawBarChart(element, x_data, y_data, rotated) {
 
     var chart = c3.generate({
         bindto: document.getElementById(element),
@@ -207,6 +315,7 @@ function drawBarChart(element, x_data, y_data) {
             show: false
         },
         axis: {
+            rotated: rotated,
             x: {
                 type: 'category',
                 categories: x_data
@@ -222,44 +331,63 @@ function drawBarChart(element, x_data, y_data) {
     return chart;
 }
 
+// Stacked Chart
+function drawCombinationAnalyticsChart(element, tooltip, total, published, draft) {
 
-// Multiple Line Chart
-function drawMultipleLineChart(element, x_data, y1_data, y2_data, y3_data) {
-
-    var chart = c3.generate({
-        bindto: document.getElementById(element),
-        size: {
-            height: 220
-        },
-        color: {
-            pattern: ['#009688', '#00665c', '#001412']
-        },
-        padding: {
-            bottom: 25,
-        },
-        data: {
-            columns: [
-                y1_data,
-                y2_data,
-                y3_data
-            ]
-        },
-        legend: {
-            show: false
-        },
-        axis: {
-            x: {
-                type: 'category',
-                categories: x_data,
+        var chart = c3.generate({
+            bindto: document.getElementById(element),
+            size: {
+                height: 240,
             },
+            color: {
+                pattern: ['#009688','#00ccb8', '#00665c','#005249','#003d37','#002925','#001412']
+            },
+            data: {
+                columns: [
+                    total,
+                    published,
+                    draft
+                ],
+                type: 'bar',
+                types: {
+                    'Published': 'spline',
+                    'Drafts': 'spline'
+                },
+                groups: [
+                    ['Total','Published']
+                ]
+            },
+            legend: {
+                show: true,
+                position: 'right'
+            },
+            axis: {
+                x: {
+                    type: 'category',
+                    categories: tooltip,
+                },
+            },
+            tooltip: {
+                format: {
+                    value: function(value, ratio, id) {
+                        return value;
+                    }
+            }
         }
-    });
+        });
 
     return chart;
 }
 
+/*
+*
+* Section : Zendesk Ticket Trends
+*
+*/
+
+
 // Pie Chart
-function drawPieChart(element, data) {
+function drawPieChart(element, data, chart_title) {
 
     var chart = c3.generate({
         bindto: document.getElementById(element),
@@ -285,7 +413,7 @@ function drawPieChart(element, data) {
                     return value;
                 }
             },
-            title: "Tickets by Product"
+            title: chart_title
         },
         tooltip: {
             format: {
