@@ -462,7 +462,7 @@ function drawCombinationChart(element, total, open, pending, hold, tooltip) {
             },
             axis: {
                 x: {
-                    show: false,
+                    show: true,
                     type: 'category',
                     categories: tooltip,
                 },
