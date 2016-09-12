@@ -43,7 +43,7 @@ $.getJSON($SCRIPT_ROOT + '/get_kb_data',
 
                 if (kb_type == "new") {
                     var rowTemplateHeader = '<div id="' + id_generator + '"class="active-div mdl-grid uptime-content">' +
-                        '   <div class="mdl-card__title-text uptime-color">' + i + '</div>' +
+                        '   <div class="mdl-card__title-text uptime-card-title2 uptime-color">' + i + '</div>' +
                         '   <div class="mdl-card__actions mdl-card--border graph-font">' +
                         '      <table id="' + kb_day + '_' + incrementor + '_table" class="mdl-cell mdl-cell--6-col mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">' +
                         '          <thead>' +
@@ -61,7 +61,7 @@ $.getJSON($SCRIPT_ROOT + '/get_kb_data',
                         '</div>'
                 } else {
                     var rowTemplateHeader = '<div id="' + id_generator + '"class="mdl-grid uptime-content active-div">' +
-                        '   <div class="mdl-card__title-text uptime-color">' + i + '</div>' +
+                        '   <div class="mdl-card__title-text uptime-card-title2 uptime-color">' + i + '</div>' +
                         '   <div class="mdl-card__actions mdl-card--border graph-font">' +
                         '      <table id="' + kb_day + '_' + incrementor + '_table" class="mdl-cell mdl-cell--6-col mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">' +
                         '          <thead>' +

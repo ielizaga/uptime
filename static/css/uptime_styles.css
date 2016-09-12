@@ -460,7 +460,16 @@ select:focus {
 .uptime-card-title {
     padding: 5px 0px 5px 15px;
     font-size: 20px;
+    font-weight: 500;
+    color: #424242;
 }
+
+.uptime-card-title2 {
+    padding: 5px 0px 5px 15px;
+    font-weight: 500;
+    color: #424242;
+}
+
 .uptime-card-text {
     font-size: 20px;
     color: grey;
