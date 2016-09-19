@@ -2,3 +2,4 @@ flask
 flask_oauth
 flask-sslify
 pymongo
+bson
