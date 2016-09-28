@@ -1,12 +1,15 @@
 var chart_divs = [
-    'kb_current_month_per_catgeory',
-    'kb_current_month_per_author',
     'kb_in_review',
     'kb_overall_by_author',
     'kb_per_month',
     'kb_comments_per_month',
     'kb_votes_per_month'
 ];
+
+var kb_pie_chart_divs = [
+    'kb_current_month_per_catgeory',
+    'kb_current_month_per_author'
+]
 
 function pad(n) {
     return (n < 10) ? ("0" + n) : n;
@@ -45,6 +48,16 @@ $.getJSON($SCRIPT_ROOT + '/get_kbanalytics_data',
 
         chart = drawCombinationAnalyticsChart('kb_overall_by_catgeory', x_axis, y1_axis, y2_axis, y3_axis);
 
+        // Plot graph for all the charts mentioned in kb_pie_chart_divs variable
+        $.each(kb_pie_chart_divs, function(id, kb_pie_chart_div) {
+            var metric_chart_data = []
+            for (var i in data.kbanalytics[kb_pie_chart_div]) {
+                var temp = [data.kbanalytics[kb_pie_chart_div][i]['Description'], data.kbanalytics[kb_pie_chart_div][i]['Total']]
+                metric_chart_data.push(temp)
+            }
+            drawPieChart(kb_pie_chart_div, metric_chart_data, 'Articles');
+        });
+
 
         // Plot graph for all the charts mentioned in chart_divs variable
         $.each(chart_divs, function(id, chart_div) {
@@ -67,8 +80,6 @@ $.getJSON($SCRIPT_ROOT + '/get_kbanalytics_data',
 
             if (chart_div == 'kb_per_month' || chart_div == 'kb_comments_per_month' || chart_div == 'kb_votes_per_month') {
                 chart = drawLineChart(chart_div, x_axis, y_axis);
-            } else if (chart_div == 'kb_current_month_per_catgeory' || chart_div == 'kb_current_month_per_author') {
-                chart = drawBarChart(chart_div, x_axis, y_axis, true);
             } else {
                 chart = drawBarChart(chart_div, x_axis, y_axis, false);
             }
