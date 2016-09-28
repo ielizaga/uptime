@@ -5,6 +5,7 @@
         <!--My Metrics-->
         <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>My Metrics</div>
         <div class="mdl-card__actions mdl-card--border graph-font"></div>
+
         <table id="metric_all_stats" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
             <tr>
@@ -67,61 +68,65 @@
 
 
         <!--Ticket Assignment-->
-        <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--hide-tablet mdl-cell--hide-phone">
-            <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Tickets Assigned</div>
-            <div class="mdl-card__actions mdl-card--border graph-font"></div>
+        <div>
+            <div class="mdl-cell--hide-tablet mdl-cell--hide-phone">
+                <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Tickets Assigned</div>
+                <div class="mdl-card__actions mdl-card--border graph-font"></div>
 
-            <table id="assigned_by_month" class="mdl-cell mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                <thead>
-                    <tr>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Year</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">January</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">February</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">March</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">April</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">May</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">June</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">July</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">August</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">September</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">October</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">November</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">December</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+                <table id="assigned_by_month" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <thead>
+                        <tr>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Year</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">January</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">February</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">March</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">April</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">May</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">June</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">July</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">August</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">September</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">October</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">November</th>
+                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">December</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
         </div>
 
 
         <!--Ticket Solved-->
-        <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--hide-tablet mdl-cell--hide-phone">
-            <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Tickets Solved</div>
-            <div class="mdl-card__actions mdl-card--border graph-font"></div>
-            <table id="solved_by_month" class="mdl-cell mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                <thead>
+        <div>
+            <div class="mdl-cell--hide-tablet mdl-cell--hide-phone">
+                <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Tickets Solved</div>
+                <div class="mdl-card__actions mdl-card--border graph-font"></div>
+                <table id="solved_by_month" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <thead>
                     <tr>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Year</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">January</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">February</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">March</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">April</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">May</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">June</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">July</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">August</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">September</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">October</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">November</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">December</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Year</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">January</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">February</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">March</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">April</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">May</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">June</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">July</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">August</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">September</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">October</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">November</th>
+                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">December</th>
                     </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
     </div>
 </main>
 {% endblock %}
