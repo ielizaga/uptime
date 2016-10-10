@@ -3,6 +3,9 @@
 
     <div class="mdl-grid uptime-content">
 
+        <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>KB Analytics</div>
+        <div class="mdl-card__actions mdl-card--border graph-font"></div>
+
         <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--2-col-desktop">
             <div class="mdl-shadow--2dp mdl-color--white ripplelink">
                 <div class="mdl-card__title-text uptime-card-title uptime-card-title uptime-color">Articles</div>
@@ -42,16 +45,22 @@
             <div id="kb_current_month_per_author" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Articles Currently In Draft</div>
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Articles In Draft</div>
             <div class="mdl-layout-spacer"></div>
             <div id="kb_in_draft" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Articles Currently Under Review</div>
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Articles Under Review</div>
             <div class="mdl-layout-spacer"></div>
             <div id="kb_in_review" class="mdl-card__actions mdl-card--border graph-font"></div>
+        </div>
+
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">Tickets with KB Reference</div>
+            <div class="mdl-layout-spacer"></div>
+            <div id="kb_ref_by_ticket" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
 
         <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
@@ -77,6 +86,45 @@
             <div class="mdl-layout-spacer"></div>
             <div id="kb_overall_by_author" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
+
+        <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Top 15 Referenced KB's in Tickets</div>
+        <div class="mdl-card__actions mdl-card--border graph-font"></div>
+
+        <table id="top_kb_by_ticket_1" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="th-color mdl-data-table__cell--non-numeric">Article</th>
+                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <table id="top_kb_by_ticket_2" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="th-color mdl-data-table__cell--non-numeric">Article</th>
+                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <table id="top_kb_by_ticket_3" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="th-color mdl-data-table__cell--non-numeric">Article</th>
+                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
 
     </div>
 

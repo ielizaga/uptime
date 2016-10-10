@@ -6,6 +6,11 @@ var chart_divs = [
     'kb_votes_per_month'
 ];
 
+var key_value_divs = [
+    'kb_ref_by_ticket',
+    'kb_in_draft'
+]
+
 var kb_pie_chart_divs = [
     'kb_current_month_per_catgeory',
     'kb_current_month_per_author'
@@ -24,15 +29,27 @@ $.getJSON($SCRIPT_ROOT + '/get_kbanalytics_data',
         $('#total_votes').html(pad(data.kbanalytics.total_votes));
         $('#total_comments').html(pad(data.kbanalytics.total_comments));
 
-        // Plot graph for all the draft articles
-        var x_axis = [];
-        var y_axis = ['Articles'];
-        for (var i in data.kbanalytics.kb_in_draft[0]) {
-            x_axis.push(i);
-            y_axis.push(data.kbanalytics.kb_in_draft[0][i]);
-        };
 
-        chart = drawBarChart('kb_in_draft', x_axis, y_axis);
+        // Plot graph for all the charts mentioned in key_value_divs variable
+        $.each(key_value_divs, function(id, key_value_div) {
+            var x_axis = [];
+            var y_axis = ['Articles'];
+            for (var i in data.kbanalytics[key_value_div][0]) {
+                x_axis.push(i);
+                y_axis.push(data.kbanalytics[key_value_div][0][i]);
+            }
+            chart = drawBarChart(key_value_div, x_axis, y_axis);
+        });
+
+//        // Plot graph for all the draft articles
+//        var x_axis = [];
+//        var y_axis = ['Articles'];
+//        for (var i in data.kbanalytics.kb_in_draft[0]) {
+//            x_axis.push(i);
+//            y_axis.push(data.kbanalytics.kb_in_draft[0][i]);
+//        };
+
+//        chart = drawBarChart('kb_in_draft', x_axis, y_axis);
 
         // Plot graph for all the overall articles per category
         var x_axis = [];
@@ -57,6 +74,22 @@ $.getJSON($SCRIPT_ROOT + '/get_kbanalytics_data',
             }
             drawPieChart(kb_pie_chart_div, metric_chart_data, 'Articles');
         });
+
+        // Update the KB information of TOP 15 KB referenced
+        for (var i in data.kbanalytics.top_kb_by_ticket) {
+            var rowTemplate = '<tr class="tr-color">' +
+                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.kbanalytics.top_kb_by_ticket[i]['article_id'] + '"><div style="height: 55px; overflow:hidden;">' + data.kbanalytics.top_kb_by_ticket[i]['article_title'] + '</td>' +
+                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric text-align-right">' + data.kbanalytics.top_kb_by_ticket[i]['article_ref_count'] + '</div></td>' +
+                    '</tr>';
+
+                if ( i <= 4 ) {
+                    $('#top_kb_by_ticket_1 tbody').append(rowTemplate);
+                } else if ( i >= 5 && i <= 9 ) {
+                    $('#top_kb_by_ticket_2 tbody').append(rowTemplate);
+                } else {
+                    $('#top_kb_by_ticket_3 tbody').append(rowTemplate);
+                }
+        };
 
 
         // Plot graph for all the charts mentioned in chart_divs variable
