@@ -134,3 +134,15 @@ class MongoAgent:
         collection = self.db["trends"]
         data = collection.find_one({}, {'_id': False})
         return data
+
+
+    def update_mykb_data(self, id):
+        """
+        Update the myKb with KB Completed as TRUE
+        """
+        collection = self.db["mykb_completed"]
+        collection.insert_one({
+            "ticket_id": id,
+            "kb_completed": "TRUE",
+        })
+        return True

@@ -116,4 +116,43 @@ $.getJSON($SCRIPT_ROOT + '/get_mykb_data',
             $(pop_container).modal('show');
         });
 
+         if (data.mykb.kb_needed != 0) {
+         console.log('Kb Needed are -- ' + data.mykb.kb_needed);
+            for (var i in data.mykb.kb_needed) {
+                var rowTemplate = '<tr class="tr-color" style="color: black">' +
+                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.mykb.kb_needed[i]['ticket_id'] + '">' +  data.mykb.kb_needed[i]['ticket_id'] + '</a></td>'+
+                     '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric" >' +  data.mykb.kb_needed[i]['ticket_subject']  +
+                     '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' +  data.mykb.kb_needed[i]['ticket_status'] +
+                     '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' +  data.mykb.kb_needed[i]['ticket_priority'] +
+                     '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric ">' +  data.mykb.kb_needed[i]['ticket_updated'] +
+                     '<td> <input class="myKbAction" type="checkbox" name='+data.mykb.kb_needed[i]['ticket_id']+' id='+data.mykb.kb_needed[i]['ticket_id']+' onclick="markKBCompleted('+data.mykb.kb_needed[i]['ticket_id']+');">'
+                    '</tr>';
+
+                $('#mykb-table tbody').append(rowTemplate);
+            }
+        }
+
+
     });
+
+
+    /** Function to update KB as Completed **/
+
+   function  markKBCompleted(Id)
+   {
+    console.log("inside javascript function"+$("#Id"))
+    $.post(
+        "/post_mykb_data",
+        {"Id":Id},
+        function(response) {
+            if (response == "success") {
+                $('.ui.small.modal#success-dialog-link').modal('show');
+                $('.ui.basic.modal#add-form').modal('hide');
+            } else {
+                $('#text-link').html("The uptime database cannot update the data at this time. Please try again later. ");
+                $('.ui.small.modal#error-dialog-link').modal('show');
+            }
+        }
+    );
+
+   }
