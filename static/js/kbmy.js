@@ -116,6 +116,7 @@ $.getJSON($SCRIPT_ROOT + '/get_mykb_data',
             $(pop_container).modal('show');
         });
 
+        /** Table for my_kb articles **/
          if (data.mykb.kb_needed != 0) {
          console.log('Kb Needed are -- ' + data.mykb.kb_needed);
             for (var i in data.mykb.kb_needed) {
