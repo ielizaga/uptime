@@ -191,7 +191,6 @@ def post_mykb_data():
 @app.route('/get_mykb_data')
 def get_mykb_data():
     email = session.get('email')
-    email='aclevy@pivotal.io'
     data = mongo.get_mykb_data(email)
     return jsonify(mykb=data['mykb_data'])
 
