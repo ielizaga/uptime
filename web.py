@@ -182,6 +182,12 @@ def get_kb_data():
     return jsonify(kbdata=data)
 
 
+@app.route('/post_mykb_data', methods=['POST'])
+def post_mykb_data():
+    id = request.form['Id']
+    mongo.update_mykb_data(id)
+    return "success"
+
 @app.route('/get_mykb_data')
 def get_mykb_data():
     email = session.get('email')
@@ -199,3 +205,7 @@ if __name__ == "__main__":
         app.port = int(os.getenv("PORT"))
         app.debug = True
         app.run()
+
+
+
+
