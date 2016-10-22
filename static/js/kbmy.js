@@ -23,6 +23,21 @@ var last_activity_on_articles_divs = [
     'last_commented_by_agent'
 ];
 
+function markKBCompleted(clicked_id) {
+               $.post(
+            "/post_mykb_data", {
+                "Id": clicked_id,
+            },
+            function(response) {
+                if (response == "success") {
+                    $('.ui.small.modal#success-dialog-mykb').modal('show');
+                } else {
+                    $('.ui.small.modal#error-dialog-mykb').modal('show');
+                }
+            }
+        );
+}
+
 $.getJSON($SCRIPT_ROOT + '/get_mykb_data',
     function(data) {
         console.log(data);
@@ -116,44 +131,55 @@ $.getJSON($SCRIPT_ROOT + '/get_mykb_data',
             $(pop_container).modal('show');
         });
 
-        /** Table for my_kb articles **/
-         if (data.mykb.kb_needed != 0) {
-         console.log('Kb Needed are -- ' + data.mykb.kb_needed);
-            for (var i in data.mykb.kb_needed) {
-                var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.mykb.kb_needed[i]['ticket_id'] + '">' +  data.mykb.kb_needed[i]['ticket_id'] + '</a></td>'+
-                     '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric" >' +  data.mykb.kb_needed[i]['ticket_subject']  +
-                     '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' +  data.mykb.kb_needed[i]['ticket_status'] +
-                     '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' +  data.mykb.kb_needed[i]['ticket_priority'] +
-                     '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric ">' +  data.mykb.kb_needed[i]['ticket_updated'] +
-                     '<td> <input class="myKbAction" type="checkbox" name='+data.mykb.kb_needed[i]['ticket_id']+' id='+data.mykb.kb_needed[i]['ticket_id']+' onclick="markKBCompleted('+data.mykb.kb_needed[i]['ticket_id']+');">'
-                    '</tr>';
+        /** Table for tickets marked as KB needed **/
+        if (data.mykb.kb_needed.length != 0) {
 
-                $('#mykb-table tbody').append(rowTemplate);
-            }
-        }
+                var rowTemplateHeader ='<div>' +
+                                       '    <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Tickets Marked as KB Needed</div>' +
+                                       '    <div class="mdl-card__actions mdl-card--border graph-font"></div>' +
+                                       '    <div id="table-scroll">' +
+                                       '    	<table id="ticket-kb-needed-tab" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">' +
+                                       '        	<thead>' +
+                                       '        		<tr>' +
+                                       '            		<th class="th-color mdl-data-table__cell--non-numeric">Ticket #</th>' +
+                                       '            		<th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-phone">Subject</th>' +
+                                       '            		<th class="th-color mdl-data-table__cell--non-numeric">Status</th>' +
+                                       '             		<th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Priority</th>' +
+                                       '            		<th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Last Updated</th>' +
+                                       '            		<th class="th-color mdl-data-table__cell--non-numeric">Action</th>' +
+                                       '        		</tr>' +
+                                       '        	</thead>' +
+                                       '        	<tbody>' +
+                                       '        	</tbody>' +
+                                       '    	</table>' +
+                                       '   </div>' +
+                                       '</div>';
 
+                $('#ticket-kb-needed-div').append(rowTemplateHeader);
 
-    });
+                if (data.mykb.kb_needed.length == 2) {
+                    $('#table-scroll').css({ 'height': "180px" });
+                } else if (data.mykb.kb_needed.length == 3) {
+                    $('#table-scroll').css({ 'height': "240px" });
+                } else if (data.mykb.kb_needed.length == 4) {
+                    $('#table-scroll').css({ 'height': "305px" });
+                } else if (data.mykb.kb_needed.length > 4) {
+                    $('#table-scroll').css({ 'height': "305px" });
+                }
 
+                for (var i in data.mykb.kb_needed) {
+                    var rowTemplate = '<tr class="tr-color" style="color: black">' +
+                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/' + data.mykb.kb_needed[i]['ticket_id'] + '">' + data.mykb.kb_needed[i]['ticket_id'] + '</a></td>' +
+                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric mdl-cell--hide-phone" >' + data.mykb.kb_needed[i]['ticket_subject'] + '</td>' +
+                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' + data.mykb.kb_needed[i]['ticket_status'] + '</td>' +
+                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">' + data.mykb.kb_needed[i]['ticket_priority'] + '</td>' +
+                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">' + data.mykb.kb_needed[i]['ticket_updated'] + '</td>' +
+                                        '<td id="'+ data.mykb.kb_needed[i]['ticket_id'] + '"onClick="markKBCompleted(this.id)"><button class="ui primary button mykb-button">Done</button></td>' +
+                                      '</tr>';
 
-    /** Function to update KB as Completed **/
+                    $('#ticket-kb-needed-tab tbody').append(rowTemplate);
 
-   function  markKBCompleted(Id)
-   {
-    console.log("inside javascript function"+$("#Id"))
-    $.post(
-        "/post_mykb_data",
-        {"Id":Id},
-        function(response) {
-            if (response == "success") {
-                $('.ui.small.modal#success-dialog-link').modal('show');
-                $('.ui.basic.modal#add-form').modal('hide');
-            } else {
-                $('#text-link').html("The uptime database cannot update the data at this time. Please try again later. ");
-                $('.ui.small.modal#error-dialog-link').modal('show');
+                }
             }
         }
     );
-
-   }
