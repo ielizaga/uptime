@@ -45,22 +45,40 @@
             <div id="kb_current_month_per_author" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
             <div class="mdl-card__title-text uptime-card-title uptime-color">Articles In Draft</div>
             <div class="mdl-layout-spacer"></div>
             <div id="kb_in_draft" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
             <div class="mdl-card__title-text uptime-card-title uptime-color">Articles Under Review</div>
             <div class="mdl-layout-spacer"></div>
             <div id="kb_in_review" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Tickets with KB Reference</div>
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">KB field on all ticket (Overall)</div>
             <div class="mdl-layout-spacer"></div>
-            <div id="kb_ref_by_ticket" class="mdl-card__actions mdl-card--border graph-font"></div>
+            <div id="overall_kb_ref_by_ticket" class="mdl-card__actions mdl-card--border graph-font"></div>
+        </div>
+
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">KB field on all ticket (Current Month)</div>
+            <div class="mdl-layout-spacer"></div>
+            <div id="current_month_kb_ref_by_ticket" class="mdl-card__actions mdl-card--border graph-font"></div>
+        </div>
+
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">KB field on Data ticket (Current Month)</div>
+            <div class="mdl-layout-spacer"></div>
+            <div id="current_month_data_kb_ref_by_ticket" class="mdl-card__actions mdl-card--border graph-font"></div>
+        </div>
+
+        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
+            <div class="mdl-card__title-text uptime-card-title uptime-color">KB field on PaaS ticket (Current Month)</div>
+            <div class="mdl-layout-spacer"></div>
+            <div id="current_month_pcf_kb_ref_by_ticket" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
 
         <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
@@ -87,13 +105,13 @@
             <div id="kb_overall_by_author" class="mdl-card__actions mdl-card--border graph-font"></div>
         </div>
 
-        <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Top 15 Referenced KB's in Tickets</div>
+        <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Top 5 Referenced KB's (Current Month)</div>
         <div class="mdl-card__actions mdl-card--border graph-font"></div>
 
-        <table id="top_kb_by_ticket_1" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <table id="current_month_top_kb_by_ticket" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
             <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Article</th>
+                <th class="th-color mdl-data-table__cell--non-numeric">All Products</th>
                 <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
             </tr>
             </thead>
@@ -102,10 +120,10 @@
             </tbody>
         </table>
 
-        <table id="top_kb_by_ticket_2" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <table id="current_month_top_data_kb_by_ticket" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
             <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Article</th>
+                <th class="th-color mdl-data-table__cell--non-numeric">Data</th>
                 <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
             </tr>
             </thead>
@@ -114,10 +132,49 @@
             </tbody>
         </table>
 
-        <table id="top_kb_by_ticket_3" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <table id="current_month_top_pcf_kb_by_ticket" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
             <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Article</th>
+                <th class="th-color mdl-data-table__cell--non-numeric">PaaS</th>
+                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Top 5 Referenced KB's (Overall)</div>
+        <div class="mdl-card__actions mdl-card--border graph-font"></div>
+
+        <table id="overall_top_kb_by_ticket" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="th-color mdl-data-table__cell--non-numeric">All Products</th>
+                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <table id="overall_top_data_kb_by_ticket" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="th-color mdl-data-table__cell--non-numeric">Data</th>
+                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <table id="overall_top_pcf_kb_by_ticket" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="th-color mdl-data-table__cell--non-numeric">PaaS</th>
                 <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
             </tr>
             </thead>

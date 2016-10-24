@@ -185,8 +185,13 @@ def get_kb_data():
 @app.route('/post_mykb_data', methods=['POST'])
 def post_mykb_data():
     id = request.form['Id']
-    mongo.update_mykb_data(id)
-    return "success"
+    result = mongo.update_mykb_data(id)
+
+    if result:
+        return "success"
+    else:
+        return "failure"
+
 
 @app.route('/get_mykb_data')
 def get_mykb_data():

@@ -482,9 +482,33 @@ select:focus {
     padding: 3px;
 }
 
+.mykb-button {
+    background-color: #009688 !important;
+}
+
+.mykb-button:hover {
+    background-color: red !important;
+}
+
+#ticket-kb-needed-div {
+  position:relative;
+}
+
+#table-scroll {
+  height:120px;
+  overflow:auto;
+}
+
+#ticket-kb-needed-div table thead th .text {
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+  border:1px solid red;
+}
+
 /* Section: trends */
 
 .uptime-card-margin {
     margin-top: 1.15em
-
 }

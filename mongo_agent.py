@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-import bson
+import bson, datetime
 
 
 class MongoAgent:
@@ -135,7 +135,6 @@ class MongoAgent:
         data = collection.find_one({}, {'_id': False})
         return data
 
-
     def update_mykb_data(self, id):
         """
         Update the myKb with KB Completed as TRUE
@@ -143,6 +142,7 @@ class MongoAgent:
         collection = self.db["mykb_completed"]
         collection.insert_one({
             "ticket_id": id,
+            "updated_date": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             "kb_completed": "TRUE",
         })
         return True

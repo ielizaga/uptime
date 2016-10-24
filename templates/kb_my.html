@@ -133,34 +133,6 @@
             </div>
         </div>
 
-
-        <!-- My Kb Table -->
-         <div>
-            <div class="mdl-cell--hide-tablet mdl-cell--hide-phone"  >
-                <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>My KB Articles</div>
-                <div class="mdl-card__actions mdl-card--border graph-font"></div>
-                <div  >
-                <table id="mykb-table" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="height:350px;padding-bottom:20px;">
-                    <thead>
-                    <tr>
-                        <th class="th-color mdl-data-table__cell--non-numeric ">Ticket #</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric  mdl-cell--hide-phone">Subject</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric  ">Status</th>
-                         <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Priority</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Last Updated</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet ">Action</th>
-
-
-                    </tr>
-                    </thead>
-                    <tbody style="height:300px; overflow-y:scroll;">
-                    </tbody>
-                </table>
-                    </div>
-            </div>
-        </div>
-
-
         <!--My Contribution-->
         <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>My Contribution</div>
         <div class="mdl-card__actions mdl-card--border graph-font"></div>
@@ -173,6 +145,10 @@
             <div class="mdl-card__title-text uptime-card-title uptime-color">Updated (Last 06 Months)</div>
             <div class="mdl-layout-spacer"></div>
             <div id="total_updated_by_month" class="mdl-card__actions mdl-card--border graph-font"></div>
+        </div>
+
+        <!-- Ticket that is marked as KB Needed -->
+        <div id="ticket-kb-needed-div" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
         </div>
 
         <!--Last Activity on the Article-->
@@ -305,6 +281,50 @@
                 <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
                 <div id="last_commented_by_agent_time"
                      class="mdl-typography--display-1 result-padding uptime-card-text">0000-00-00 00:00:00
+                </div>
+            </div>
+        </div>
+
+        <!--Success Modal MyKb-->
+        <div id="success-dialog-mykb" class="ui small modal">
+            <div class="header">
+                SUCCESS
+            </div>
+            <div class="image content">
+                <div class="ui small image center">
+                    <i class="checkmark green icon"></i>
+                </div>
+                <div class="description">
+                    <div class="ui header">Database Updated.</div>
+                    <p>The uptime database has successfully registered the entry.</p>
+                    <p>The Uptime web would take some time to refresh the changes as it will need its agent to clean it up from the web, you may refresh the page after a while to see the reflected changes...</p>
+                    <p><strong>PLEASE NOTE:</strong> This Uptime operation doesn't update any of the zendesk field, it updates only its database.</p>
+                </div>
+            </div>
+            <div class="actions">
+                <div id="do-nothing-success" class="ui green deny button">
+                    OK
+                </div>
+            </div>
+        </div>
+
+        <!--Error Modal MyKb-->
+        <div id="error-dialog-mykb" class="ui small modal">
+            <div class="header">
+                ERROR
+            </div>
+            <div class="image content">
+                <div class="ui small image center">
+                    <i class="remove red icon"></i>
+                </div>
+                <div class="description">
+                    <div class="ui header">Cannot update the database at this time.</div>
+                    <p>Seems like we have encountered issues in updating the uptime database. Please contact your uptime admins or try again later..</p>
+                </div>
+            </div>
+            <div class="actions">
+                <div id="do-nothing-error" class="ui green deny button">
+                    OK
                 </div>
             </div>
         </div>
