@@ -1,0 +1,79 @@
+{% include "header.html" %}
+
+<body>
+
+	<div class="wrapper">
+
+		{% include "navigationbar.html" %}
+
+	    <div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+                    <div class="navbar-header">
+                        <p class="navbar-brand" href="#">New Articles</p>
+					</div>
+					<div class="visible-lg-block collapse navbar-collapse">
+						<ul class="visible-lg-block nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a id="filter" href="#"  class="visible-lg-block kb-filter-disabled btn btn-primary btn-simple btn-block dropdown-toggle" data-toggle="dropdown">
+									<p class=""><i class="material-icons">lightbulb_outline</i> Filter</p>
+								</a>
+								<ul id="filter_menu" class="dropdown-menu">
+									<li class="dropdown-header"><i class="fa fa-tags" aria-hidden="true"></i> Choose the category ..</li>
+									<li class="divider"></li>
+								</ul>
+							</li>
+                            <li>
+								<a href="#" id="new_kb_07_days_nav" class="visible-lg-block kb-button kb-active-button btn btn-primary btn-simple btn-block" data-toggle="dropdown">
+                                    7 Days
+	 						    </a>
+							</li>
+                            <li>
+								<a href="#" id="new_kb_15_days_nav" class="visible-lg-block kb-button kb-disable-button btn btn-primary btn-simple btn-block kb-button-move" data-toggle="dropdown">
+                                    15 Days
+	 						    </a>
+							</li>
+                            <li>
+								<a href="#pablo" id="new_kb_30_days_nav" class="visible-lg-block kb-button kb-disable-button btn btn-primary btn-simple btn-block kb-button-move" data-toggle="dropdown">
+                                    30 Days
+	 						    </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+
+            <div class="sidebar-container content">
+		        <div class="container-fluid">
+
+                    <!--Table Data-->
+
+
+                    <div id="new_kb_07_days" class="active-kb row">
+
+                    </div>
+
+                    <div id="new_kb_15_days" class="inactive-kb row">
+
+                    </div>
+
+                    <div id="new_kb_30_days" class="inactive-kb row">
+
+                    </div>
+
+		        </div>
+	        </div>
+
+			{% include "footer.html" %}
+		</div>
+	</div>
+
+</body>
+    {% include "javascripts.html" %}
+    <script src="{{ url_for('static', filename='js/newkbdata.js')}}"></script>
+	<script type="text/javascript">
+        $('#newkb_nav').addClass("active")
+	</script>
+
+</html>

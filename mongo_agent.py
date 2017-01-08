@@ -82,7 +82,6 @@ class MongoAgent:
         :param component: pivotal product
         :return:
         """
-
         links = []
         collection = self.db["weblinks"]
         data = collection.find({"product_category": component})

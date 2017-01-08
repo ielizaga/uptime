@@ -1,0 +1,150 @@
+.c3-chart-arcs-background {
+   fill: rgba(255, 255, 255, 0.1) !important;
+}
+
+.c3-gauge-value {
+   fill: rgba(255, 255, 255, 0.8) !important;
+}
+
+.c3-axis {
+   fill: rgba(0, 0, 0, 0.4) !important;
+}
+
+.c3-tooltip td {
+    font-size:13px;
+    padding: 3px 6px;
+    background-color:#fff;
+    border-left:1px dotted #999;
+    color: #000;
+}
+
+.title-text-align {
+    text-align: left !important;
+}
+
+.profile-picture {
+    height: 150px;
+    width: 150px;
+    margin-left: 58px;
+}
+
+.text_alignment {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.pie-char-padding {
+    bottom: 15px;
+}
+
+.trend-text-title{
+    text-align: center;
+    font-size: 15px;
+}
+
+.trend-card-content {
+    padding: 0px 0px !important;
+}
+
+.trend-content-text {
+    text-align: center;
+}
+
+.modal-width {
+    width: 80% !important;
+}
+
+.disable-link {
+    text-decoration: none;
+    background-color: #fff;
+    color: grey;
+    pointer-events: none !important;
+    cursor: default;
+}
+
+.active-link {
+    cursor: pointer !important;
+}
+
+.kb-active-button {
+    color: green !important;
+}
+
+.kb-disable-button {
+    color: grey !important;
+    opacity: 0.5;
+}
+
+.kb-filter-activated {
+    color: green !important;
+}
+
+.kb-filter-disabled {
+    color: grey !important;
+    opacity: 0.5;
+}
+
+.active-kb {
+    display: block !important;
+}
+
+.inactive-kb {
+    display: none !important;
+}
+
+
+.active-div {
+    display: block !important;
+}
+
+.inactive-div {
+    display: none !important;
+}
+
+.mykb-title-alignment {
+    padding: 10px 10px 14.5px 10px !important;
+}
+
+.mykb-title-alignment2 {
+    padding-top: 20px !important;
+}
+
+.mykb-text-size {
+    font-size: 13px !important;
+}
+
+.image-size-attribute {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+a {
+    cursor: pointer !important;
+}
+
+.weblink-action-icon {
+    opacity: .2;
+    color: grey;
+}
+
+.weblink-action-icon:hover {
+    opacity: 1;
+    color: #9c27b0;
+}
+
+.weblink-active {
+    display: block;
+}
+
+.weblink-inactive {
+    display: none;
+}
+
+.weblink-table-header {
+    color:black;
+}
+
+
+.button-hover:hover {
+    background-color: darkorange !important;
+}

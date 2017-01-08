@@ -1,0 +1,16 @@
+{% block body %}
+	<!--   Core JS Files   -->
+    <script src="{{ url_for('static', filename='js/jquery-3.1.0.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/material.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js" type="text/javascript"></script>
+
+    <!--uptime js-->
+    <script src="{{ url_for('static', filename='js/graphs.js')}}"></script>
+
+    <!--BootStrap Notify JS-->
+    <script src="{{ url_for('static', filename='js/bootstrap-notify.js')}}"></script>
+
+	<!-- Material Dashboard javascript methods -->
+    <script src="{{ url_for('static', filename='js/material-dashboard.js')}}"></script>
+{% endblock %}

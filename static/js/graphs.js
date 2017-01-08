@@ -33,19 +33,19 @@ function drawGaugeChart(element, data, max) {
             ],
             type: 'gauge',
         },
+        size: {
+          height: 150
+        },
         gauge: {
             max: max,
+            width: 20,
             label: {
                 show: false,
             }
         },
         color: {
-            pattern: ['#263238', '#195352', '#0c746d', '#009688'],
-            threshold: {
-                values: [max * 10 / 100, max * 40 / 100, max * 60 / 100, max * 75 / 100]
-            }
+            pattern: ['rgba(255, 255, 255, 0.8)' ],
         },
-
         tooltip: {
             format: {
                 title: function(d) {
@@ -72,7 +72,15 @@ function drawCategoriesBarChart(element, data, categories) {
     var chart = c3.generate({
         bindto: document.getElementById(element),
         size: {
-            height: 240,
+            height: 200,
+        },
+        grid: {
+          x: {
+            show: true
+          },
+          y: {
+            show: true
+          }
         },
         data: {
             columns: [
@@ -80,7 +88,7 @@ function drawCategoriesBarChart(element, data, categories) {
             ],
             type: 'bar',
             colors: {
-                Time: '#009688'
+                Time: '#4DD0E1'
             }
         },
         legend: {
@@ -89,7 +97,7 @@ function drawCategoriesBarChart(element, data, categories) {
         axis: {
             x: {
                 type: 'category',
-                categories: categories
+                categories: categories,
             },
             y: {
                 tick: {
@@ -126,16 +134,22 @@ function drawLineHistChart(element, x_data, y_data) {
         padding: {
             bottom: 20,
         },
+        grid: {
+          x: {
+            show: true
+          },
+          y: {
+            show: true
+          }
+        },
         data: {
             columns: [
                 y_data
-            ],
-            colors: {
+            ],colors: {
                 Articles: '#009688',
-                Time: '#009688',
+                Time: '#FF9800',
                 Comments: '#009688'
             },
-
         },
         legend: {
             show: false
@@ -170,10 +184,17 @@ function drawBarHistChart(element, x_data, y_data) {
             columns: [
                 y_data,
             ],
-            type: 'bar',
             colors: {
-                Time: '#009688',
-            }
+                Time: '#4FC3F7',
+            },
+            type: 'bar',
+        },grid: {
+          x: {
+            show: true
+          },
+          y: {
+            show: true
+          }
         },
         legend: {
             show: false
@@ -211,7 +232,7 @@ function drawPieHistChart(element, data, chart_title) {
             height: 240,
         },
         color: {
-            pattern: ['#00ccb8','#00b8a5','#00a393','#009688','#007a6e','#00665c','#005249','#003d37','#002925','#001412']
+            pattern: ['#EF5350','#EC407A','#AB47BC','#7E57C2','#5C6BC0','#42A5F5','#29B6F6','#66BB6A','#FFA726','#FF7043']
         },
         data: {
             // iris data from R
@@ -260,20 +281,28 @@ function drawLineChart(element, x_data, y_data) {
     var chart = c3.generate({
         bindto: document.getElementById(element),
         size: {
-            height: 220
+            height: 265
         },
         padding: {
-            bottom: 20,
+            top: 20,
+        },
+        grid: {
+          x: {
+            show: true
+          },
+          y: {
+            show: true
+          }
         },
         data: {
             columns: [
                 y_data
             ],
             colors: {
-                Articles: '#009688',
-                Time: '#009688',
-                Votes: '#009688',
-                Comments: '#009688'
+                Articles: '#FFA726',
+                Time: '#9CCC65',
+                Votes: '#5C6BC0',
+                Comments: '#26C6DA'
             }
         },
         legend: {
@@ -300,15 +329,23 @@ function drawBarChart(element, x_data, y_data, rotated) {
         size: {
             height: 240,
         },
+        grid: {
+          x: {
+            show: true
+          },
+          y: {
+            show: true
+          }
+        },
         data: {
             columns: [
                 y_data,
             ],
             type: 'bar',
             colors: {
-                Articles: '#009688',
-                Votes: '#009688',
-                Comments: '#009688',
+                Articles: '#26C6DA',
+                Votes: '#FF7043',
+                Comments: '#78909C',
             }
         },
         legend: {
@@ -337,10 +374,21 @@ function drawCombinationAnalyticsChart(element, tooltip, total, published, draft
         var chart = c3.generate({
             bindto: document.getElementById(element),
             size: {
-                height: 240,
+                height: 220,
+            },
+            padding: {
+               bottom: 15
+            },
+            grid: {
+              x: {
+                show: true
+              },
+              y: {
+                show: true
+              }
             },
             color: {
-                pattern: ['#009688','#00ccb8', '#00665c','#005249','#003d37','#002925','#001412']
+                pattern: ['#FFA726','#FF3D00', '#5C6BC0']
             },
             data: {
                 columns: [
@@ -359,7 +407,7 @@ function drawCombinationAnalyticsChart(element, tooltip, total, published, draft
             },
             legend: {
                 show: true,
-                position: 'right'
+                position: 'bottom'
             },
             axis: {
                 x: {
@@ -395,7 +443,7 @@ function drawPieChart(element, data, chart_title) {
             height: 240,
         },
         color: {
-            pattern: ['#00ccb8','#00b8a5','#00a393','#009688','#007a6e','#00665c','#005249','#003d37','#002925','#001412']
+            pattern: ['#EF5350','#EC407A','#AB47BC','#7E57C2','#5C6BC0','#42A5F5','#29B6F6','#66BB6A','#FFA726','#FF7043']
         },
         data: {
             // iris data from R
@@ -441,7 +489,15 @@ function drawCombinationChart(element, total, open, pending, hold, tooltip) {
                 height: 240,
             },
             color: {
-                pattern: ['#009688','#00ccb8', '#00665c','#005249','#003d37','#002925','#001412']
+                pattern: ['#FFB74D','#7E57C2','#29B6F6','#FF7043']
+            },
+            grid: {
+              x: {
+                show: true
+              },
+              y: {
+                show: true
+              }
             },
             data: {
                 columns: [

@@ -1,61 +1,183 @@
-{% block body %}
-<main id="historic" class="mdl-layout__content mdl-color--grey-100" style="display:none;">
-    <div class="mdl-grid uptime-content">
+{% include "header.html" %}
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Last 12 Weeks</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_week" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
+<body>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Last 06 Months</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_month" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
+	<div class="wrapper">
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Last 05 Years</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_year" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
+		{% include "navigationbar.html" %}
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Per Org in Current Week (Top 10)</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_org_current_week" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
+	    <div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+                        <p class="navbar-brand" href="#">Historical</p>
+					</div>
+				</div>
+			</nav>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Per Ticket in Current Week (Top 10)</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_ticket_current_week" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
+            <div class="sidebar-container content">
+		        <div class="container-fluid">
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Per Org in Last week (Top 10)</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_org_last_week" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
+                    <!--# Last 12 Weeks-->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="purple">
+                                    <i class="material-icons">timeline</i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Last 12 Weeks</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-4">
+                                    <div class="ct-chart" id="historic_week"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Per Ticket in Last week (Top 10)</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_ticket_last_week" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Per Org in Current Month (Top 10)</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_org" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
+                    <!--# Last 06 Months -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="material-icons">timeline</i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Last 06 Months</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="historic_month"></div>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Per Ticket in Current Month (Top 10)</div>
-            <div class="mdl-layout-spacer"></div>
-            <div id="historic_ticket" class="mdl-card__actions mdl-card--border graph-font"></div>
-        </div>
+                        <!--# Last 05 Years -->
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="material-icons">timeline</i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Last 05 Years</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="historic_year"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    </div>
-</main>
-{% endblock %}
+                    <!--# Time via Org this week -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="blue">
+                                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Per Org in Current Week (Top 10)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pie-char-padding">
+                                    <div class="ct-chart" id="historic_org_current_week"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--# Time via ticket this week -->
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Per Ticket in Current Week (Top 10)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="historic_ticket_current_week"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--# Time via Org last week -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="yellow">
+                                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Per Org in Last Week (Top 10)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pie-char-padding">
+                                    <div class="ct-chart" id="historic_org_last_week"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--# Time via ticket last week -->
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Per Ticket in Last Week (Top 10)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="historic_ticket_last_week"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--# Time via Org this week -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="purple">
+                                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Per Org in Current Month (Top 10)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pie-char-padding">
+                                    <div class="ct-chart" id="historic_org"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--# Time via ticket this week -->
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Per Ticket in Current Month (Top 10)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="historic_ticket"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+		        </div>
+	        </div>
+
+			{% include "footer.html" %}
+		</div>
+	</div>
+
+</body>
+    {% include "javascripts.html" %}
+    <script src="{{ url_for('static', filename='js/historical.js')}}"></script>
+	<script type="text/javascript">
+        $('#historical_nav').addClass("active")
+	</script>
+</html>

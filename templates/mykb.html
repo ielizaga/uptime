@@ -1,0 +1,506 @@
+{% include "header.html" %}
+
+<body>
+
+	<div class="wrapper">
+
+		{% include "navigationbar.html" %}
+
+        <!-- Modal -->
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="total_my_draft_tableModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="orange">
+                        <i class="fa fa-eraser" aria-hidden="true"></i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Open Tickets</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="total_my_draft_table">
+                            <thead class="text-warning">
+                            <tr>
+                                <th>Article</th>
+                                <th class="hidden-sm hidden-xs">Category</th>
+                                <th>Created</th>
+                                <th>Updated</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="total_my_review_tableModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="orange">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Open Tickets</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="total_my_review_table">
+                            <thead class="text-warning">
+                            <tr>
+                                <th>Article</th>
+                                <th class="hidden-sm hidden-xs">Category</th>
+                                <th>Created</th>
+                                <th>Updated</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="total_my_votes_tableModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="green">
+                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Open Tickets</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="total_my_votes_table">
+                            <thead class="text-warning">
+                            <tr>
+                                <th>Article</th>
+                                <th>Positive Votes</th>
+                                <th>Total Votes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div aria-labelledby="myModalLabel" class="modal fade" id="total_my_comments_tableModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="green">
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Open Tickets</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="total_my_comments_table">
+                            <thead class="text-warning">
+                            <tr>
+                                <th>Article</th>
+                                <th>Total Votes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Success Message-->
+        <div aria-labelledby="myModalLabel" class="modal fade" id="successModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="green">
+                        <i class="material-icons">done</i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Database Updated.</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="title">The uptime database has successfully registered the entry.</h3>
+                        <p class="category">The Uptime web would take some time to refresh the changes as it will need its agent to clean it up from the web, you may refresh the page after a while to see the reflected changes...</p>
+                        <p class="category"><strong>PLEASE NOTE:</strong> This Uptime operation doesn't update any of the zendesk field, it updates only its database.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	    <div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+                        <p class="navbar-brand" href="#">My Knowledge Base</p>
+					</div>
+				</div>
+			</nav>
+
+
+            <div class="sidebar-container content">
+		        <div class="container-fluid">
+
+					<div class="row">
+	                    <div class="col-md-12">
+	                        <div class="card card-plain">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">My Articles</h4>
+	                            </div>
+	                    	</div>
+	                	</div>
+	            	</div>
+
+			        <div class="row">
+				        <div class="col-lg-4 col-md-4 col-sm-4">
+					        <div class="card card-stats">
+						        <div class="card-header" data-background-color="orange">
+							        <i class="fa fa-book" aria-hidden="true"></i>
+						        </div>
+						        <div class="card-content">
+                                    <p class="category">Articles</p>
+                                    <h3 class="title" id="total_my_articles">00</h3>
+						        </div>
+					        </div>
+				        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="fa fa-eraser" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Draft Articles</p>
+                                    <h3 class="title" id="total_my_draft">00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Articles in Review</p>
+                                    <h3 class="title" id="total_my_review">00</h3>
+                                </div>
+                            </div>
+                        </div>
+			        </div>
+
+                    <div class="row">
+				        <div class="col-lg-3 col-md-6 col-sm-6">
+					        <div class="card card-stats">
+						        <div class="card-header" data-background-color="green">
+							        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+						        </div>
+						        <div class="card-content">
+                                    <p class="category">Articles Voted</p>
+                                    <h3 class="title" id="total_my_voted">00</h3>
+						        </div>
+					        </div>
+				        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Votes Received</p>
+                                    <h3 class="title" id="total_my_votes">00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content mykb-title-alignment">
+                                    <p class="category">Articles Commented</p>
+                                    <h3 class="title" id="total_my_commented">00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-comments" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content mykb-title-alignment">
+                                    <p class="category">Comments Received</p>
+                                    <h3 class="title" id="total_my_comments">00</h3>
+                                </div>
+                            </div>
+                        </div>
+			        </div>
+
+
+                    <div class="row">
+	                    <div class="col-md-12">
+	                        <div class="card card-plain">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">My Contribution</h4>
+	                            </div>
+	                    	</div>
+	                	</div>
+	            	</div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Created (Last 06 Months)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pie-char-padding">
+                                    <div class="ct-chart" id="total_created_by_month"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Updated (Last 06 Months)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="total_updated_by_month"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="ticket-kb-needed-div">
+
+                    </div>
+
+                    <div class="row">
+	                    <div class="col-md-12">
+	                        <div class="card card-plain">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">Last Activity on My Articles</h4>
+	                            </div>
+	                    	</div>
+	                	</div>
+	            	</div>
+
+                    <div class="row">
+				        <div class="col-lg-4 col-md-4 col-sm-4">
+					        <div class="card card-stats">
+						        <div class="card-header" data-background-color="orange">
+							        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						        </div>
+						        <div class="card-content">
+                                    <p class="category">Updated</p>
+                                    <h4 class="title" id="last_updated_my_article">00</h4>
+						        </div>
+					        </div>
+				        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Vote Received</p>
+                                    <h4 class="title" id="last_voted_my_article">00</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-comments" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Comment Received</p>
+                                    <h4 class="title" id="last_commented_my_article">00</h4>
+                                </div>
+                            </div>
+                        </div>
+			        </div>
+
+                    <div class="row">
+				        <div class="col-lg-4 col-md-4 col-sm-4">
+					        <div class="card card-stats">
+						        <div class="card-header" data-background-color="orange">
+							        <i class="fa fa-clock-o" aria-hidden="true"></i>
+						        </div>
+						        <div class="card-content">
+                                    <p class="category">Updated at</p>
+                                    <h4 class="title" id="last_updated_my_article_time">0000-00-00 00:00:00</h4>
+						        </div>
+					        </div>
+				        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Vote Received at</p>
+                                    <h4 class="title" id="last_voted_my_article_time">0000-00-00 00:00:00</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Comment Received at</p>
+                                    <h4 class="title" id="last_commented_my_article_time">0000-00-00 00:00:00</h4>
+                                </div>
+                            </div>
+                        </div>
+			        </div>
+
+                    <div class="row">
+	                    <div class="col-md-12">
+	                        <div class="card card-plain">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">My Last Activity</h4>
+	                            </div>
+	                    	</div>
+	                	</div>
+	            	</div>
+
+                    <div class="row">
+				        <div class="col-lg-3 col-md-3 col-sm-3">
+					        <div class="card card-stats">
+						        <div class="card-header" data-background-color="orange">
+							        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+						        </div>
+						        <div class="card-content">
+                                    <p class="category">Created</p>
+                                    <h4 class="title" id="last_created_by_agent">00</h4>
+						        </div>
+					        </div>
+				        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Updated</p>
+                                    <h4 class="title" id="last_updated_by_agent">00</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Voted</p>
+                                    <h4 class="title" id="last_voted_by_agent">00</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="blue">
+                                    <i class="fa fa-comments" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Commented</p>
+                                    <h4 class="title" id="last_commented_by_agent">00</h4>
+                                </div>
+                            </div>
+                        </div>
+			        </div>
+
+                    <div class="row">
+				        <div class="col-lg-3 col-md-3 col-sm-3">
+					        <div class="card card-stats">
+						        <div class="card-header" data-background-color="orange">
+							        <i class="fa fa-clock-o" aria-hidden="true"></i>
+						        </div>
+						        <div class="card-content mykb-title-alignment2">
+                                    <p class="category">Created at</p>
+                                    <h4 class="title mykb-text-size" id="last_created_by_agent_time">0000-00-00 00:00:00</h4>
+						        </div>
+					        </div>
+				        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content mykb-title-alignment2">
+                                    <p class="category">Updated at</p>
+                                    <h4 class="title mykb-text-size" id="last_updated_by_agent_time">0000-00-00 00:00:00</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content mykb-title-alignment2">
+                                    <p class="category">Voted at</p>
+                                    <h4 class="title mykb-text-size" id="last_voted_by_agent_time">0000-00-00 00:00:00</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="blue">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content mykb-title-alignment2">
+                                    <p class="category">Commented at</p>
+                                    <h4 class="title mykb-text-size" id="last_commented_by_agent_time">0000-00-00 00:00:00</h4>
+                                </div>
+                            </div>
+                        </div>
+			        </div>
+		        </div>
+	        </div>
+
+			{% include "footer.html" %}
+		</div>
+	</div>
+
+</body>
+    {% include "javascripts.html" %}
+    <script src="{{ url_for('static', filename='js/kbmy.js')}}"></script>
+	<script type="text/javascript">
+        $('#mykb_nav').addClass("active")
+	</script>
+</html>

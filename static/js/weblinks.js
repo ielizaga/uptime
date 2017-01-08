@@ -1,7 +1,6 @@
 link_store = {};
 
 function loadLinkForm(product, id) {
-    console.log(link_store[product][id]);
     $('#weblink_row_id').val(link_store[product][id]._id);
     $('#product_category').val(link_store[product][id].product_category);
     $('#short_heading').val(link_store[product][id].short_heading);
@@ -9,11 +8,31 @@ function loadLinkForm(product, id) {
     $('#contact_person').val(link_store[product][id].contact_person);
     $('#contact_person_email').val(link_store[product][id].email);
     $('#long_description').val(link_store[product][id].long_description);
-    $('.ui.basic.modal#add-form').modal('show');
+    $('#formModal').modal('show');
 }
 
 $.getJSON($SCRIPT_ROOT + '/get_weblink_data',
     function(data) {
+
+        var active_weblink_table = '#support-table'
+        $(".weblink-menu").click(function(event) {
+        main_container = '#'+($(this).attr("id")).substring(0, ($(this).attr("id")).length - 5);
+            if(main_container=="#support"){
+                title="Pivotal Support Services Weblinks";
+            }else if(main_container=="#greenplum") {
+                title="Pivotal Greenplum Weblinks";
+            }else if(main_container=="#hdb") {
+                title="Pivotal HDB Weblinks";
+            }else if(main_container=="#gemfire") {
+                title="Pivotal Gemfire Weblinks";
+            }else if(main_container=="#pcf") {
+                title="Pivotal Cloud Foundry Weblinks";
+            }
+            $("#weblink-title").html(title);
+            $(active_weblink_table).removeClass("weblink-active").addClass("weblink-inactive");
+            $(main_container+"-table").removeClass("weblink-inactive").addClass("weblink-active");
+            active_weblink_table = main_container+"-table";
+        });
 
         console.log(data);
         link_store = data.weblinks;
@@ -22,12 +41,12 @@ $.getJSON($SCRIPT_ROOT + '/get_weblink_data',
 
             for (var i in data.weblinks[product]) {
 
-                var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                    '<td class="tr-color mdl-data-table__cell--non-numeric" width="1%"><i class="angle right icon"></i></td>' +
-                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="' + data.weblinks[product][i]['web_url'] + '">' + data.weblinks[product][i]['short_heading'] + '</a></td>' +
-                    '<td class="tr-color mdl-data-table__cell--non-numeric text-align-right">' +
-                    '<a id="' + data.weblinks[product][i]['_id'] + '_edit" class="edit_class" onclick="loadLinkForm(\'' + product + '\',' + i + ')"><i class="write icon icon_attributes"></i></a>' +
-                    '<a id="' + data.weblinks[product][i]['_id'] + '_info" class="info_class"><i class="info circle icon icon_attributes"></i></a>' +
+                var rowTemplate = '<tr>' +
+                    '<td><i class="fa fa-chevron-right" aria-hidden="true"></i></td>' +
+                    '<td><a target="_blank" href="' + data.weblinks[product][i]['web_url'] + '">' + data.weblinks[product][i]['short_heading'] + '</a></td>' +
+                    '<td>' +
+                    '<a id="' + data.weblinks[product][i]['_id'] + '_edit" class="edit_class weblink-action-icon" onclick="loadLinkForm(\'' + product + '\',' + i + ')"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>' +
+                    '<a id="' + data.weblinks[product][i]['_id'] + '_info" class="info_class weblink-action-icon" data-toggle="modal" data-target="#' + data.weblinks[product][i]['_id'] + '" style="margin-left:10px"><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i></a>' +
                     '</td>' +
                     '</tr>';
 
@@ -37,124 +56,84 @@ $.getJSON($SCRIPT_ROOT + '/get_weblink_data',
                     $('#' + product + '-links-table-right tbody').append(rowTemplate);
                 };
 
-                var infoRowTemplate = '<div id="' + data.weblinks[product][i]['_id'] + '_info_table" class="ui basic modal">' +
-                    '<div class="actions">' +
-                    '    <div class="ui cancel circular inverted red icon button"><i class="icon remove"></i></div>' +
-                    '</div>' +
-                    '<table class="mdl-cell mdl-cell--6-col mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">' +
-                    '   <tbody>' +
-                    '       <tr>' +
-                    '           <td class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric"><b> Heading </b></b></td>' +
-                    '           <td class="td-wrap th-color mdl-data-table__cell--non-numeric">' + data.weblinks[product][i]['short_heading'] + '</td>' +
-                    '       </tr>' +
-                    '       <tr>' +
-                    '           <td class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric"><b> URL </b></td>' +
-                    '           <td class="td-wrap th-color mdl-data-table__cell--non-numeric">' + data.weblinks[product][i]['web_url'] + '</td>' +
-                    '       </tr>' +
-                    '       <tr>' +
-                    '           <td class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric"><b> Contact Person </b></td>' +
-                    '           <td class="td-wrap th-color mdl-data-table__cell--non-numeric">' + data.weblinks[product][i]['contact_person'] + '</td>' +
-                    '       </tr>' +
-                    '       <tr>' +
-                    '           <td class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric"><b> Contact Person Email </b></td>' +
-                    '           <td class="td-wrap th-color mdl-data-table__cell--non-numeric">' + data.weblinks[product][i]['email'] + '</td>' +
-                    '       </tr>' +
-                    '       <tr>' +
-                    '           <td class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric"><b> Description </b></td>' +
-                    '           <td class="td-wrap th-color mdl-data-table__cell--non-numeric">' + data.weblinks[product][i]['long_description'] + '</td>' +
-                    '       </tr>' +
-                    '    </tbody>' +
-                    '</table>' +
-                    '</div>';
+                var infoRowTemplate = '<div aria-labelledby="myModalLabel" class="modal fade" id="'+ data.weblinks[product][i]['_id'] +'" role="dialog" tabindex="-1"> ' +
+        '    <div class="modal-dialog modal-width" role="document"> ' +
+        '        <div class="modal-content card card-stats"> ' +
+        '            <div class="card-header" data-background-color="blue"> ' +
+        '                <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i> ' +
+        '            </div> ' +
+        '            <div class="modal-header"> ' +
+        '                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button> ' +
+        '                <h4 class="modal-title">Info</h4> ' +
+        '            </div> ' +
+        '            <div class="modal-body"> ' +
+        '                <table class="table table-hover" id="tickets_open_table"> ' +
+        '                   <tbody>' +
+        '                      <tr>' +
+        '                          <td><b> Heading </b></b></td>' +
+        '                          <td>' + data.weblinks[product][i]['short_heading'] + '</td>' +
+        '                      </tr>' +
+        '                      <tr>' +
+        '                          <td><b> URL </b></td>' +
+        '                          <td>' + data.weblinks[product][i]['web_url'] + '</td>' +
+        '                      </tr>' +
+        '                      <tr>' +
+        '                          <td><b> Contact Person </b></td>' +
+        '                          <td>' + data.weblinks[product][i]['contact_person'] + '</td>' +
+        '                      </tr>' +
+        '                      <tr>' +
+        '                          <td><b> Contact Person Email </b></td>' +
+        '                          <td>' + data.weblinks[product][i]['email'] + '</td>' +
+        '                      </tr>' +
+        '                      <tr>' +
+        '                          <td><b> Description </b></td>' +
+        '                          <td>' + data.weblinks[product][i]['long_description'] + '</td>' +
+        '                      </tr>' +
+        '                   </tbody>' +
+        '                </table> ' +
+        '            </div> ' +
+        '            <div class="modal-footer"> ' +
+        '                <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button> ' +
+        '            </div> ' +
+        '        </div> ' +
+        '    </div> ' +
+        '</div> ';
 
                 $('#' + product + '-links-info').append(infoRowTemplate);
             }
         });
 
-        /* Action when the info button is clicked */
-        $('.info_class').click(function(event) {
-            info_container = '.ui.basic.modal#' + $(this).attr("id") + '_table';
-            $(info_container).modal('show');
-        });
-
-        /**
-         * Section: Weblink Form
-         * Jquery for form ( i.e form to contribute the link )
-         */
-
-        /* reset the values based on the button clicked */
-        $('#add-link, #reset-link, #continue-link').click(function(event) {
-
-            var hidden_id = $('#weblink_row_id').val();
-            var clicked_element_id = $(this).attr("id");
-
-            if (hidden_id != '' && clicked_element_id == "add-link") {
-                $('input, textarea, select').val('');
-            };
-
-            $('.ui.basic.modal#add-form').modal('show');
-        });
-
-        /* Reload once successfully added to database */
-        $("#success-link-click").click(function(event) {
-            location.reload();
-        });
-
-        /* Check if the URL is valid */
-        function isUrlValid(url) {
-            return /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url);
-        }
-
-        /* Check if the email address is Valid */
-        function isValidEmailAddress(emailAddress) {
-            var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
-            return pattern.test(emailAddress);
-        };
-
         /* Update the database with the data */
         function postLinkData() {
-            console.log($('#form-link').serializeArray());
             $.post(
                 "/post_weblink_form_data",
                 $("#form-link").serialize(),
                 function(response) {
                     if (response == "success") {
-                        $('.ui.small.modal#success-dialog-link').modal('show');
-                        $('.ui.basic.modal#add-form').modal('hide');
-                    } else {
-                        $('#text-link').html("The uptime database couldn't register the entry, please contact the uptime admin or try again after sometime.");
-                        $('.ui.small.modal#error-dialog-link').modal('show');
+                        $(location).attr('href', '/weblinks')
                     }
                 }
             );
         }
 
+        /* add link html control */
+        $('#add-link').click(function() {
+          $('#add-icon').html('<div class="card-header" data-background-color="green"><i class="fa fa-plus" aria-hidden="true"></i></div><div class="modal-header"><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Add weblink</h4></div>')
+        });
+
+        /* update link html control */
+        $('.edit_class').click(function() {
+          $('#add-icon').html('<div class="card-header" data-background-color="orange"><i class="fa fa-pencil" aria-hidden="true"></i></div><div class="modal-header"><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Edit weblink</h4></div>')
+        });
+
+        /* Reset the modal after its closed */
+        $('#formModal').on('hidden.bs.modal', function(){
+            $(this).find('form')[0].reset();
+        });
+
         /* Form sumbit action and validation check */
-        $('#submit-link').click(function() {
-
-            if ($("#product_category").val() == '' || $("#short_heading").val() == '' || $("#website_url").val() == '' || $("#contact_person").val() == '' || $("#long_description").val() == '') {
-
-                $('#text-link').html("It seems like some of the forms mandatory fields have not been entered.");
-                $('.ui.small.modal#error-dialog-link').modal('show');
-
-            } else if (!isUrlValid($("#website_url").val())) {
-
-                $('#text-link').html("It seems like URL entered is not valid, a valid URL is for example 'http://mywebsite.com'.");
-                $('.ui.small.modal#error-dialog-link').modal('show');
-
-            } else if ($("#contact_person_email").val() != ' ') {
-
-                if (!isValidEmailAddress($("#contact_person_email").val())) {
-                    $('#text-link').html("It seems like Email Address is entered incorrectly.");
-                    $('.ui.small.modal#error-dialog-link').modal('show');
-                } else {
-                    postLinkData();
-                }
-
-            } else {
+        $('#form-link').submit(function(event){
                 postLinkData();
-            }
-            return false;
         });
 
     });
