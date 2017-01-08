@@ -73,9 +73,20 @@
                                 <label for="long_description">Long description (for eg.s like what is it used for etc) *</label>
                                 <textarea class="form-control" rows="3" name="long_description" id="long_description" maxlength="500" required></textarea>
                             </div>
-
                             <button id="submit-link" type="submit" class="button-hover btn btn-default btn-success" type="submit" value="Submit">Submit</button>
                             <button type="reset" class="button-hover btn btn-default btn-info">Reset</button>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <p><b>Disclaimer:</b></p>
+                                    <ol>
+                                        <li>Contributing a link will make the link visible to all the uptime users.</li>
+                                        <li>Please restrain from adding any personal URL's, you may use your browser bookmark instead.</li>
+                                        <li>If the URL's added is not related to pivotal or doesn't meet the standard, uptime admins with remove it from
+                                            the website.
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
                         </form>
 
                     </div>
@@ -86,12 +97,17 @@
             </div>
         </div>
 
-
         <!--Top Navigation Bar-->
         <div class="main-panel">
 			<nav class="navbar navbar-transparent navbar-absolute">
 				<div class="container-fluid">
 					<div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
                         <div class="dropdown">
                           <button class="navbar-brand btn btn-default btn-simple dropdown-toggle" type="button" id="weblink-submenu" data-toggle="dropdown"> <span id="weblink-title"> Pivotal Support Services Weblinks </span> &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-angle-down" aria-hidden="true"></i></button>
                           <ul class="dropdown-menu" role="menu" aria-labelledby="weblink-submenu">
@@ -126,7 +142,7 @@
                                    <h4 class="card-title title-text-align">Pivotal Support Services</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="support_services-links-table-left" class="table">
+                                   <table id="support_services-links-table-left" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -149,7 +165,7 @@
                                    <h4 class="card-title title-text-align">Pivotal Support Services</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="support_services-links-table-right" class="table">
+                                   <table id="support_services-links-table-right" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -175,7 +191,7 @@
                                    <h4 class="card-title title-text-align">Pivotal Greenplum</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="pivotal_greenplum-links-table-left" class="table">
+                                   <table id="pivotal_greenplum-links-table-left" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -198,7 +214,7 @@
                                    <h4 class="card-title title-text-align">Pivotal Greenplum</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="pivotal_greenplum-links-table-right" class="table">
+                                   <table id="pivotal_greenplum-links-table-right" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -224,7 +240,7 @@
                                    <h4 class="card-title title-text-align">Pivotal HDB</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="pivotal_hdb-links-table-left" class="table">
+                                   <table id="pivotal_hdb-links-table-left" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -247,7 +263,7 @@
                                    <h4 class="card-title title-text-align">Pivotal HDB</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="pivotal_hdb-links-table-right" class="table">
+                                   <table id="pivotal_hdb-links-table-right" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -273,7 +289,7 @@
                                    <h4 class="card-title title-text-align">Pivotal Gemfire</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="pivotal_gemfire-links-table-left" class="table">
+                                   <table id="pivotal_gemfire-links-table-left" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -296,7 +312,7 @@
                                    <h4 class="card-title title-text-align">Pivotal Gemfire</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="pivotal_gemfire-links-table-right" class="table">
+                                   <table id="pivotal_gemfire-links-table-right" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -322,7 +338,7 @@
                                    <h4 class="card-title title-text-align">Pivotal Cloud Foundry</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="pivotal_cloud_foundry-links-table-left" class="table">
+                                   <table id="pivotal_cloud_foundry-links-table-left" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>
@@ -345,7 +361,7 @@
                                    <h4 class="card-title title-text-align">Pivotal Cloud Foundry</h4>
                                </div>
                                <div class="card-content title-text-align table-responsive">
-                                   <table id="pivotal_cloud_foundry-links-table-right" class="table">
+                                   <table id="pivotal_cloud_foundry-links-table-right" class="table table-hover">
                                        <thead class="text-primary">
                                             <th></th>
                                             <th class="weblink-table-header">WebLinks</th>

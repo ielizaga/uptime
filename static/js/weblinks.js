@@ -66,7 +66,7 @@ $.getJSON($SCRIPT_ROOT + '/get_weblink_data',
         '                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button> ' +
         '                <h4 class="modal-title">Info</h4> ' +
         '            </div> ' +
-        '            <div class="modal-body"> ' +
+        '            <div class="modal-body table-responsive"> ' +
         '                <table class="table table-hover" id="tickets_open_table"> ' +
         '                   <tbody>' +
         '                      <tr>' +
