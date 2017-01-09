@@ -262,9 +262,9 @@ def get_mykb_data():
 
 @app.route('/insert_backed_up_weblinks')
 def insert_backed_up_weblinks():
-    # data = "<INSERT BACKED UP LINKS HERE>"
+    # data = <INSERT BACKED UP LINKS HERE AS LIST>
     # mongo.insert_backed_up_links(data)
-    return "success"
+    return redirect("/weblinks")
 
 
 if __name__ == "__main__":

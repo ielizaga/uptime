@@ -118,9 +118,4 @@ $.getJSON($SCRIPT_ROOT + '/get_weblink_data',
             $(this).find('form')[0].reset();
         });
 
-        /* Form sumbit action and validation check */
-        $('#form-link').submit(function(event){
-             console.log("The requested URL is been processed to be added to the database..")
-        });
-
     });
