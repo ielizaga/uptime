@@ -103,19 +103,6 @@ $.getJSON($SCRIPT_ROOT + '/get_weblink_data',
             }
         });
 
-        /* Update the database with the data */
-        function postLinkData() {
-            $.post(
-                "/post_weblink_form_data",
-                $("#form-link").serialize(),
-                function(response) {
-                    if (response == "success") {
-                        $(location).attr('href', '/weblinks')
-                    }
-                }
-            );
-        }
-
         /* add link html control */
         $('#add-link').click(function() {
           $('#add-icon').html('<div class="card-header" data-background-color="green"><i class="fa fa-plus" aria-hidden="true"></i></div><div class="modal-header"><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Add weblink</h4></div>')
@@ -133,7 +120,7 @@ $.getJSON($SCRIPT_ROOT + '/get_weblink_data',
 
         /* Form sumbit action and validation check */
         $('#form-link').submit(function(event){
-                postLinkData();
+             console.log("The requested URL is been processed to be added to the database..")
         });
 
     });

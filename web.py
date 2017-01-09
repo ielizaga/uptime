@@ -205,7 +205,7 @@ def post_weblink_form_data():
         )
 
     if result:
-        return "success"
+        return redirect("/weblinks")
     else:
         return "failure"
 
@@ -258,6 +258,13 @@ def get_mykb_data():
     email = session.get('email')
     data = mongo.get_mykb_data(email)
     return jsonify(mykb=data['mykb_data'])
+
+
+@app.route('/insert_backed_up_weblinks')
+def insert_backed_up_weblinks():
+    # data = "<INSERT BACKED UP LINKS HERE>"
+    # mongo.insert_backed_up_links(data)
+    return "success"
 
 
 if __name__ == "__main__":
