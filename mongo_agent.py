@@ -82,7 +82,6 @@ class MongoAgent:
         :param component: pivotal product
         :return:
         """
-
         links = []
         collection = self.db["weblinks"]
         data = collection.find({"product_category": component})
@@ -146,3 +145,8 @@ class MongoAgent:
             "kb_completed": "TRUE",
         })
         return True
+
+    def insert_backed_up_links(self, backed_up_data):
+        collection = self.db["weblinks"]
+        collection.drop()
+        collection.insert(backed_up_data, check_keys=False)

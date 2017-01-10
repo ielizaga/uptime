@@ -97,3 +97,5 @@ Procfile
 
 # Environment variables
 run.sh
+
+.DS_Store

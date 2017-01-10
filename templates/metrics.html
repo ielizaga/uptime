@@ -1,132 +1,209 @@
-{% block body %}
-<main id="metrics" class="mdl-layout__content mdl-color--grey-100" style="display:none;">
-    <div class="mdl-grid uptime-content">
+{% include "header.html" %}
 
-        <!--My Metrics-->
-        <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>My Metrics</div>
-        <div class="mdl-card__actions mdl-card--border graph-font"></div>
+<body>
 
-        <table id="metric_all_stats" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-            <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Overall</th>
-                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
-            </tr>
-            </thead>
-            <tbody>
+	<div class="wrapper">
 
-            </tbody>
-        </table>
+		{% include "navigationbar.html" %}
 
-        <table id="metric_owned_stats" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-            <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Ownership</th>
-                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
-            </tr>
-            </thead>
-            <tbody>
+	    <div class="main-panel">
 
-            </tbody>
-        </table>
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<p class="navbar-brand">Metrics</p>
+					</div>
+				</div>
+			</nav>
 
-        <table id="metric_week_stats" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-            <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Last 7 Days</th>
-                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
-            </tr>
-            </thead>
-            <tbody>
+            <div class="sidebar-container content">
+		        <div class="container-fluid">
 
-            </tbody>
-        </table>
+			       <div class="col-lg-6 col-md-6 col-sm-6">
+                       <div class="card card-stats">
+                           <div class="card-header" data-background-color="orange">
+							    <i class="material-icons">storage</i>
+                           </div>
+                           <div class="card-content">
+                               <h4 class="card-title title-text-align">Overall</h4>
+                           </div>
+                           <div class="card-content title-text-align table-responsive">
+                               <table id="metric_all_stats" class="table table-hover">
+                                   <thead class="text-primary">
+                                        <th>Description</th>
+                                        <th>Count</th>
+                                   </thead>
+                                   <tbody>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
 
-        <table id="metric_month_stats" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-            <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Last 30 Days</th>
-                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-
-        <table id="metric_quarter_stats" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-            <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Last 90 Days</th>
-                <th class="th-color mdl-data-table__cell--non-numeric text-align-right">Total</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-
-
-        <!--Ticket Assignment-->
-        <div>
-            <div class="mdl-cell--hide-tablet mdl-cell--hide-phone">
-                <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Tickets Assigned</div>
-                <div class="mdl-card__actions mdl-card--border graph-font"></div>
-
-                <table id="assigned_by_month" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                    <thead>
-                        <tr>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Year</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">January</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">February</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">March</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">April</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">May</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">June</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">July</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">August</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">September</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">October</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">November</th>
-                            <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">December</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
+			       <div class="col-lg-6 col-md-6 col-sm-6">
+                       <div class="card card-stats">
+                           <div class="card-header" data-background-color="red">
+							    <i class="material-icons">storage</i>
+                           </div>
+                           <div class="card-content">
+                               <h4 class="card-title title-text-align">Ownership</h4>
+                           </div>
+                           <div class="card-content title-text-align table-responsive">
+                               <table id="metric_owned_stats" class="table table-hover">
+                                   <thead class="text-primary">
+                                        <th>Description</th>
+                                        <th>Count</th>
+                                   </thead>
+                                   <tbody>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
 
 
-        <!--Ticket Solved-->
-        <div>
-            <div class="mdl-cell--hide-tablet mdl-cell--hide-phone">
-                <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Tickets Closed/Solved</div>
-                <div class="mdl-card__actions mdl-card--border graph-font"></div>
-                <table id="solved_by_month" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                    <thead>
-                    <tr>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Year</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">January</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">February</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">March</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">April</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">May</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">June</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">July</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">August</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">September</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">October</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">November</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">December</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</main>
-{% endblock %}
+			       <div class="col-lg-4 col-md-6 col-sm-6">
+                       <div class="card card-stats">
+                           <div class="card-header" data-background-color="blue">
+							    <i class="material-icons">storage</i>
+                           </div>
+                           <div class="card-content">
+                               <h4 class="card-title title-text-align">Last 7 Days</h4>
+                           </div>
+                           <div class="card-content title-text-align table-responsive">
+                               <table id="metric_week_stats" class="table table-hover">
+                                   <thead class="text-primary">
+                                        <th>Description</th>
+                                        <th>Count</th>
+                                   </thead>
+                                   <tbody>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+
+
+			       <div class="col-lg-4 col-md-6 col-sm-6">
+                       <div class="card card-stats">
+                           <div class="card-header" data-background-color="purple">
+							    <i class="material-icons">storage</i>
+                           </div>
+                           <div class="card-content">
+                               <h4 class="card-title title-text-align">Last 30 Days</h4>
+                           </div>
+                           <div class="card-content title-text-align table-responsive">
+                               <table id="metric_month_stats" class="table table-hover">
+                                   <thead class="text-primary">
+                                        <th>Description</th>
+                                        <th>Count</th>
+                                   </thead>
+                                   <tbody>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+
+
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                       <div class="card card-stats">
+                           <div class="card-header" data-background-color="green">
+							    <i class="material-icons">storage</i>
+                           </div>
+                           <div class="card-content">
+                               <h4 class="card-title title-text-align">Last 90 Days</h4>
+                           </div>
+                           <div class="card-content title-text-align table-responsive">
+                               <table id="metric_quarter_stats" class="table table-hover">
+                                   <thead class="text-primary">
+                                        <th>Description</th>
+                                        <th>Count</th>
+                                   </thead>
+                                   <tbody>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                    </div>
+
+                    <div class="col-md-12 hidden-sm hidden-xs hidden-md">
+                        <div class="card">
+                            <div class="card-header" data-background-color="red">
+                                <h4 class="title">Tickets Assigned</h4>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table id="assigned_by_month" class="table table-hover">
+                                    <thead class="text-primary">
+                                        <th class="hidden-sm hidden-xs hidden-md">Year</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Jan</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Feb</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Mar</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Apr</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">May</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Jun</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">July</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Aug</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Sep</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Oct</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Nov</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Dec</th>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 hidden-sm hidden-xs hidden-md">
+                        <div class="card">
+                            <div class="card-header" data-background-color="orange">
+                                <h4 class="title">Tickets Closed / Solved</h4>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table id="solved_by_month" class="table table-hover">
+                                    <thead class="text-primary">
+                                        <th class="hidden-sm hidden-xs hidden-md">Year</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Jan</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Feb</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Mar</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Apr</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">May</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Jun</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">July</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Aug</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Sep</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Oct</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Nov</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Dec</th>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+		        </div>
+	        </div>
+
+			{% include "footer.html" %}
+		</div>
+	</div>
+
+</body>
+    {% include "javascripts.html" %}
+    <script src="{{ url_for('static', filename='js/metrics.js')}}"></script>
+	<script type="text/javascript">
+        $('#metrics_nav').addClass("active")
+	</script>
+</html>

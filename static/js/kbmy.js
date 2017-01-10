@@ -61,45 +61,68 @@ $.getJSON($SCRIPT_ROOT + '/get_mykb_data',
                 data_container = article_divs.substring(0, (article_divs).length - 6)
 
                 if (data.mykb[data_container] != 0) {
-                    $('#' + data_container).html('<a class="table_pop" id="' + article_divs + '_a">' + pad(data.mykb[data_container]) + '</a>');
+                    $('#' + data_container).html('<a class="active-link table_pop" data-toggle="modal" data-target="#' + article_divs + 'Modal" id="' + article_divs + '_a">' + pad(data.mykb[data_container]) + '</a>');
 
                     for (var i in data.mykb[article_divs]) {
-                        var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                            '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.mykb[article_divs][i]['article_id'] + '">' + data.mykb[article_divs][i]['article_title'] + '</a></td>' +
-                            '<td class="tr-color td-wrap mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">' + data.mykb[article_divs][i]['category'] + '</td>' +
-                            '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' + data.mykb[article_divs][i]['created'] + '</td>' +
-                            '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' + data.mykb[article_divs][i]['updated'] + '</td>' +
+                        var rowTemplate = '<tr>' +
+                            '<td><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.mykb[article_divs][i]['article_id'] + '">' + data.mykb[article_divs][i]['article_title'] + '</a></td>' +
+                            '<td class="hidden-sm hidden-xs">' + data.mykb[article_divs][i]['category'] + '</td>' +
+                            '<td >' + data.mykb[article_divs][i]['created'] + '</td>' +
+                            '<td >' + data.mykb[article_divs][i]['updated'] + '</td>' +
                             '</tr>';
 
                         $('#' + article_divs + ' tbody').append(rowTemplate);
                     }
+
+                    $('#'+ article_divs).DataTable({
+                    "iDisplayLength": 5,
+                    "aLengthMenu": [
+                        [5, 10, 25],
+                        [5, 10, 25]
+                    ],
+                    'sPaginationType': 'simple'
+                    });
                 }
             }
         });
 
         if (data.mykb.total_my_votes != 0) {
-            $('#total_my_votes').html('<a class="table_pop" id="total_my_votes_table_a">' + pad(data.mykb.total_my_votes) + '</a>');
+            $('#total_my_votes').html('<a class="active-link table_pop" data-toggle="modal" data-target="#total_my_votes_tableModal" id="total_my_votes_table_a">' + pad(data.mykb.total_my_votes) + '</a>');
             for (var i in data.mykb.total_my_votes_table) {
-                var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.mykb.total_my_votes_table[i]['article_id'] + '">' + data.mykb.total_my_votes_table[i]['title'] + '</a></td>' +
-                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' + data.mykb.total_my_votes_table[i]['Positive'] + '</td>' +
-                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' + data.mykb.total_my_votes_table[i]['Total'] + '</td>' +
+                var rowTemplate = '<tr>' +
+                    '<td><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.mykb.total_my_votes_table[i]['article_id'] + '">' + data.mykb.total_my_votes_table[i]['title'] + '</a></td>' +
+                    '<td>' + data.mykb.total_my_votes_table[i]['Positive'] + '</td>' +
+                    '<td>' + data.mykb.total_my_votes_table[i]['Total'] + '</td>' +
                     '</tr>';
 
                 $('#total_my_votes_table tbody').append(rowTemplate);
             }
+            $('#total_my_votes_table').DataTable({
+                    "iDisplayLength": 5,
+                    "aLengthMenu": [
+                        [5, 10, 25],
+                        [5, 10, 25]
+                    ]
+                    });
         }
 
         if (data.mykb.total_my_comments != 0) {
-            $('#total_my_comments').html('<a class="table_pop" id="total_my_comments_table_a">' + pad(data.mykb.total_my_comments) + '</a>');
+            $('#total_my_comments').html('<a class="active-link table_pop" data-toggle="modal" data-target="#total_my_comments_tableModal" id="total_my_comments_table_a">' + pad(data.mykb.total_my_comments) + '</a>');
             for (var i in data.mykb.total_my_comments_table) {
-                var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.mykb.total_my_comments_table[i]['article_id'] + '">' + data.mykb.total_my_comments_table[i]['title'] + '</a></td>' +
-                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' + data.mykb.total_my_comments_table[i]['Total'] + '</td>' +
+                var rowTemplate = '<tr>' +
+                    '<td><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.mykb.total_my_comments_table[i]['article_id'] + '">' + data.mykb.total_my_comments_table[i]['title'] + '</a></td>' +
+                    '<td>' + data.mykb.total_my_comments_table[i]['Total'] + '</td>' +
                     '</tr>';
 
                 $('#total_my_comments_table tbody').append(rowTemplate);
             }
+                $('#total_my_comments_table').DataTable({
+                    "iDisplayLength": 5,
+                    "aLengthMenu": [
+                        [5, 10, 25],
+                        [5, 10, 25]
+                    ]
+                    });
         }
 
 
@@ -126,60 +149,58 @@ $.getJSON($SCRIPT_ROOT + '/get_mykb_data',
             }
         });
 
-        $(".table_pop").click(function(event) {
-            pop_container = '.ui.basic.modal#' + ($(this).attr("id")).substring(0, ($(this).attr("id")).length - 2) + '_box';
-            $(pop_container).modal('show');
-        });
-
         /** Table for tickets marked as KB needed **/
         if (data.mykb.kb_needed.length != 0) {
 
-                var rowTemplateHeader ='<div>' +
-                                       '    <div class="mdl-card__title-text uptime-card-title2 uptime-color"><br/>Tickets Marked as KB Needed</div>' +
-                                       '    <div class="mdl-card__actions mdl-card--border graph-font"></div>' +
-                                       '    <div id="table-scroll">' +
-                                       '    	<table id="ticket-kb-needed-tab" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-data-table mdl-js-data-table mdl-shadow--2dp">' +
-                                       '        	<thead>' +
-                                       '        		<tr>' +
-                                       '            		<th class="th-color mdl-data-table__cell--non-numeric">Ticket #</th>' +
-                                       '            		<th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-phone">Subject</th>' +
-                                       '            		<th class="th-color mdl-data-table__cell--non-numeric">Status</th>' +
-                                       '             		<th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Priority</th>' +
-                                       '            		<th class="th-color mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">Last Updated</th>' +
-                                       '            		<th class="th-color mdl-data-table__cell--non-numeric">Action</th>' +
-                                       '        		</tr>' +
-                                       '        	</thead>' +
-                                       '        	<tbody>' +
-                                       '        	</tbody>' +
-                                       '    	</table>' +
-                                       '   </div>' +
-                                       '</div>';
+                var rowTemplateHeader = '<div class="row"> ' +
+                                        '    <div class="col-lg-12 col-md-12"> ' +
+                                        '        <div class="card"> ' +
+                                        '            <div class="card-header" data-background-color="purple"> ' +
+                                        '                <h4 class="title">Tickets Marked as KB Needed</h4> ' +
+                                        '            </div> ' +
+                                        '            <div class="card-content table-responsive"> ' +
+                                        '                <table class="table table-hover" id="kb_needed_table"> ' +
+                                        '                    <thead class="text-warning"> ' +
+                                        '                        <tr> ' +
+                                        '                            <th>Ticket#</th> ' +
+                                        '                            <th class="hidden-sm hidden-xs">Subject</th> ' +
+                                        '                            <th class="hidden-sm hidden-xs">Status</th> ' +
+                                        '                            <th class="hidden-sm hidden-xs">Priority</th> ' +
+                                        '                            <th>Last Updated</th> ' +
+                                        '                            <th>Action</th> ' +
+                                        '                        </tr> ' +
+                                        '                    </thead> ' +
+                                        '                    <tbody> ' +
+                                        '                    </tbody> ' +
+                                        '                </table> ' +
+                                        '            </div> ' +
+                                        '        </div> ' +
+                                        '    </div> ' +
+                                        '</div> ';
 
                 $('#ticket-kb-needed-div').append(rowTemplateHeader);
-
-                if (data.mykb.kb_needed.length == 2) {
-                    $('#table-scroll').css({ 'height': "180px" });
-                } else if (data.mykb.kb_needed.length == 3) {
-                    $('#table-scroll').css({ 'height': "240px" });
-                } else if (data.mykb.kb_needed.length == 4) {
-                    $('#table-scroll').css({ 'height': "305px" });
-                } else if (data.mykb.kb_needed.length > 4) {
-                    $('#table-scroll').css({ 'height': "305px" });
-                }
-
                 for (var i in data.mykb.kb_needed) {
-                    var rowTemplate = '<tr class="tr-color" style="color: black">' +
-                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/' + data.mykb.kb_needed[i]['ticket_id'] + '">' + data.mykb.kb_needed[i]['ticket_id'] + '</a></td>' +
-                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric mdl-cell--hide-phone" >' + data.mykb.kb_needed[i]['ticket_subject'] + '</td>' +
-                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric">' + data.mykb.kb_needed[i]['ticket_status'] + '</td>' +
-                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">' + data.mykb.kb_needed[i]['ticket_priority'] + '</td>' +
-                                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric mdl-cell--hide-tablet mdl-cell--hide-phone">' + data.mykb.kb_needed[i]['ticket_updated'] + '</td>' +
-                                        '<td id="'+ data.mykb.kb_needed[i]['ticket_id'] + '"onClick="markKBCompleted(this.id)"><button class="ui primary button mykb-button">Done</button></td>' +
+                    var rowTemplate = '<tr>' +
+                                        '<td><a target="_blank" href="http://discuss.zendesk.com/agent/tickets/' + data.mykb.kb_needed[i]['ticket_id'] + '">' + data.mykb.kb_needed[i]['ticket_id'] + '</a></td>' +
+                                        '<td>' + data.mykb.kb_needed[i]['ticket_subject'] + '</td>' +
+                                        '<td>' + data.mykb.kb_needed[i]['ticket_status'] + '</td>' +
+                                        '<td>' + data.mykb.kb_needed[i]['ticket_priority'] + '</td>' +
+                                        '<td>' + data.mykb.kb_needed[i]['ticket_updated'] + '</td>' +
+                                        '<td id="'+ data.mykb.kb_needed[i]['ticket_id'] + '"onClick="markKBCompleted(this.id)"><a data-toggle="modal" data-target="#successModal" class="btn btn-success button-hover">Done</button></td>' +
                                       '</tr>';
 
-                    $('#ticket-kb-needed-tab tbody').append(rowTemplate);
+                    $('#kb_needed_table tbody').append(rowTemplate);
 
                 }
+
+                $('#kb_needed_table').DataTable({
+                    "iDisplayLength": 5,
+                    "aLengthMenu": [
+                        [5, 10, 25],
+                        [5, 10, 25]
+                    ]
+                    });
             }
+
         }
     );

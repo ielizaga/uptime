@@ -1,0 +1,452 @@
+{% include "header.html" %}
+
+<body>
+
+	<div class="wrapper">
+
+		{% include "navigationbar.html" %}
+
+	    <div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<p class="navbar-brand">Knowledge Base Analytics</p>
+					</div>
+				</div>
+			</nav>
+
+            <div class="sidebar-container content">
+		        <div class="container-fluid">
+
+                    <div class="row">
+	                    <div class="col-md-12">
+	                        <div class="card card-plain">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">Analytics</h4>
+	                            </div>
+	                    	</div>
+	                	</div>
+	            	</div>
+
+			        <div class="row">
+
+						<div class="col-lg-2 col-md-2 col-sm-2">
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<div class="card">
+									<div class="card-header" data-background-color="green">
+										<p class="title trend-text-title">Articles</p>
+									</div>
+									<div class="card-content trend-card-content">
+										<h3 class="title trend-content-text" id="total_articles">00</h3>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<div class="card">
+									<div class="card-header" data-background-color="orange">
+										<p class="title trend-text-title">Votes</p>
+									</div>
+									<div class="card-content trend-card-content">
+										<h3 class="title trend-content-text" id="total_votes">00</h3>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<div class="card">
+									<div class="card-header" data-background-color="red">
+										<p class="title trend-text-title">Comments</p>
+									</div>
+									<div class="card-content trend-card-content">
+										<h3 class="title trend-content-text" id="total_comments">00</h3>
+									</div>
+								</div>
+							</div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-10">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Articles Created Per Month (Last 12 Months)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pie-char-padding">
+                                    <div class="ct-chart" id="kb_per_month"></div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="blue">
+                                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Top 10 Contributed Category (Current Month)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pie-char-padding">
+                                    <div class="ct-chart" id="kb_current_month_per_catgeory"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Top 10 Contributors (Current Month)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pie-char-padding">
+                                    <div class="ct-chart" id="kb_current_month_per_author"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="yellow">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Articles In Draft</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="kb_in_draft"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Articles Under Review</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="kb_in_review"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Votes On Article (Last 06 Months)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pie-char-padding">
+                                    <div class="ct-chart" id="kb_votes_per_month"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="blue">
+                                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Comments On Article (Last 06 Months)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="kb_comments_per_month"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Top 10 Contributed Category (Overall)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="kb_overall_by_catgeory"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Top 10 Contributors (Overall)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="kb_overall_by_author"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+					<div class="row">
+	                    <div class="col-md-12">
+	                        <div class="card card-plain">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">Knowledge Base vs Tickets</h4>
+	                            </div>
+	                    	</div>
+	                	</div>
+	            	</div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="yellow">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">KB field on all ticket (Overall)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="overall_kb_ref_by_ticket"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">KB field on all ticket (Current Month)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="current_month_kb_ref_by_ticket"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">KB field on Data ticket (Current Month)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="current_month_data_kb_ref_by_ticket"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">KB field on PaaS ticket (Current Month)</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="ct-chart" id="current_month_pcf_kb_ref_by_ticket"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="row">
+	                    <div class="col-md-12">
+	                        <div class="card card-plain">
+	                            <div class="card-header" data-background-color="purple">
+	                                <h4 class="title">Article's referenced in ticket</h4>
+	                            </div>
+	                    	</div>
+	                	</div>
+	            	</div>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Overall KB</h4>
+                                </div>
+                                <div class="card-content title-text-align table-responsive">
+                                    <table class="table table-hover" id="overall_top_kb_by_ticket">
+                                        <thead class="text-warning">
+                                        <tr>
+                                            <th>Article</th>
+                                            <th>Count</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Overall Data KB</h4>
+                                </div>
+                                <div class="card-content title-text-align table-responsive">
+                                    <table class="table table-hover" id="overall_top_data_kb_by_ticket">
+                                        <thead class="text-warning">
+                                        <tr>
+                                            <th>Article</th>
+                                            <th>Count</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Overall PaaS KB</h4>
+                                </div>
+                                <div class="card-content title-text-align table-responsive">
+                                    <table class="table table-hover" id="overall_top_pcf_kb_by_ticket">
+                                        <thead class="text-warning">
+                                        <tr>
+                                            <th>Article</th>
+                                            <th>Count</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="yellow">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align title-text-align">Current Month (overall)</h4>
+                                </div>
+                                <div class="card-content title-text-align table-responsive">
+                                    <table class="table table-hover" id="current_month_top_kb_by_ticket">
+                                        <thead class="text-warning">
+                                        <tr>
+                                            <th>Article</th>
+                                            <th>Count</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="purple">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align title-text-align">Current Month (Data)</h4>
+                                </div>
+                                <div class="card-content title-text-align table-responsive">
+                                    <table class="table table-hover" id="current_month_top_data_kb_by_ticket">
+                                        <thead class="text-warning">
+                                        <tr>
+                                            <th>Article</th>
+                                            <th>Count</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="blue">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align title-text-align">Current Month (PaaS)</h4>
+                                </div>
+                                <div class="card-content title-text-align table-responsive">
+                                    <table class="table table-hover" id="current_month_top_pcf_kb_by_ticket">
+                                        <thead class="text-warning">
+                                        <tr>
+                                            <th>Article</th>
+                                            <th>Count</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+		        </div>
+	        </div>
+
+			{% include "footer.html" %}
+		</div>
+	</div>
+
+</body>
+    {% include "javascripts.html" %}
+    <script src="{{ url_for('static', filename='js/analyticskb.js')}}"></script>
+	<script type="text/javascript">
+        $('#analyticskb_nav').addClass("active")
+	</script>
+</html>

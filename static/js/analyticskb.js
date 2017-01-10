@@ -80,30 +80,22 @@ $.getJSON($SCRIPT_ROOT + '/get_kbanalytics_data',
         // Update the KB information of TOP 15 KB referenced
         $.each(table_divs, function(id, table_div) {
             for (var i in data.kbanalytics[table_div]) {
-                var rowTemplate = '<tr class="tr-color">' +
-                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.kbanalytics[table_div][i]['article_id'] + '"><div style="height: 55px; overflow:hidden;">' + data.kbanalytics[table_div][i]['article_title'] + '</td>' +
-                        '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric text-align-right">' + data.kbanalytics[table_div][i]['article_ref_count'] + '</div></td>' +
+                var rowTemplate = '<tr>' +
+                        '<td><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.kbanalytics[table_div][i]['article_id'] + '">' + data.kbanalytics[table_div][i]['article_title'] + '</td>' +
+                        '<td>' + data.kbanalytics[table_div][i]['article_ref_count'] + '</td>' +
                         '</tr>';
                 $('#'+table_div+' tbody').append(rowTemplate);
             }
+            $('#'+ table_div).DataTable({
+                    "iDisplayLength": 5,
+                    "aLengthMenu": [
+                        [5, 10, 25],
+                        [5, 10, 25]
+                    ],
+                    'sPaginationType': 'simple'
+                });
         });
 
-
-//
-//        for (var i in data.kbanalytics.top_kb_by_ticket) {
-//            var rowTemplate = '<tr class="tr-color">' +
-//                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric"><a target="_blank" href="https://discuss.zendesk.com/hc/en-us/articles/' + data.kbanalytics.top_kb_by_ticket[i]['article_id'] + '"><div style="height: 55px; overflow:hidden;">' + data.kbanalytics.top_kb_by_ticket[i]['article_title'] + '</td>' +
-//                    '<td class="tr-color td-wrap mdl-data-table__cell--non-numeric text-align-right">' + data.kbanalytics.top_kb_by_ticket[i]['article_ref_count'] + '</div></td>' +
-//                    '</tr>';
-//
-//                if ( i <= 4 ) {
-//                    $('#top_kb_by_ticket_1 tbody').append(rowTemplate);
-//                } else if ( i >= 5 && i <= 9 ) {
-//                    $('#top_kb_by_ticket_2 tbody').append(rowTemplate);
-//                } else {
-//                    $('#top_kb_by_ticket_3 tbody').append(rowTemplate);
-//                }
-//        };
 
 
         // Plot graph for all the charts mentioned in chart_divs variable

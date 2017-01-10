@@ -1,0 +1,393 @@
+{% include "header.html" %}
+
+<body>
+
+	<div class="wrapper">
+
+		{% include "navigationbar.html" %}
+
+        <!--Modal divs-->
+        <div id="support_services-links-info">
+        </div>
+
+        <div id="pivotal_greenplum-links-info">
+        </div>
+
+        <div id="pivotal_hdb-links-info">
+        </div>
+
+        <div id="pivotal_gemfire-links-info">
+        </div>
+
+        <div id="pivotal_cloud_foundry-links-info">
+        </div>
+
+        <!--Add new link Form -->
+        <div aria-labelledby="myModalLabel" class="modal fade" id="formModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div id="add-icon">
+
+                    </div>
+                    <div class="modal-body">
+
+                        <form action="{{ url_for('post_weblink_form_data') }}" method="Post" id="form-link">
+
+                            <div class="form-group">
+                                <input type="hidden" name="weblink_row_id" id="weblink_row_id" value=''>
+                            </div>
+
+                            <div class="form-group">
+                              <label>Product *</label>
+                                <select id="product_category" name="pivotal_products" class="form-control" required>
+                                    <option value="" disabled selected>Choose the component....</option>
+                                    <option value="support_services">Pivotal Support Services</option>
+                                    <option value="pivotal_greenplum">Pivotal Greenplum</option>
+                                    <option value="pivotal_hdb">Pivotal HDB</option>
+                                    <option value="pivotal_gemfire">Pivotal Gemfire</option>
+                                    <option value="pivotal_cloud_foundry">Pivotal Cloud Foundry</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="short_heading">Enter a heading (Max: 50 Characters) *</label>
+                                <input type="text" class="form-control" name="short_heading" id="short_heading" maxlength="50" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="website_url">Enter URL *</label>
+                                <input type="url" class="form-control" name="website_url" id="website_url" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact_person">Enter contact person name (for eg.s who needs to be contacted for access/issues etc)</label>
+                                <input type="text" class="form-control" name="contact_person" id="contact_person">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact_person_email">Enter contact person email address (Enter a space if there is no email address)</label>
+                                <input type="email" class="form-control" name="contact_person_email" id="contact_person_email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="long_description">Long description (for eg.s like what is it used for etc) *</label>
+                                <textarea class="form-control" rows="3" name="long_description" id="long_description" maxlength="500" required></textarea>
+                            </div>
+                            <button id="submit-link" type="submit" class="button-hover btn btn-default btn-success" type="submit" value="Submit">Submit</button>
+                            <button type="reset" class="button-hover btn btn-default btn-info">Reset</button>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <p><b>Disclaimer:</b></p>
+                                    <ol>
+                                        <li>Contributing a link will make the link visible to all the uptime users.</li>
+                                        <li>Please restrain from adding any personal URL's, you may use your browser bookmark instead.</li>
+                                        <li>If the URL's added is not related to pivotal or doesn't meet the standard, uptime admins with remove it from
+                                            the website.
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Top Navigation Bar-->
+        <div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+                        <div class="dropdown">
+                          <button class="navbar-brand btn btn-default btn-simple dropdown-toggle" type="button" id="weblink-submenu" data-toggle="dropdown"> <span id="weblink-title"> Pivotal Support Services Weblinks </span> &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="weblink-submenu">
+                            <li class="dropdown-header">Select Products....</li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a class="weblink-menu" id="support-link" role="menuitem">Pivotal Support Services</a></li>
+                            <li role="presentation"><a class="weblink-menu" id="greenplum-link" role="menuitem">Pivotal Greenplum</a></li>
+                            <li role="presentation"><a class="weblink-menu" id="hdb-link" role="menuitem">Pivotal HDB</a></li>
+                            <li role="presentation"><a class="weblink-menu" id="gemfire-link" role="menuitem">Pivotal Gemfire</a></li>
+                            <li role="presentation"><a class="weblink-menu" id="pcf-link" role="menuitem">Pivotal Cloud Foundry</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a id="add-link" role="menuitem" data-toggle="modal" data-target="#formModal">Add New WebLink</a></li>
+                          </ul>
+                        </div>
+					</div>
+                </div>
+			</nav>
+
+
+            <!--The data flow-->
+            <div class="sidebar-container content">
+		        <div class="container-fluid">
+
+                   <div id="support-table" class="weblink-active">
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="purple">
+                                    <i class="fa fa-life-ring" aria-hidden="true"></i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal Support Services</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="support_services-links-table-left" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="purple">
+                                    <i class="fa fa-life-ring" aria-hidden="true"></i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal Support Services</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="support_services-links-table-right" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+                   </div>
+
+                    <div id="greenplum-table" class="weblink-inactive">
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-database" aria-hidden="true"></i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal Greenplum</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="pivotal_greenplum-links-table-left" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="green">
+                                    <i class="fa fa-database" aria-hidden="true"></i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal Greenplum</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="pivotal_greenplum-links-table-right" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+                    </div>
+
+                    <div id="hdb-table" class="weblink-inactive">
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="orange">
+                                    <i class="material-icons">storage</i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal HDB</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="pivotal_hdb-links-table-left" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="orange">
+                                    <i class="material-icons">storage</i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal HDB</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="pivotal_hdb-links-table-right" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+                    </div>
+
+                    <div id="gemfire-table" class="weblink-inactive">
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="red">
+                                    <i class="material-icons">memory</i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal Gemfire</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="pivotal_gemfire-links-table-left" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="red">
+                                    <i class="material-icons">memory</i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal Gemfire</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="pivotal_gemfire-links-table-right" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+                    </div>
+
+                    <div id="pcf-table" class="weblink-inactive">
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="blue">
+                                    <i class="fa fa-cloud" aria-hidden="true"></i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal Cloud Foundry</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="pivotal_cloud_foundry-links-table-left" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                           <div class="card card-stats">
+                               <div class="card-header" data-background-color="blue">
+                                    <i class="fa fa-cloud" aria-hidden="true"></i>
+                               </div>
+                               <div class="card-content">
+                                   <h4 class="card-title title-text-align">Pivotal Cloud Foundry</h4>
+                               </div>
+                               <div class="card-content title-text-align table-responsive">
+                                   <table id="pivotal_cloud_foundry-links-table-right" class="table table-hover">
+                                       <thead class="text-primary">
+                                            <th></th>
+                                            <th class="weblink-table-header">WebLinks</th>
+                                            <th class="weblink-table-header">Actions</th>
+                                       </thead>
+                                       <tbody>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+                    </div>
+
+		        </div>
+	        </div>
+
+			{% include "footer.html" %}
+		</div>
+	</div>
+
+</body>
+    {% include "javascripts.html" %}
+    <script src="{{ url_for('static', filename='js/weblinks.js')}}"></script>
+	<script type="text/javascript">
+        $('#weblinks_nav').addClass("active")
+	</script>
+
+</html>

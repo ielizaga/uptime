@@ -1,219 +1,313 @@
-{% block body %}
+{% include "header.html" %}
 
-<main id="dashboard" class="mdl-layout__content mdl-color--grey-100">
+<body>
 
-    <div class="mdl-grid uptime-content">
+	<div class="wrapper">
 
-        <!-- Metrics tiles -->
+		{% include "navigationbar.html" %}
 
-        <!--Open Ticket status-->
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--3-col mdl-cell--3-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color"> Open Tickets</div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="open" class="mdl-typography--display-2 result-padding"></div>
+        <!-- Modal -->
 
-            <div id="tickets_open_table_box" class="ui basic modal">
-                <div class="actions">
-                    <div class="ui cancel circular inverted red icon button"><i class="icon remove"></i></div>
+        <div aria-labelledby="myModalLabel" class="modal fade" id="openModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="orange">
+                        <i class="material-icons">drafts</i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Open Tickets</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="tickets_open_table">
+                            <thead class="text-warning">
+                            <tr>
+                                <th>Ticket#</th>
+                                <th class="hidden-sm hidden-xs">Subject</th>
+                                <th class="hidden-sm hidden-xs">Assignee</th>
+                                <th class="hidden-sm hidden-xs">Contact</th>
+                                <th>Priority</th>
+                                <th>Ticket status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
                 </div>
-                <table id="tickets_open_table"
-                       class="mdl-cell mdl-cell--6-col mdl-data-table mdl-js-data-table mdl-shadow--2dp"
-                       style="width: 100%">
-                    <thead>
-                    <tr>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Ticket #</th>
-                        <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric">Subject</th>
-                        <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                            Assignee
-                        </th>
-                        <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                            Contact
-                        </th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Priority</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
             </div>
         </div>
 
-        <!--Closed ticket status-->
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--3-col mdl-cell--3-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color"> Closed Tickets</div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="closed" class="mdl-typography--display-2 result-padding"></div>
-
-            <div id="tickets_closed_table_box" class="ui basic modal">
-                <div class="actions">
-                    <div class="ui cancel circular inverted red icon button"><i class="icon remove"></i></div>
+        <div aria-labelledby="myModalLabel" class="modal fade" id="closedModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="green">
+                        <i class="material-icons">mail</i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Closed Tickets</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="tickets_closed_table">
+                            <thead class="text-warning">
+                            <tr>
+                                <th>Ticket#</th>
+                                <th class="hidden-sm hidden-xs">Subject</th>
+                                <th class="hidden-sm hidden-xs">Assignee</th>
+                                <th class="hidden-sm hidden-xs">Contact</th>
+                                <th>Priority</th>
+                                <th>Ticket status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
                 </div>
-                <table id="tickets_closed_table"
-                       class="mdl-cell mdl-cell--6-col mdl-data-table mdl-js-data-table mdl-shadow--2dp"
-                       style="width: 100%">
-                    <thead>
-                    <tr>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Ticket #</th>
-                        <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric">Subject</th>
-                        <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                            Assignee
-                        </th>
-                        <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                            Contact
-                        </th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Priority</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
             </div>
         </div>
 
-        <!--Assigned ticket status-->
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--3-col mdl-cell--3-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color"> Assigned Tickets</div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="assigned" class="mdl-typography--display-2 result-padding"></div>
-
-            <div id="tickets_assigned_table_box" class="ui basic modal">
-                <div class="actions">
-                    <div class="ui cancel circular inverted red icon button"><i class="icon remove"></i></div>
+        <div aria-labelledby="myModalLabel" class="modal fade" id="assignedModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="red">
+                        <i class="material-icons">archive</i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Assigned Tickets</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="tickets_assigned_table">
+                            <thead class="text-warning">
+                            <tr>
+                                <th>Ticket#</th>
+                                <th class="hidden-sm hidden-xs">Subject</th>
+                                <th class="hidden-sm hidden-xs">Assignee</th>
+                                <th class="hidden-sm hidden-xs">Contact</th>
+                                <th>Priority</th>
+                                <th>Ticket status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
                 </div>
-                <table id="tickets_assigned_table"
-                       class="mdl-cell mdl-cell--6-col mdl-data-table mdl-js-data-table mdl-shadow--2dp"
-                       style="width: 100%">
-                    <thead>
-                    <tr>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Ticket #</th>
-                        <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric">Subject</th>
-                        <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                            Assignee
-                        </th>
-                        <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                            Contact
-                        </th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Priority</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
             </div>
         </div>
 
-        <!--Updated ticket status-->
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--3-col mdl-cell--3-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Updated Tickets</div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div id="updated" class="mdl-typography--display-2 result-padding"></div>
 
-            <div id="tickets_updated_table_box" class="ui basic modal">
-                <div class="actions">
-                    <div class="ui cancel circular inverted red icon button"><i class="icon remove"></i></div>
+        <div aria-labelledby="myModalLabel" class="modal fade" id="updatedModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-width" role="document">
+                <div class="modal-content card card-stats">
+                    <div class="card-header" data-background-color="blue">
+                        <i class="material-icons">unarchive</i>
+                    </div>
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="tickets_updated_table">
+                            <thead class="text-warning">
+                            <tr>
+                                <th>Ticket#</th>
+                                <th class="hidden-sm hidden-xs">Subject</th>
+                                <th class="hidden-sm hidden-xs">Assignee</th>
+                                <th class="hidden-sm hidden-xs">Contact</th>
+                                <th>Priority</th>
+                                <th>Ticket status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-simple" data-dismiss="modal" type="button">Close</button>
+                    </div>
                 </div>
-                <table id="tickets_updated_table"
-                       class="mdl-cell mdl-cell--6-col mdl-data-table mdl-js-data-table mdl-shadow--2dp"
-                       style="width: 100%">
-                    <thead>
-                    <tr>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Ticket #</th>
-                        <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric">Subject</th>
-                        <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                            Assignee
-                        </th>
-                        <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                            Contact
-                        </th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Priority</th>
-                        <th class="th-color mdl-data-table__cell--non-numeric">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
             </div>
         </div>
 
-        <!-- Gauge charts -->
 
-        <!--Today's chart-->
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Today</div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div class="graph-font" id="today"></div>
-            <h4 style="margin: 0; padding-bottom: 5px"><span style="padding-right:100px;">0h</span><span
-                    style="padding-left:110px">8h</span></h4>
-        </div>
 
-        <!--Week's chart-->
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Week</div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div class="graph-font" id="week"></div>
-            <h4 style="margin: 0; padding-bottom: 5px"><span style="padding-right:100px;">0h</span><span
-                    style="padding-left:110px">40h</span></h4>
-        </div>
+	    <div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<p class="navbar-brand">Today</p>
+					</div>
+				</div>
+			</nav>
 
-        <!--Month's chart-->
-        <div class="uptime-shortupdates mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title uptime-color">Month</div>
-            <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-            <div class="graph-font" id="month"></div>
-            <h4 style="margin: 0; padding-bottom: 5px"><span style="padding-right:95px;">0h</span><span
-                    style="padding-left:110px">160h</span></h4>
-        </div>
 
-        <!-- Bar chart -->
-        <div class="uptime-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop ripplelink">
-            <div class="mdl-card__title-text uptime-card-title">Week Progress</div>
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-card__actions mdl-card--border graph-font" id="bar"></div>
-        </div>
+            <div class="sidebar-container content">
+		        <div class="container-fluid">
 
-        <!-- Mini status update -->
-        <div id="miniupdate-text" class="uptime-miniupdates uptime- mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col ripplelink">
-            <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop" style="float:left; border-right: 1px solid rgba(0,0,0,.1)">
-                <div class="mdl-card__title-text uptime-card-title uptime-color">Last Time Recorded</div>
-                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-                <div id="ts-last-update" class="mdl-typography--display-2 result-padding uptime-card-text2"></div>
-            </div>
-            <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop" style="float:left; border-right: 1px solid rgba(0,0,0,.1)">
-                <div class="mdl-card__title-text uptime-card-title uptime-color">Last Updated Ticket</div>
-                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-                <div class="mdl-typography--display-2 result-padding uptime-card-text2"><a id="ticket-last-update" target="_blank"></a></div>
-            </div>
-            <div class="uptime-shortupdates mdl-cell mdl-cell--4-col mdl-cell--4-col-desktop" style="float:left">
-                <div class="mdl-card__title-text uptime-card-title uptime-color">Time Since Last Update</div>
-                <div class="mdl-card__actions mdl-card--border border-control remove-padding"></div>
-                <div id="time-last-update" class="mdl-typography--display-2 result-padding uptime-card-text2"></div>
-            </div>
-        </div>
+                    <!--# Short ticket summary -->
+			        <div class="row">
+				        <div class="col-lg-3 col-md-6 col-sm-6">
+					        <div class="card card-stats">
+						        <div class="card-header" data-background-color="orange">
+							        <i class="material-icons">drafts</i>
+						        </div>
+						        <div class="card-content">
+                                    <p class="category">Open Tickets</p>
+                                    <h3 class="title" id="open">00</h3>
+						        </div>
+					        </div>
+				        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="material-icons">mail</i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Closed Tickets</p>
+                                    <h3 class="title" id="closed">00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="red">
+                                    <i class="material-icons">archive</i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Assigned Tickets</p>
+                                    <h3 class="title" id="assigned">00</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="blue">
+                                    <i class="material-icons">unarchive</i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Updated Tickets</p>
+                                    <h3 class="title" id="updated">00</h3>
+                                </div>
+                            </div>
+                        </div>
+			        </div>
 
-        <!-- Ticket updates table -->
-        <table id="ticket-table"
-               class="table-layout mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-            <tr>
-                <th class="th-color mdl-data-table__cell--non-numeric">Ticket #</th>
-                <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric" width="35%">Subject</th>
-                <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                    Assignee
-                </th>
-                <th class="th-color mdl-cell--hide-tablet mdl-cell--hide-phone mdl-data-table__cell--non-numeric">
-                    Contact
-                </th>
-                <th class="th-color mdl-cell--hide-phone mdl-data-table__cell--non-numeric">Update time</th>
-                <th class="th-color mdl-data-table__cell--non-numeric">Time logged</th>
-                <th class="th-color mdl-data-table__cell--non-numeric">Ticket status</th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-</main>
-{% endblock %}
+                    <!--# Gauge Charts-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-chart" data-background-color="green">
+                                    <div class="ct-chart" id="today"></div>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title">Today</h4>
+                                    <p class="category">Scale: <span class="text-success">0-8(hrs)</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-chart" data-background-color="orange">
+                                    <div class="ct-chart" id="week"></div>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title">Week</h4>
+                                    <p class="category">Scale: <span class="text-success">0-40(hrs)</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-chart" data-background-color="red">
+                                    <div class="ct-chart" id="month"></div>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title">Month</h4>
+                                    <p class="category">Scale: <span class="text-success">0-160(hrs)</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--# Week Progress Bar chart-->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="purple">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title title-text-align">Week Progress</h4>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-4">
+                                    <div class="ct-chart" id="bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--# Ticket updates summary table-->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card">
+                                <div class="card-header" data-background-color="red">
+                                    <h4 class="title">Ticket Updates</h4>
+                                    <div id="miniupdate-text">
+                                        <p class="category">Last updated ticket: <span><a id="ticket-last-update" target="_blank">0</a></span> | Last Time Recorded : <span id="ts-last-update">00:00:00</span> | Time Since Last Update : <span id="time-last-update">00:00:00</span></p>
+                                    </div>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table table-hover" id="ticket-table">
+                                        <thead class="text-warning">
+                                            <tr>
+                                                <th>Ticket#</th>
+                                                <th class="hidden-xs">Subject</th>
+                                                <th class="hidden-sm hidden-xs">Assignee</th>
+                                                <th class="hidden-xs">Contact</th>
+                                                <th class="hidden-sm hidden-xs">Update time</th>
+                                                <th>Time logged</th>
+                                                <th>Ticket status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+		        </div>
+	        </div>
+
+			{% include "footer.html" %}
+		</div>
+	</div>
+
+</body>
+    {% include "javascripts.html" %}
+    <script src="{{ url_for('static', filename='js/dashboard.js')}}"></script>
+	<script type="text/javascript">
+        $('#dashboard_nav').addClass("active")
+	</script>
+</html>

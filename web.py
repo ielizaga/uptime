@@ -42,8 +42,14 @@ google = oauth.remote_app('google',
                           consumer_secret=GOOGLE_CLIENT_SECRET)
 
 
+# global
+name = None
+email = None
+picture = None
+
+
 @app.route("/")
-def index():
+def index(doc="dashboard.html"):
     access_token = session.get('access_token')
     if access_token is None:
         return redirect(url_for('login'))
@@ -61,12 +67,13 @@ def index():
     google_user_info = json.loads(res.read())
     email = google_user_info['email']
     name = google_user_info['name']
+    picture = google_user_info['picture']
 
     session['email'] = email
 
     if email[-11:] == "@pivotal.io":
-        return render_template('index.html', email=email, name=name, token=access_token,
-                               picture=google_user_info['picture'])
+        return render_template(doc, email=email, name=name, token=access_token,
+                               picture=picture)
     else:
         return render_template('error.html', email=email)
 
@@ -90,6 +97,58 @@ def get_access_token():
     return session.get('access_token')
 
 
+# Page Redirects
+@app.route('/license')
+def get_license():
+    return index("license.html")
+
+
+@app.route('/dashboard')
+def get_dashboard():
+    return index("dashboard.html")
+
+
+@app.route('/metrics')
+def get_metrics():
+    return index("metrics.html")
+
+
+@app.route('/historical')
+def get_historical():
+    return index("historical.html")
+
+
+@app.route('/trends')
+def get_trends():
+    return index("trends.html")
+
+
+@app.route('/weblinks')
+def get_weblinks():
+    return index("weblinks.html")
+
+
+@app.route('/mykb')
+def get_mykb():
+    return index("mykb.html")
+
+
+@app.route('/newkb')
+def get_newkb():
+    return index("newkb.html")
+
+
+@app.route('/updatedkb')
+def get_updatedkb():
+    return index("updatedkb.html")
+
+
+@app.route('/analyticskb')
+def get_analyticskb():
+    return index("analyticskb.html")
+
+
+# Data Extractor
 @app.route('/get_user_data')
 def get_user_data():
     email = session.get('email')
@@ -116,6 +175,7 @@ def get_metrics_data():
 
 @app.route('/post_weblink_form_data', methods=['POST'])
 def post_weblink_form_data():
+
     id = request.form['weblink_row_id']
     product_category = request.form['pivotal_products']
     short_heading = request.form['short_heading']
@@ -145,7 +205,7 @@ def post_weblink_form_data():
         )
 
     if result:
-        return "success"
+        return redirect("/weblinks")
     else:
         return "failure"
 
@@ -200,6 +260,13 @@ def get_mykb_data():
     return jsonify(mykb=data['mykb_data'])
 
 
+@app.route('/insert_backed_up_weblinks')
+def insert_backed_up_weblinks():
+    # data = <INSERT BACKED UP LINKS HERE AS LIST>
+    # mongo.insert_backed_up_links(data)
+    return redirect("/weblinks")
+
+
 if __name__ == "__main__":
     # Apply production configuration
     if ENVIRONMENT_TYPE == 'prod':
@@ -210,7 +277,3 @@ if __name__ == "__main__":
         app.port = int(os.getenv("PORT"))
         app.debug = True
         app.run()
-
-
-
-
