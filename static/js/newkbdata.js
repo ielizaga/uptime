@@ -40,7 +40,7 @@ $.getJSON($SCRIPT_ROOT + '/get_kb_data',
 
                     var rowTemplateHeader = '<div id="' + id_generator + '"class="col-lg-12 col-md-12 active-div"> ' +
                         '    <div class="card"> ' +
-                        '        <div class="card-header" data-background-color="green"> ' +
+                        '        <div class="card-header" data-background-color="pivotal"> ' +
                         '            <h4 class="title">' + i + '</h4> ' +
                         '        </div> ' +
                         '        <div class="card-content table-responsive"> ' +

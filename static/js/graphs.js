@@ -88,7 +88,7 @@ function drawCategoriesBarChart(element, data, categories) {
             ],
             type: 'bar',
             colors: {
-                Time: '#4DD0E1'
+                Time: '#00a79c'
             }
         },
         legend: {
@@ -185,7 +185,7 @@ function drawBarHistChart(element, x_data, y_data) {
                 y_data,
             ],
             colors: {
-                Time: '#4FC3F7',
+                Time: '#00a79c',
             },
             type: 'bar',
         },grid: {
@@ -343,9 +343,9 @@ function drawBarChart(element, x_data, y_data, rotated) {
             ],
             type: 'bar',
             colors: {
-                Articles: '#26C6DA',
-                Votes: '#FF7043',
-                Comments: '#78909C',
+                Articles: '#00a79c',
+                Votes: '#00a79c',
+                Comments: '#00a79c',
             }
         },
         legend: {
@@ -388,7 +388,7 @@ function drawCombinationAnalyticsChart(element, tooltip, total, published, draft
               }
             },
             color: {
-                pattern: ['#FFA726','#FF3D00', '#5C6BC0']
+                pattern: ['#00a79c','#FF3D00', '#5C6BC0']
             },
             data: {
                 columns: [
@@ -489,7 +489,7 @@ function drawCombinationChart(element, total, open, pending, hold, tooltip) {
                 height: 240,
             },
             color: {
-                pattern: ['#FFB74D','#7E57C2','#29B6F6','#FF7043']
+                pattern: ['#00a79c','#7E57C2','#29B6F6','#FF7043']
             },
             grid: {
               x: {
